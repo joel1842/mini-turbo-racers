@@ -1,0 +1,39 @@
+@import url('https://fonts.googleapis.com/css2?family=Quicksand:wght@300;400;500;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@100;200;300;400;500;600;700&display=swap');
+
+.howtoplay {
+    padding-top: 30px;
+    text-align: center;
+}
+
+.howtoplay img {
+    width: 375px;
+}
+
+.howtoplay h2 {
+    color: #ff0000;
+    margin-left: 25%;
+    margin-right: 25%;
+}
+
+.howtoplay b {
+    color: #ff6868;
+}
+
+.howtoplay h3 {
+    padding-top: 20px;
+    font-size: 24px;
+    color: #ff6868;
+}
+
+.howtoplay p {
+    color: #454545;
+    font-weight: 500;
+    font-size: 20px;
+    margin-left: 30%;
+    margin-right: 30%;
+}
+
+.homebtn {
+    padding-bottom: 50px;
+}

@@ -1,0 +1,26 @@
+@import url('https://fonts.googleapis.com/css2?family=Quicksand:wght@300;400;500;600;700&display=swap');
+
+.credits {
+    padding-top: 5%;
+    text-align: center;
+}
+
+.credits img {
+    width:225px;
+}
+
+.credits h3 {
+    color: #ff0000;
+    font-size: 25px;
+    font-weight: 600;
+    padding-top: 15px;
+}
+
+.credits p {
+    color: #ff0000;
+}
+
+.credits p strong{
+    color: #ff6868;
+    font-size: 20px; 
+}

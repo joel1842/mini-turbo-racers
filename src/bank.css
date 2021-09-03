@@ -1,0 +1,27 @@
+@import url('https://fonts.googleapis.com/css2?family=Quicksand:wght@300;400;500;600;700&display=swap');
+
+.bankheader {
+    padding-top: 20px;
+    text-align: center;
+}
+
+#bankTitle {
+    width: 450px;
+}
+
+.bankheader p {
+    font-size: 24px;
+    color: #454545;
+    padding-top: 5px;
+    margin-left: 25%;
+    margin-right: 25%;
+}
+
+.bankheader b{
+    color: #ff6868;
+}
+
+#vault {
+    padding: 40px;
+    width: 400px;
+}
