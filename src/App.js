@@ -5,7 +5,6 @@ import garageIcon from "./garageIcon.png";
 import moneyIcon from "./moneyIcon.png";
 import rulesIcon from "./rulesIcon.png";
 import starIcon from "./starIcon.png";
-import Navbar from './Navbar';
 import Track from "./Track";
 import Garage from "./Garage";
 import Bank from "./Bank";
