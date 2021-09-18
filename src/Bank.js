@@ -2,10 +2,12 @@ import "./bank.css";
 import bankTitle from "./grand turbo bank.png";
 import bankVault from "./bank vault.png";
 import Bet from "./Bet";
+import React, { Component } from "react";
 import {
     Link
   } from "react-router-dom";
 
+  
 const Bank = () => {
     return(
         <div>

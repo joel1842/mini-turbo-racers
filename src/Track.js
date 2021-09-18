@@ -1,37 +1,35 @@
+import React, { Component, useState } from "react";
 import {
     Link
   } from "react-router-dom";
 
-const Track = () => {
-    return(
-        <div>
-            <h1>TRACK!</h1>
-            <button onClick={startRace}>Start Race!</button>
-            <Link to="/">
-                <button>
-                    Go back!
-                </button>
-            </Link>
-        </div>
-        
-    )
-}
 
 // car constructor
-function car(name, speed, weight, acceleration, lane, isBet) {
-    this.name = name;
-    this.speed = speed;
-    this.weight = weight;
-    this.acceleration = acceleration;
-    this.lane = lane;
-    this.isBet = isBet;
-}
+class Car extends Component {
+    constructor(name, speed, time, weight, acceleration, lane, isBet) {
+        super();
+        this.name = name;
+        this.speed = speed;
+        this.time = time;
+        this.weight = weight;
+        this.acceleration = acceleration;
+        this.lane = lane;
+        this.isBet = isBet;
+        this.setBet = this.setBet.bind(this);
+    }
+
+    setBet() {
+        this.isBet = true;
+        console.log(this.name, this.isBet);
+    }
+} 
+
 // cars
-const car1 = new car(1, 100, 200, 5, 1, true);
+const car1 = new Car("Car 1", 100, 0, 200, 5, 1, true);
 
-const car2 = new car(2, 120, 300, 2, 2, false);
+const car2 = new Car("Car 2", 120, 0, 300, 2, 2, false);
 
-const car3 = new car(3, 90, 150, 7, 3, false);
+const car3 = new Car("Car 3", 90, 0, 150, 7, 3, false);
 
 // powerup constructor
 function powerUp(boost, duration, price) {
@@ -52,9 +50,11 @@ let interval1Speed;
 let interval2Speed;
 let interval3Speed;
 let powerUpInterval;
+let startTime;
 
 // start race & set interval speeds
 const startRace = () => {
+    startTime = Date.now();
     interval1Speed = 10000 / car1.speed;
     interval2Speed = 10000/ car2.speed;
     interval3Speed = 10000/ car3.speed;
@@ -75,6 +75,7 @@ let lapCount3 = 0;
 let x = 0;
 
 // car timers
+
 const car1Counter = () => {
     if (i < 10) {
         i++;
@@ -84,8 +85,11 @@ const car1Counter = () => {
             lapCount += 1;
             console.log("Car1 Lap:", lapCount);
         } else if (lapCount === 3) {
-            console.log("Car1 has finished the race!");
             clearInterval(lane1Counter);
+            car1.time = (Date.now() - startTime) / 1000;
+            console.log("Car1 has finished the race in", car1.time,"seconds");
+            carTimes.push(car1);
+            raceOver();
         }
         i = 0;
     }
@@ -100,8 +104,11 @@ const car2Counter = () => {
             lapCount2 += 1;
             console.log("Car2 Lap:", lapCount2);
         } else if (lapCount2 === 3) {
-            console.log("Car2 has finished the race!");
             clearInterval(lane2Counter);
+            car2.time = (Date.now() - startTime) / 1000;
+            console.log("Car2 has finished the race in", car2.time,"seconds");
+            carTimes.push(car2);
+            raceOver();
         }
         c = 0;
     }
@@ -116,12 +123,55 @@ const car3Counter = () => {
             lapCount3 += 1;
             console.log("Car3 Lap:", lapCount3);
         } else if (lapCount3 === 3) {
-            console.log("Car3 has finished the race!");
             clearInterval(lane3Counter);
+            car3.time = (Date.now() - startTime) / 1000;
+            console.log("Car3 has finished the race in", car3.time,"seconds");
+            carTimes.push(car3);
+            raceOver();
         }
         x = 0;
     }
 }
+
+let a = 0;
+const raceOver = () => {
+    if (a < 3) {
+        a++;
+    } if (a === 3) {
+        display();
+    }
+}
+
+let carTimes = [];
+let firstPlace;
+let secondPlace;
+let thirdPlace;
+let display;
+
+const Leaderboard = () => {
+    const [visible, setVisible] = React.useState(false)
+    display = () => setVisible(true)
+    return(
+        <div>
+            {visible ? <Scoreboard /> : null}
+        </div>
+    )
+}
+
+ const Scoreboard = () => {
+    firstPlace = carTimes[0];
+    secondPlace = carTimes[1];
+    thirdPlace = carTimes[2];
+     return (
+         <div>
+            <h1>Leaderboard</h1>
+            <p>First place: {firstPlace.name}  ={">"}  Time: {firstPlace.time} seconds!</p>
+            <p>Second place: {secondPlace.name}  ={">"}  Time: {secondPlace.time} seconds!</p>
+            <p>Third place: {thirdPlace.name}  ={">"}  Time: {thirdPlace.time} seconds!</p>
+         </div>
+     )
+ }
+
 
 // powerup rng
 let positionSpawn = () => {
@@ -156,5 +206,23 @@ const powerUpPosition = () => {
         setTimeout(lane3Counter, 200);
     }
 } 
+
+const Track = () => {
+    return(
+        <div>
+            <h1>TRACK!</h1>
+            <button onClick={startRace}>Start Race!</button>
+            <div>
+                <Leaderboard />
+            </div>
+            <Link to="/">
+                <button>
+                    Go back!
+                </button>
+            </Link>
+        </div>
+        
+    )
+}
 
 export default Track;
