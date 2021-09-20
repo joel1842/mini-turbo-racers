@@ -1,5 +1,7 @@
+import React, { Component } from "react";
+
 // car constructor
-class Car extends Component {
+class Car extends React.Component {
     constructor(name, speed, time, weight, acceleration, lane, isBet) {
         super();
         this.name = name;
@@ -14,15 +16,7 @@ class Car extends Component {
 
     setBet() {
         this.isBet = true;
-        console.log(this.name, this.isBet);
     }
 } 
-
-// cars
-const car1 = new Car("Car 1", 100, 200, 5, 1, false);
-
-const car2 = new Car("Car 2", 120, 300, 2, 2, false);
-
-const car3 = new Car("Car 3", 90, 150, 7, 3, false);
 
 export default Car;

@@ -12,7 +12,6 @@ class Bet extends Component {
         this.decreasePrice = this.decreasePrice.bind(this)
         this.clearPrice = this.clearPrice.bind(this)
         this.betMultiplier = this.betMultiplier.bind(this)
-        this.setPlace = this.setPlace.bind(this)
     }
 
     handlePrice(){

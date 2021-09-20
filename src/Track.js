@@ -1,28 +1,8 @@
 import React, { Component, useState } from "react";
-import {
-    Link
-  } from "react-router-dom";
-
-
-// car constructor
-class Car extends Component {
-    constructor(name, speed, time, weight, acceleration, lane, isBet) {
-        super();
-        this.name = name;
-        this.speed = speed;
-        this.time = time;
-        this.weight = weight;
-        this.acceleration = acceleration;
-        this.lane = lane;
-        this.isBet = isBet;
-        this.setBet = this.setBet.bind(this);
-    }
-
-    setBet() {
-        this.isBet = true;
-        console.log(this.name, this.isBet);
-    }
-} 
+import Car from "./Cars";
+import PowerUp from "./Items";
+import Leaderboard from "./Leaderboard";
+import { Link } from "react-router-dom";
 
 // cars
 const car1 = new Car("Car 1", 100, 0, 200, 5, 1, true);
@@ -31,17 +11,6 @@ const car2 = new Car("Car 2", 120, 0, 300, 2, 2, false);
 
 const car3 = new Car("Car 3", 90, 0, 150, 7, 3, false);
 
-// powerup constructor
-function powerUp(boost, duration, price) {
-    this.boost = boost;
-    this.duration = duration;
-    this.price = price;
-}
-// powerups
-const supremeFuel = new powerUp(1.25, 2000, 50);
-
-const turboBoost = new powerUp(1.5, 4000, 100);
-
 
 let lane1Counter;
 let lane2Counter;
@@ -49,21 +18,23 @@ let lane3Counter;
 let interval1Speed;
 let interval2Speed;
 let interval3Speed;
-let powerUpInterval;
 let startTime;
+
 
 // start race & set interval speeds
 const startRace = () => {
     startTime = Date.now();
     interval1Speed = 10000 / car1.speed;
-    interval2Speed = 10000/ car2.speed;
-    interval3Speed = 10000/ car3.speed;
+    interval2Speed = 10000 / car2.speed;
+    interval3Speed = 10000 / car3.speed;
     lane1Counter = setInterval(car1Counter, interval1Speed);
     lane2Counter = setInterval(car2Counter, interval2Speed);
     lane3Counter = setInterval(car3Counter, interval3Speed);
-    powerUpInterval = setInterval(powerUpPosition, 100);
 }
 
+const supremeFuel = new PowerUp(1.25, 2000, 50);
+
+const turboBoost = new PowerUp(1.5, 4000, 100);
 
 let lapCount = 0;
 let i = 0;
@@ -139,73 +110,50 @@ const raceOver = () => {
         a++;
     } if (a === 3) {
         display();
+        console.log(PowerUp.lane);
     }
 }
 
 let carTimes = [];
-let firstPlace;
-let secondPlace;
-let thirdPlace;
+
+
+// // powerup position & usage
+// const powerUpPosition = () => {
+    
+//     let randPosition = positionSpawn();
+//     let randLane = laneSpawn();
+
+//     if (randPosition === i && randLane === 1) {
+//         console.log("Car1 collected SUPREME FUEL!");
+//         clearInterval(lane1Counter);
+//         lane1Counter = setInterval(car1Counter, 70);
+//         setTimeout(lane1Counter, 200);
+    
+//     } if (randPosition === c && randLane === 2) {
+//         console.log("Car2 collected SUPREME FUEL!");
+//         clearInterval(lane2Counter);
+//         lane2Counter = setInterval(car2Counter, 70);
+//         setTimeout(lane2Counter, 200);
+  
+//     } if (randPosition === x && randLane === 3) {
+//         console.log("Car3 collected SUPREME FUEL!");
+//         clearInterval(lane3Counter);
+//         lane3Counter = setInterval(car3Counter, 70);
+//         setTimeout(lane3Counter, 200);
+//     }
+// } 
+
 let display;
 
-const Leaderboard = () => {
+const ShowLeaderboard = () => {
     const [visible, setVisible] = React.useState(false)
     display = () => setVisible(true)
     return(
         <div>
-            {visible ? <Scoreboard /> : null}
+            {visible ? <Leaderboard carTimes={carTimes}/> : null}
         </div>
     )
 }
-
- const Scoreboard = () => {
-    firstPlace = carTimes[0];
-    secondPlace = carTimes[1];
-    thirdPlace = carTimes[2];
-     return (
-         <div>
-            <h1>Leaderboard</h1>
-            <p>First place: {firstPlace.name}  ={">"}  Time: {firstPlace.time} seconds!</p>
-            <p>Second place: {secondPlace.name}  ={">"}  Time: {secondPlace.time} seconds!</p>
-            <p>Third place: {thirdPlace.name}  ={">"}  Time: {thirdPlace.time} seconds!</p>
-         </div>
-     )
- }
-
-
-// powerup rng
-let positionSpawn = () => {
-    return Math.floor(Math.random() * (10 - 1 + 1)) + 1;
-}
-
-let laneSpawn = () => {
-    return Math.floor(Math.random() * (3 - 1 + 1)) + 1;
-}
-
-// powerup position & usage
-const powerUpPosition = () => {
-    let randPosition = positionSpawn();
-    let randLane = laneSpawn();
-
-    if (randPosition === i && randLane === 1) {
-        console.log("Car1 collected SUPREME FUEL!");
-        clearInterval(lane1Counter);
-        lane1Counter = setInterval(car1Counter, 70);
-        setTimeout(lane1Counter, 200);
-    
-    } if (randPosition === c && randLane === 2) {
-        console.log("Car2 collected SUPREME FUEL!");
-        clearInterval(lane2Counter);
-        lane2Counter = setInterval(car2Counter, 70);
-        setTimeout(lane2Counter, 200);
-  
-    } if (randPosition === x && randLane === 3) {
-        console.log("Car3 collected SUPREME FUEL!");
-        clearInterval(lane3Counter);
-        lane3Counter = setInterval(car3Counter, 70);
-        setTimeout(lane3Counter, 200);
-    }
-} 
 
 const Track = () => {
     return(
@@ -213,7 +161,10 @@ const Track = () => {
             <h1>TRACK!</h1>
             <button onClick={startRace}>Start Race!</button>
             <div>
-                <Leaderboard />
+                <ShowLeaderboard />
+            </div>
+            <div>
+                <PowerUp />
             </div>
             <Link to="/">
                 <button>
