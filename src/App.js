@@ -1,15 +1,16 @@
 import React from "react";
-import logo from "./logo.png";
-import flagIcon from "./checkeredFlag.png";
-import garageIcon from "./garageIcon.png";
-import moneyIcon from "./moneyIcon.png";
-import rulesIcon from "./rulesIcon.png";
-import starIcon from "./starIcon.png";
-import Track from "./Track";
+import logo from "./img/logo.png";
+import flag from "./img/checkeredFlag.png";
+import garageIcon from "./img/garageIcon.png";
+import moneyIcon from "./img/moneyIcon.png";
+import rulesIcon from "./img/rulesIcon.png";
+import starIcon from "./img/starIcon.png";
+import Racetrack from "./Racetrack";
 import Garage from "./Garage";
 import Bank from "./Bank";
 import HowToPlay from './HowToPlay';
 import Credits from './Credits';
+import Car from "./Cars";
 import {
   BrowserRouter as Router,
   Switch,
@@ -18,6 +19,9 @@ import {
 } from "react-router-dom";
 
 function App() {
+  const car1 = new Car("Car 1", 100, null, 1, 0, 0);
+  const car2 = new Car("Car 2", 120, null, 2, 0, 0);
+  const car3 = new Car("Car 3", 90, null, 3, 0, 0);
   return (
     <Router>
       <div className="App">
@@ -32,7 +36,7 @@ function App() {
                 <div className="btn-menu text-center">
                     <Link to="/track">
                       <button>
-                        <img src={flagIcon} alt="Track" />
+                        <img src={flag} alt="Track" />
                         <a href="/track">Track</a>
                       </button>
                     </Link>  
@@ -64,7 +68,7 @@ function App() {
             </nav>
           </Route>
           <Route path="/track">
-            <Track />
+            <Racetrack car1={car1} car2={car2} car3={car3}/>
           </Route>
           <Route path="/garage">
             <Garage />

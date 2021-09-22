@@ -1,5 +1,5 @@
-import "./credits.css";
-import creditsTitle from "./credits.png";
+import "./css/credits.css";
+import creditsTitle from "./img/credits.png";
 import {
     Link
   } from "react-router-dom";

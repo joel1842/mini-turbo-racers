@@ -1,5 +1,5 @@
-import "./howtoplay.css";
-import howToPlayTitle from "./how to play.png";
+import "./css/howtoplay.css";
+import howToPlayTitle from "./img/how to play.png";
 import {
     Link
   } from "react-router-dom";

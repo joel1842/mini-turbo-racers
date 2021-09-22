@@ -1,14 +1,14 @@
-import "./bank.css";
-import bankTitle from "./grand turbo bank.png";
-import bankVault from "./bank vault.png";
+import "./css/bank.css";
+import bankTitle from "./img/grand turbo bank.png";
+import bankVault from "./img/bank vault.png";
 import Bet from "./Bet";
+import Leaderboard from "./Leaderboard";
 import React, { Component } from "react";
-import {
-    Link
-  } from "react-router-dom";
+import { Link } from "react-router-dom";
 
   
-const Bank = () => {
+const Bank = (props) => {
+    
     return(
         <div>
             {/* <div className="bankheader">

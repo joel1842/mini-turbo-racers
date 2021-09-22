@@ -1,18 +1,18 @@
 import React, { useState } from "react";
 
- const Leaderboard = ({carTimes}) => {
-    let firstPlace = carTimes[0];
-    let secondPlace = carTimes[1];
-    let thirdPlace = carTimes[2];
+const Leaderboard = ({carArray}) => {
+    let firstPlace = carArray[0];
+    let secondPlace = carArray[1];
+    let thirdPlace = carArray[2];
 
-     return (
-         <div>
+    return (
+        <div>
             <h1>Leaderboard</h1>
-            <p>First place: {firstPlace.name}  ={">"}  Time: {firstPlace.time} seconds!</p>
-            <p>Second place: {secondPlace.name}  ={">"}  Time: {secondPlace.time} seconds!</p>
-            <p>Third place: {thirdPlace.name}  ={">"}  Time: {thirdPlace.time} seconds!</p>
-         </div>
-     )
- }
+            <p>{firstPlace.name} came in 1st place with a time of {firstPlace.time} seconds!</p>
+            <p>{secondPlace.name} came in 2nd place with a time of {secondPlace.time} seconds!</p>
+            <p>{thirdPlace.name} came in 3rd place with a time of {thirdPlace.time} seconds!</p>
+        </div>
+    )
+}
 
  export default Leaderboard;

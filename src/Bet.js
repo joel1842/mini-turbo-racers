@@ -74,7 +74,7 @@ class Bet extends Component {
                     <button onClick={this.betMultiplier}>BET!</button>
                 </div>
             </div>
-        );
+        )
     }
 }
 
