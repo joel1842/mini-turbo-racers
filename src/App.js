@@ -1,4 +1,10 @@
 import React from "react";
+import {
+  BrowserRouter as Router,
+  Switch,
+  Route,
+  Link
+} from "react-router-dom";
 import logo from "./img/logo.png";
 import flag from "./img/checkeredFlag.png";
 import garageIcon from "./img/garageIcon.png";
@@ -10,22 +16,12 @@ import Garage from "./Garage";
 import Bank from "./Bank";
 import HowToPlay from './HowToPlay';
 import Credits from './Credits';
-import Car from "./Cars";
-import {
-  BrowserRouter as Router,
-  Switch,
-  Route,
-  Link
-} from "react-router-dom";
 
 function App() {
-  const car1 = new Car("Car 1", 100, null, 1, 0, 0);
-  const car2 = new Car("Car 2", 120, null, 2, 0, 0);
-  const car3 = new Car("Car 3", 90, null, 3, 0, 0);
+
   return (
     <Router>
       <div className="App">
-        
         <Switch>
           <Route path="/" exact>
             <nav className="navbar">
@@ -68,7 +64,7 @@ function App() {
             </nav>
           </Route>
           <Route path="/track">
-            <Racetrack car1={car1} car2={car2} car3={car3}/>
+            <Racetrack/>
           </Route>
           <Route path="/garage">
             <Garage />

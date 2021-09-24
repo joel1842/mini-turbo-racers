@@ -1,3 +1,4 @@
+import React from "react";
 import "./css/howtoplay.css";
 import howToPlayTitle from "./img/how to play.png";
 import {

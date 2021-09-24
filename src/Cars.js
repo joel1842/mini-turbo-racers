@@ -1,7 +1,8 @@
-import React, { Component, useState } from "react";
+import React, { Component } from "react";
+
 
 export default class Car extends React.Component{
-    constructor (name, speed, time, lane, lap, position) {
+    constructor (name, speed, time, lane, lap, position, image, doneRace) {
         super();
         this.name = name;
         this.speed = speed;
@@ -9,13 +10,23 @@ export default class Car extends React.Component{
         this.lane = lane;
         this.lap = lap;
         this.position = position;
+        this.image = image;
+        this.doneRace = false;
     }
-    
-    carInterval = () => {
+    carStartTime() {
         this.startTime = Date.now();
+    }
+
+    carInterval = () => {
         this.timerID = setInterval(() => {
             this.carCounter()
         }, this.speed); 
+    }
+
+    resetCarInterval () {
+        clearInterval(this.timerID);
+        this.speed = this.speed - 20;
+        this.carInterval();
     }
 
     carCounter() {
@@ -37,6 +48,8 @@ export default class Car extends React.Component{
     }
     raceOver() {
         this.position = 0;
+        // this.startTime = 0;
         this.lap = 0;
+        this.doneRace = true;
     }
 }

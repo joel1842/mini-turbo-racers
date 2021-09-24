@@ -1,0 +1,11 @@
+.wrapper {
+    text-align: center;
+}
+
+
+.track {
+    width: 1000px;
+    padding-top: 30px;
+    margin: auto;
+    display: block;
+}

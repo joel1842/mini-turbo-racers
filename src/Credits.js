@@ -1,3 +1,4 @@
+import React from "react";
 import "./css/credits.css";
 import creditsTitle from "./img/credits.png";
 import {

@@ -8,6 +8,7 @@ class Bet extends Component {
             place: 1,
             bank: 500,
         }
+        this.betCar = betCar;
         this.handlePrice = this.handlePrice.bind(this)
         this.decreasePrice = this.decreasePrice.bind(this)
         this.clearPrice = this.clearPrice.bind(this)
@@ -55,19 +56,10 @@ class Bet extends Component {
         return (
             <div>
                 <div>
-                    <h1>
-
-                    </h1>
+                    <h2>My Coins: {this.state.bank}</h2>
+                    <h2>Bet Price: {this.state.betPrice}</h2>
                 </div>
-
                 <div>
-                    <h1>bank account!</h1>
-                    <h1>{this.state.bank}</h1>
-                </div>
-              
-                <h1>{this.state.betPrice}</h1>
-                <div>
-                    <button onClick={this.setPlace}>BET ON CAR 1</button>
                     <button onClick={this.handlePrice}>Increase Bet</button>
                     <button onClick={this.decreasePrice}>Decrease Bet</button>
                     <button onClick={this.clearPrice}>Clear Bet</button>

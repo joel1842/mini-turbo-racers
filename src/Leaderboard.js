@@ -8,9 +8,9 @@ const Leaderboard = ({carArray}) => {
     return (
         <div>
             <h1>Leaderboard</h1>
-            <p>{firstPlace.name} came in 1st place with a time of {firstPlace.time} seconds!</p>
-            <p>{secondPlace.name} came in 2nd place with a time of {secondPlace.time} seconds!</p>
-            <p>{thirdPlace.name} came in 3rd place with a time of {thirdPlace.time} seconds!</p>
+            <p>1st place: {firstPlace.name} with a time of {firstPlace.time} seconds!</p>
+            <p>2nd place: {secondPlace.name} with a time of {secondPlace.time} seconds!</p>
+            <p>3rd place: {thirdPlace.name} with a time of {thirdPlace.time} seconds!</p>
         </div>
     )
 }
