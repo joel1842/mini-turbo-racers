@@ -1,7 +1,6 @@
-import React, {Component} from "react";
-
+import React from "react";
 import Car from "./Cars";
 
-export default function Car3() { 
-    new Car("Car 3", 90, null, 3, 0, 0);
-}
+const Car3 = new Car('Car 3', null, 105, null, null, 3, 0, 0, false)
+
+export default Car3;

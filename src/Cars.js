@@ -1,30 +1,28 @@
 import React, { Component } from "react";
 
-
 export default class Car extends React.Component{
-    constructor (name, speed, time, lane, lap, position, image, doneRace) {
+    constructor (name, image, speed, startTime, time, lane, lap, position, doneRace) {
         super();
         this.name = name;
+        this.image = image;
         this.speed = speed;
+        this.startTime = startTime;
         this.time = time;
         this.lane = lane;
         this.lap = lap;
         this.position = position;
-        this.image = image;
-        this.doneRace = false;
-    }
-    carStartTime() {
-        this.startTime = Date.now();
+        this.doneRace = doneRace;
     }
 
     carInterval = () => {
-        this.timerID = setInterval(() => {
+        this.startTime = Date.now();
+        this.timer = setInterval(() => {
             this.carCounter()
         }, this.speed); 
     }
 
     resetCarInterval () {
-        clearInterval(this.timerID);
+        clearInterval(this.timer);
         this.speed = this.speed - 20;
         this.carInterval();
     }
@@ -40,7 +38,7 @@ export default class Car extends React.Component{
             } else if (this.lap === 3) {
                 this.time = (Date.now() - this.startTime) / 1000;
                 console.log(this.name, "has finished the race in", this.time);
-                clearInterval(this.timerID);
+                clearInterval(this.timer);
                 this.raceOver();
             }
             this.position = 0;
@@ -48,7 +46,6 @@ export default class Car extends React.Component{
     }
     raceOver() {
         this.position = 0;
-        // this.startTime = 0;
         this.lap = 0;
         this.doneRace = true;
     }

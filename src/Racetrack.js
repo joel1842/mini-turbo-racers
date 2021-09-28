@@ -1,66 +1,56 @@
 import React, {Component, useState} from 'react';
 import "./css/racetrack.css";
-import Car from './Cars';
-import PowerUp from './Items';
-import Leaderboard from './Leaderboard';
 import Bet from "./Bet";
 import track from "./img/track.png";
-import Car1 from './Car1';
+import Car1 from './Car1.jsx';
+import Car2 from './Car2';
+import Car3 from './Car3';
 
-const car1 = new Car("Car 1", 92, null, 1, 0, 0);
-const car2 = new Car("Car 2", 98, null, 2, 0, 0);
-const car3 = new Car("Car 3", 95, null, 3, 0, 0);
-
-const supremeFuel = new PowerUp("Supreme Fuel", 1.5, 500, 100, null, 1000);
-
-let carArray;
-let display;
+// let display;
 
 const Racetrack = () => {
-    let checkItems;
+
+    let carArray = [];
+    let interval; 
+
+    const [visible, setVisible] = useState(false)
+    const [firstPlace, setFirstPlace] = useState(null)
+    const [firstPlaceTime, setFirstPlaceTime] = useState(null)
+    const [secondPlace, setSecondPlace] = useState(null)
+    const [secondPlaceTime, setSecondPlaceTime] = useState(null)
+    const [thirdPlace, setThirdPlace] = useState(null)
+    const [thirdPlaceTime, setThirdPlaceTime] = useState(null)
 
     function startRace() {
-        checkItems = setInterval(checkPowerUp, 100);  
-        car1.carStartTime();
-        car2.carStartTime();
-        car3.carStartTime();
-        car1.carInterval();
-        car2.carInterval();
-        car3.carInterval();
-        supremeFuel.powerUpInterval();
+        checker()
+        Car1.carInterval()
+        Car2.carInterval()
+        Car3.carInterval()
     }
 
-    function checkPowerUp() {
-        if (supremeFuel.position === car1.position && supremeFuel.lane === 1) {
-            if (car1.doneRace === false) {
-                console.log(car1.name, "collected", supremeFuel.name, "!")
-                car1.resetCarInterval();
-            }
-        } else if (supremeFuel.position === car2.position && supremeFuel.lane === 2) {
-            if (car2.doneRace === false) {
-                console.log(car2.name, "collected", supremeFuel.name, "!")
-                car2.resetCarInterval();
-            }
-        } else if (supremeFuel.position === car3.position && supremeFuel.lane === 3) {
-            if (car3.doneRace === false) {
-                console.log(car3.name, "collected", supremeFuel.name, "!")
-                car3.resetCarInterval();
-            }
-        } else if (car1.doneRace === true && car2.doneRace === true && car3.doneRace === true) {
-            clearInterval(checkItems);
-            supremeFuel.clearPowerUpInterval();
+    function carChecker() {
+        if (Car1.doneRace && Car2.doneRace && Car3.doneRace) {
+            clearInterval(interval)
+            carArray = [Car1, Car2, Car3];
+            raceSorter()
+            console.log("The race is over!")
         }
     }
 
-    function raceSorter() {
-        carArray = [car1, car2, car3].sort((a,b)=>(a.time > b.time) ? 1 : ((b.time > a.time) ? -1 : 0));
-    } 
-    
+    function checker() {
+        interval = setInterval(carChecker, 100);
+    }
 
-    function onClick() {
-        if (car1.doneRace === true && car2.doneRace === true && car3.doneRace === true) {
-            raceSorter();
-            display();
+    function raceSorter() {
+        if (Car1.time && Car2.time && Car3.time) {
+            carArray.sort((a,b)=>(a.time > b.time) ? 1 : ((b.time > a.time) ? -1 : 0));
+            setFirstPlaceTime(carArray[0].time)
+            setSecondPlaceTime(carArray[1].time)
+            setThirdPlaceTime(carArray[2].time)
+            setFirstPlace(carArray[0].name)
+            setSecondPlace(carArray[1].name)
+            setThirdPlace(carArray[2].name)
+            setVisible(true)
         }
     }
 
@@ -69,27 +59,57 @@ const Racetrack = () => {
             <div className="wrapper">
                 <h1 className="header">Racetrack</h1>
                 <button className="button" onClick={startRace}>Start Race!</button>
-                <button className="button" onClick={onClick}>Show Leaderboard</button>
-                <ShowLeaderboard/>
-                <Car1></Car1>
+                {visible ? <div>
+                    <h2>First Place: {firstPlace} in {firstPlaceTime} seconds!</h2>
+                    <h2>Second Place: {secondPlace} in {secondPlaceTime} seconds!</h2>
+                    <h2>Third Place: {thirdPlace} in {thirdPlaceTime} seconds!</h2>
+                </div> : null}
             </div>
+
             <div className='track-container'>
                 <img className="track" src={track} />
             </div>
-            
-            <Bet carArray={carArray}/>
-        </div>
-    )
-}
-
-const ShowLeaderboard = () => {
-    const [visible, setVisible] = React.useState(false)
-    display = () => setVisible(true)
-    return(
-        <div>
-            {visible ? <Leaderboard carArray={carArray}/> : null}
+                    
+            <div>
+                <Bet firstPlace={firstPlace} secondPlace={secondPlace} thirdPlace={thirdPlace}/>
+            </div>
         </div>
     )
 }
 
 export default Racetrack;
+
+    // function checkPowerUp() {
+    //     if (supremeFuel.position === car1.position && supremeFuel.lane === 1) {
+    //         if (car1.doneRace === false) {
+    //             console.log(car1.name, "collected", supremeFuel.name, "!")
+    //             car1.resetCarInterval();
+    //         }
+    //     } else if (supremeFuel.position === car2.position && supremeFuel.lane === 2) {
+    //         if (car2.doneRace === false) {
+    //             console.log(car2.name, "collected", supremeFuel.name, "!")
+    //             car2.resetCarInterval();
+    //         }
+    //     } else if (supremeFuel.position === car3.position && supremeFuel.lane === 3) {
+    //         if (car3.doneRace === false) {
+    //             console.log(car3.name, "collected", supremeFuel.name, "!")
+    //             car3.resetCarInterval();
+    //         }
+    //     } else if (car1.doneRace === true && car2.doneRace === true && car3.doneRace === true) {
+    //         clearInterval(checkItems);
+    //         supremeFuel.clearPowerUpInterval();
+    //     }
+    // }
+
+
+
+// const ShowLeaderboard = () => {
+//     const [visible, setVisible] = React.useState(false)
+//     display = () => setVisible(true)
+//     return(
+//         <div>
+//             {visible ? <Leaderboard carArray={carArray}/> : null}
+//         </div>
+//     )
+// }
+
