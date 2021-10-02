@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 
 export default class Car extends React.Component{
-    constructor (name, image, speed, startTime, time, lane, lap, position, doneRace) {
+    constructor (name, image, speed, startTime, time, lane, lap, position, doneRace, isBet, place, moneyBet, moneyMade) {
         super();
         this.name = name;
         this.image = image;
@@ -12,6 +12,15 @@ export default class Car extends React.Component{
         this.lap = lap;
         this.position = position;
         this.doneRace = doneRace;
+        this.isBet = isBet;
+        this.place = place;
+        this.moneyBet = moneyBet;
+        this.moneyMade = moneyMade;
+    }
+
+    setBet(money) {
+        this.isBet = true
+        this.moneyBet = money
     }
 
     carInterval = () => {
@@ -44,9 +53,35 @@ export default class Car extends React.Component{
             this.position = 0;
         }
     }
+
+    setPlace(value) {
+        this.place = value
+    }
+
+    betMultiplier() {
+        if (this.place === 1) {
+            this.moneyMade = this.moneyBet * 2
+        } if (this.place === 2) {
+            this.moneyMade = this.moneyBet * 1.25
+        } if (this.place === 3) {
+            this.moneyMade = this.moneyBet - (this.moneyBet * 0.5)
+        }
+    }
+    
+
     raceOver() {
         this.position = 0;
         this.lap = 0;
         this.doneRace = true;
+    }
+
+    reset() {
+        this.isBet = false;
+        this.doneRace = false;
+        this.place = null;
+        this.moneyBet = 0;
+        this.moneyMade = 0;
+        this.startTime = null;
+        this.time = null;
     }
 }

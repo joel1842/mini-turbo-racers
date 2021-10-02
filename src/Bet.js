@@ -1,53 +1,105 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
+import { Link } from "react-router-dom";
+import "./css/bet.css";
+import Car1 from "./Car1.js";
+import Car2 from "./Car2.js";
+import Car3 from "./Car3.js";
 
 function Bet(props) {
     const [betPrice, setBet] = useState(100)
     const [bank, setBank] = useState(500)
     const [betCar, setBetCar] = useState(null)
+    const [lockBet, setLockBet] = useState(false)
+    const [button1Color, setButton1Color] = useState("#ff6868")
+    const [button2Color, setButton2Color] = useState("#ff6868")
+    const [button3Color, setButton3Color] = useState("#ff6868")
 
-    let interval;
 
-    function betMultiplier(){
-        if (props.firstPlace === betCar) {
-            setBank(bank + (betPrice * 2))
-            clearInterval(interval)
-        } else if (props.secondPlace === betCar) {
-            setBank(bank + (betPrice * 1.25))
-            clearInterval(interval)
-        } else if (props.thirdPlace === betCar) {
-            setBank(bank - (betPrice * 0.5))
-            clearInterval(interval)
-        }
+    function change1Color() {
+        setButton1Color('#ff4646')
+    }
+    function change2Color() {
+        setButton2Color('#ff4646')
+    }
+    function change3Color() {
+        setButton3Color('#ff4646')
     }
 
     function setCar1() {
-        setBetCar('Car1')
-        interval = setInterval(betMultiplier, 100)
+        if (lockBet === false) {
+            setBetCar(Car1.name)
+            Car1.setBet(betPrice)
+            setLockBet(true)
+            change1Color()
+        }
     }
 
     function setCar2() {
-        setBetCar('Car2')
-        interval = setInterval(betMultiplier, 100)
+        if (lockBet === false) {
+            setBetCar(Car2.name)
+            Car2.setBet(betPrice)
+            setLockBet(true)
+            change2Color()
+        }
     }
 
     function setCar3() {
-        setBetCar('Car1')
-        interval = setInterval(betMultiplier, 100)
+        if (lockBet === false) {
+            setBetCar(Car3.name)
+            Car3.setBet(betPrice)
+            setLockBet(true)
+            change3Color()
+        }
+    }
+
+    function increaseBet() {
+        if (lockBet === false) {
+            setBet(betPrice + 10)
+        }
+    }
+
+    function decreaseBet() {
+        if (lockBet === false) {
+            setBet(betPrice - 10)
+        }
     }
 
     return (
-        <div>
-            <div>
-                <h2>Bank Account: {bank}</h2>
+        <div className="betWrapper">
+            <div className="betModule">
+                <h2>My Coins: {bank}</h2>
                 <h2>Bet Price: {betPrice}</h2>
-                <h1>Bet Car: {betCar}</h1>
+                <button onClick={increaseBet}>Increase Bet</button>
+                <button onClick={decreaseBet}>Decrease Bet</button>
+            </div>
+            <div className="chooseCar">
+                <h1>Choose a car!</h1>
+                <div className="displayCards">
+                    <img className="displayCars" src={Car1.image} />
+                    <button className="betButton" style={{backgroundColor: button1Color}} onClick={setCar1}>Bet Car 1</button>
+                </div>
+                <div className="displayCards">
+                    <img className="displayCars" src={Car2.image} />
+                    <button className="betButton" style={{backgroundColor: button2Color}} onClick={setCar2}>Bet Car 2</button>
+                </div>
+                <div className="displayCards">
+                    <img className="displayCars" src={Car3.image} />
+                    <button className="betButton" style={{backgroundColor: button3Color}} onClick={setCar3}>Bet Car 3</button>
+                </div>
             </div>
             <div>
-                <button onClick={setCar1}>Bet Car 1</button>
-                <button onClick={setCar2}>Bet Car 2</button>
-                <button onClick={setCar3}>Bet Car 3</button>
-                <button onClick={() => setBet(betPrice + 10)}>Increase Bet</button>
-                <button onClick={() => setBet(betPrice - 10)}>Decrease Bet</button>
+            <div className="bankButtons">
+                <Link to="/track">
+                    <button className="startButton">
+                        <a href="/track">Start Race!</a>
+                    </button>
+                </Link>
+                <Link to="/">
+                    <button className="backButton">
+                        <a href="/">Go back</a>
+                    </button>
+                </Link>
+            </div>  
             </div>
         </div>
     )

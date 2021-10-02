@@ -16,6 +16,7 @@ import Garage from "./Garage";
 import Bank from "./Bank";
 import HowToPlay from './HowToPlay';
 import Credits from './Credits';
+import Bet from "./Bet";
 
 function App() {
 
@@ -30,22 +31,22 @@ function App() {
                 </div>
 
                 <div className="btn-menu text-center">
-                    <Link to="/track">
+                    <Link to="/bet">
+                      <button>
+                        <img src={flag} alt="Start" /> 
+                        <a href="/bet">Start Game!</a>
+                      </button>
+                    </Link>
+                    {/* <Link to="/track">
                       <button>
                         <img src={flag} alt="Track" />
                         <a href="/track">Track</a>
                       </button>
-                    </Link>  
+                    </Link>   */}
                     <Link to="/garage">
                       <button>
                         <img src={garageIcon} alt="Garage" />
                         <a href="/garage">Garage</a>
-                      </button>
-                    </Link>
-                    <Link to="/bank">
-                      <button>
-                        <img src={moneyIcon} alt="Bank" /> 
-                        <a href="/bank">Bank</a>
                       </button>
                     </Link>
                     <Link to="/howtoplay">
@@ -69,8 +70,8 @@ function App() {
           <Route path="/garage">
             <Garage />
           </Route>
-          <Route path="/bank">
-            <Bank />
+          <Route path="/bet">
+            <Bet />
           </Route>
           <Route path="/howtoplay">
             <HowToPlay />

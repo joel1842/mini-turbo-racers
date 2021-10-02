@@ -1,29 +1,33 @@
-@import url('https://fonts.googleapis.com/css2?family=Quicksand:wght@300;400;500;600;700&display=swap');
+.betWrapper {
+    margin-top: 70px;
+}
 
-.bankheader {
-    padding-top: 20px;
+.chooseCar {
     text-align: center;
 }
 
-#bankTitle {
-    width: 450px;
+.displayCards {
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
-.bankheader p {
-    font-size: 24px;
-    color: #454545;
-    padding-top: 5px;
-    margin-left: 25%;
-    margin-right: 25%;
+.betButton {
+    text-align: center;
+    color: white;
+    margin: 20px;
+    padding: 10px 24px;
+    border: none;
+    border-radius: 10px;
+    text-decoration: none;
 }
 
-.bankheader b{
-    color: #ff6868;
+.displayCars {
+    width: 40px;
 }
 
-#vault {
-    padding: 40px;
-    width: 400px;
+.betModule {
+    text-align: center;
 }
 
 .bankButtons a {
@@ -61,3 +65,4 @@
 .backButton a {
     color: white;
 }
+
