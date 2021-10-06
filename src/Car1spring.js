@@ -1,21 +1,26 @@
-import React from "react";
+import React, {useState} from "react";
 import { useSpring, animated } from "react-spring";
 import './css/car1.css'
+import Car1 from "./Car1";
 import car1 from './img/orange car.png';
-import car2 from './img/blue car.png';
-import car3 from './img/neon car.png';
+import Car2 from "./Car2";
+import car2 from './img/neon car.png';
+import Car3 from "./Car3";
+import car3 from './img/blue car.png';
+
+let speed = 100;
+let animating = false
+
+function toggleAnimation() {
+    speed = 200
+    animating = true
+}
 
 function Car1Animation() {
 
-    function startAnimation() {
-        animate({pause: false})
-    }
-
-    function stopAnimation() {
+    function pause() {
         animate({pause: true})
     }
-
-    let speed = 100
 
     function increaseSpeed() {
         speed = 50
@@ -27,53 +32,56 @@ function Car1Animation() {
     
     const [style, animate] = useSpring(()=> ({
         to: async (next, cancel) => {
-            await next({x:1022, y:190, rotate:0, config: {duration: speed}})
-            await next({x:1000, y:130, rotate:-45, config: {duration: speed}})
-            await next({x:925, y:107, rotate: -90, config: {duration: speed}})
-            await next({x: 800, config: {duration: speed}})
+            await next({x:1033, y:190, rotate:0, config: {duration: speed}})
+            await next({x:1011, y:125, rotate:-45, config: {duration: speed}})
+            await next({x:936, y:96, rotate: -90, config: {duration: speed}})
+            await next({x:800, config: {duration: speed}})
             await next({x: 650, config: {duration: speed}})
             await next({x:555, config: {duration: speed}})
-            await next({x:494, y:132, rotate:-135, config: {duration: speed}})
-            await next({x:473, y:200, rotate: -180, config: {duration: speed}})
+            await next({x:494, y:127, rotate:-135, config: {duration: speed}})
+            await next({x:475, y:200, rotate: -180, config: {duration: speed}})
             await next({y:400, config: {duration: speed}})
             await next({y:615, config: {duration: speed}})
-            await next({x:507, y:675, rotate: -225, config: {duration: speed}})
-            await next({x:570, y: 700, rotate: -270, config: {duration: speed}})
-            await next({x:610, config: {duration: speed}})
-            await next({x:675, y:670, rotate: -315, config: {duration: speed}})
-            await next({x:705, y:600, rotate: -360, config: {duration: speed}})
+            await next({x:507, y:672, rotate: -225, config: {duration: speed}})
+            await next({x:565, y: 700, rotate: -270, config: {duration: speed}})
+            await next({x:620, config: {duration: speed}})
+            await next({x:685, y:670, rotate: -315, config: {duration: speed}})
+            await next({x:715, y:600, rotate: -360, config: {duration: speed}})
             await next({y:500, config: {duration: speed}})
-            await next({x:687, y:450, rotate:-395, config: {duration: speed}})
-            await next({x:667, y:400, rotate:-360, config: {duration: speed}})
-            await next({x:680, y:360, rotate:-315, config: {duration: speed}})
+            await next({x:703, y:450, rotate:-390, config: {duration: speed}})
+            await next({x:680, y:390, rotate:-360, config: {duration: speed}})
+            await next({x:690, y:360, rotate:-315, config: {duration: speed}})
             await next({x:720, y:347, rotate:-270, config: {duration: speed}})
             await next({x:780, config: {duration: speed}})
-            await next({x:817, y:373, rotate:-210, config: {duration: speed}})
-            await next({x:823, y:400, rotate:-180, config: {duration: speed}})
-            await next({x:812, y:440, rotate:-145, config: {duration: speed}})
-            await next({x:785, y:500, rotate:-180, config: {duration: speed}})
+            await next({x:820, y:370, rotate:-210, config: {duration: speed}})
+            await next({x:825, y:390, rotate:-180, config: {duration: speed}})
+            await next({x:812, y:430, rotate:-150, config: {duration: speed}})
+            await next({x:788, y:500, rotate:-180, config: {duration: speed}})
             await next({y:600, config: {duration: speed}})
-            await next({x:815, y:670, rotate:-225, config: {duration: speed}})
-            await next({x:877, y:700, rotate:-270, config: {duration: speed}})
+            await next({x:815, y:665, rotate:-225, config: {duration: speed}})
+            await next({x:885, y:700, rotate:-270, config: {duration: speed}})
             await next({x:1089, config: {duration: speed}})
             await next({x:1300, config: {duration: speed}})
-            await next({x:1365, y:665, rotate:-325, config: {duration: speed}})
-            await next({x:1375, y:620, rotate:-360, config: {duration: speed}})
-            await next({x:1370, y:570, rotate:-375, config: {duration: speed}})
-            await next({x:1330, y:435, config: {duration: speed}})
-            await next({x:1290, y:300, rotate:-360, config: {duration: speed}})
-            await next({x:1286, y:175, config: {duration: speed}})
-            await next({x:1270, y:127, rotate:-410, config: {duration: speed}})
-            await next({x:1190, y:108, rotate:-450, config: {duration: speed}})
-            await next({x:1120, y:125, rotate:-490, config: {duration: speed}})
+            await next({x:1370, y:665, rotate:-325, config: {duration: speed}})
+            await next({x:1385, y:620, rotate:-360, config: {duration: speed}})
+            await next({x:1385, y:570, rotate:-375, config: {duration: speed}})
+            await next({x:1345, y:435, config: {duration: speed}})
+            await next({x:1300, y:290, rotate:-360, config: {duration: speed}})
+            await next({x:1297, y:175, config: {duration: speed}})
+            await next({x:1277, y:118, rotate:-410, config: {duration: speed}})
+            await next({x:1195, y:96, rotate:-450, config: {duration: speed}})
+            await next({x:1117, y:120, rotate:-490, config: {duration: speed}})
             await next({x:1089, y:180, rotate:-540, config: {duration: speed}})
-            await next({x:1090, y:340, config: {duration: speed}})
-            await next({x:1070, y:370, rotate:-480, config: {duration: speed}})
-            await next({x:1055, y:375, rotate:-450, config: {duration: speed}})
-            await next({x:1035, y:370, rotate:-410, config: {duration: speed}})
-            await next({x:1022, y:350, rotate:-360, config: {duration: speed}})
+            await next({x:1090, y:325, config: {duration: speed}})
+            await next({x:1080, y:360, rotate:-480, config: {duration: speed}})
+            await next({x:1060, y:365, rotate:-450, config: {duration: speed}})
+            await next({x:1045, y:360, rotate:-410, config: {duration: speed}})
+            await next({x:1033, y:310, rotate:-360, config: {duration: speed}})
+            Car1.lapCount()
+            await next({pause: Car1.doneRace})
+            
         },
-        from:{x:1022, y:350, rotate: 0},
+        from:{x:1033, y:310, rotate: 0},
         pause: false,
         loop: true
     }))
@@ -81,63 +89,66 @@ function Car1Animation() {
     return (
         <div>
             <animated.img className="car1" style={style} src={car1}/>
-            <button onClick={startAnimation}>Start Car</button>
+            {/* <button onClick={startAnimation}>Start Car</button>
             <button onClick={stopAnimation}>Stop Car</button>
             <button onClick={increaseSpeed}>Speed Up</button>
-            <button onClick={slowMovement}>Slow down</button>
+            <button onClick={slowMovement}>Slow down</button> */}
         </div>
     )
 }
 
 function Car2Animation() {
 
-    
+
     const [style, animate] = useSpring(()=> ({
         to: async (next, cancel) => {
-            await next({x:955, y:290, rotate:0, config:{duration: 120}})
-            await next({x:940, y:245, rotate:-45})
-            await next({x:890, y:230, rotate:-90})
-            await next({x:745})
-            await next({x:600})
-            await next({x:555, y:245, rotate:-135})
-            await next({x:540, y:285, rotate:-180})
-            await next({y:465})
-            await next({y:645})
-            await next({x:550, y:680, rotate:-225})
-            await next({x:585, y:690, rotate:-270})
-            await next({x:585, y:690, rotate:-270})
-            await next({x:627, y:680, rotate:-315})
-            await next({x:638, y:590, rotate:-360})
-            await next({x:610, y:495, rotate:-395})
-            await next({x:600, y:440, rotate:-360})
-            await next({x:630, y:380, rotate:-315})
-            await next({x:745, y:339, rotate:-270})
-            await next({x:865, y:380, rotate:-225})
-            await next({x:893, y:448, rotate:-180})
-            await next({x:875, y:505, rotate:-145})
-            await next({x:853, y:575, rotate:-180})
-            await next({y:640})
-            await next({x:865, y:680, rotate:-225})
-            await next({x:910, y:695, rotate:-270})
-            await next({x:1083})
-            await next({x:1255})
-            await next({x:1305, y:670, rotate:-330})
-            await next({x:1307, y:610, rotate:-380})
-            await next({x:1240, y:420})
-            await next({x:1222, y:340, rotate:-360})
-            await next({y:285})
-            await next({x:1205, y:240, rotate:-410})
-            await next({x:1165, y:245, rotate:-490})
-            await next({x:1155, y:285, rotate:-540})
-            await next({y:400})
-            await next({x:1140, y:465, rotate:-505})
-            await next({x:1055, y:500, rotate:-445})
-            await next({x:970, y:465, rotate:-400})
-            await next({x:955, y:408, rotate:-360})
+            await next({y:250, config: {duration: speed}})
+            await next({x:978, y:200, rotate:-45, config: {duration: speed}})
+            await next({x:920, y:177, rotate:-90, config: {duration: speed}})
+            await next({x:745, config: {duration: speed}})
+            await next({x:600, config: {duration: speed}})
+            await next({x:533, y:195, rotate:-135, config: {duration: speed}})
+            await next({x:513, y:245, rotate:-180, config: {duration: speed}})
+            await next({y:465, config: {duration: speed}})
+            await next({y:645, config: {duration: speed}})
+            await next({x:530, y:685, rotate:-225, config: {duration: speed}})
+            await next({x:595, y:707, rotate:-270, config: {duration: speed}})
+            await next({x:660, y:684, rotate:-315, config: {duration: speed}})
+            await next({x:678, y:640, rotate:-360, config: {duration: speed}})
+            await next({y:550, config: {duration: speed}})
+            await next({x:663, y:495, rotate:-390, config: {duration: speed}})
+            await next({x:643, y:440, rotate:-360, config: {duration: speed}})
+            await next({x:660, y:377, rotate:-315, config: {duration: speed}})
+            await next({x:750, y:350, rotate:-270, config: {duration: speed}})
+            await next({x:842, y:375, rotate:-225, config: {duration: speed}})
+            await next({x:865, y:420, rotate:-180, config: {duration: speed}})
+            await next({x:845, y:490, rotate:-150, config: {duration: speed}})
+            await next({x:827, y:550, rotate:-180, config: {duration: speed}})
+            await next({y:640, config: {duration: speed}})
+            await next({x:850, y:690, rotate:-225, config: {duration: speed}})
+            await next({x:910, y:707, rotate:-270, config: {duration: speed}})
+            await next({x:1083, config: {duration: speed}})
+            await next({x:1280, config: {duration: speed}})
+            await next({x:1343, y:671, rotate:-330, config: {duration: speed}})
+            await next({x:1345, y:600, rotate:-380, config: {duration: speed}})
+            await next({x:1281, y:410, config: {duration: speed}})
+            await next({x:1261, y:330, rotate:-360, config: {duration: speed}})
+            await next({y:245, config: {duration: speed}})
+            await next({x:1245, y:195, rotate:-410, config: {duration: speed}})
+            await next({x:1200, y:177, rotate:-450, config: {duration: speed}})
+            await next({x:1145, y:195, rotate:-490, config: {duration: speed}})
+            await next({x:1129, y:240, rotate:-540, config: {duration: speed}})
+            await next({y:385, config: {duration: speed}})
+            await next({x:1115, y:422, rotate:-505, config: {duration: speed}})
+            await next({x:1065, y:448, rotate:-450, config: {duration: speed}})
+            await next({x:1010, y:422, rotate:-400, config: {duration: speed}})
+            await next({x:994, y:354, rotate:-360, config: {duration: speed}})
+            Car2.lapCount()
+            await next({pause: Car2.doneRace})
         },
-        from:{x:955, y:408, rotate: 0, config:{duration:120}},
-        pause:false,
-        loop: true
+        from:{x:994, y:354, rotate: 0, config: {duration: speed}},
+        pause: false,
+        loop:true
     }))
 
     return(
@@ -152,49 +163,50 @@ function Car3Animation() {
     
     const [style, animate] = useSpring(()=> ({
         to: async (next, cancel) => {
-            await next({x:955, y:290, rotate:0, config:{duration: 120}})
-            await next({x:940, y:245, rotate:-45})
-            await next({x:890, y:230, rotate:-90})
-            await next({x:745})
-            await next({x:600})
-            await next({x:555, y:245, rotate:-135})
-            await next({x:540, y:285, rotate:-180})
-            await next({y:465})
-            await next({y:645})
-            await next({x:550, y:680, rotate:-225})
-            await next({x:585, y:690, rotate:-270})
-            await next({x:585, y:690, rotate:-270})
-            await next({x:627, y:680, rotate:-315})
-            await next({x:638, y:590, rotate:-360})
-            await next({x:610, y:495, rotate:-395})
-            await next({x:600, y:440, rotate:-360})
-            await next({x:630, y:380, rotate:-315})
-            await next({x:745, y:339, rotate:-270})
-            await next({x:865, y:380, rotate:-225})
-            await next({x:893, y:448, rotate:-180})
-            await next({x:875, y:505, rotate:-145})
-            await next({x:853, y:575, rotate:-180})
-            await next({y:640})
-            await next({x:865, y:680, rotate:-225})
-            await next({x:910, y:695, rotate:-270})
-            await next({x:1083})
-            await next({x:1255})
-            await next({x:1305, y:670, rotate:-330})
-            await next({x:1307, y:610, rotate:-380})
-            await next({x:1240, y:420})
-            await next({x:1222, y:340, rotate:-360})
-            await next({y:285})
-            await next({x:1205, y:240, rotate:-410})
-            await next({x:1165, y:245, rotate:-490})
-            await next({x:1155, y:285, rotate:-540})
-            await next({y:400})
-            await next({x:1140, y:465, rotate:-505})
-            await next({x:1055, y:500, rotate:-445})
-            await next({x:970, y:465, rotate:-400})
-            await next({x:955, y:408, rotate:-360})
+            await next({y:310, rotate:0, config: {duration: speed}})
+            await next({x:945, y:275, rotate:-45, config: {duration: speed}})
+            await next({x:900, y:260, rotate:-90, config: {duration: speed}})
+            await next({x:750, config: {duration: speed}})
+            await next({x:600, config: {duration: speed}})
+            await next({x:551, y:275, rotate:-135, config: {duration: speed}})
+            await next({y:465, rotate:-180, config: {duration: speed}})
+            await next({y:665, config: {duration: speed}})
+            await next({x:560, y:703, rotate:-225, config: {duration: speed}})
+            await next({x:595, y:713, rotate:-270, config: {duration: speed}})
+            await next({x:632, y:700, rotate:-315, config: {duration: speed}})
+            await next({x:640, y:670, rotate:-360, config: {duration: speed}})
+            await next({y:600, config: {duration: speed}})
+            await next({x:625, y:545, rotate:-395, config: {duration: speed}})
+            await next({x:602, y:480, rotate:-360, config: {duration: speed}})
+            await next({x:635, y:396, rotate:-315, config: {duration: speed}})
+            await next({x:745, y:359, rotate:-270, config: {duration: speed}})
+            await next({x:875, y:400, rotate:-225, config: {duration: speed}})
+            await next({x:903, y:470, rotate:-180, config: {duration: speed}})
+            await next({x:890, y:525, rotate:-145, config: {duration: speed}})
+            await next({x:865, y:600, rotate:-180, config: {duration: speed}})
+            await next({y:665, config: {duration: speed}})
+            await next({x:872, y:700, rotate:-225, config: {duration: speed}})
+            await next({x:910, y:714, rotate:-270, config: {duration: speed}})
+            await next({x:1083, config: {duration: speed}})
+            await next({x:1265, config: {duration: speed}})
+            await next({x:1307, y:690, rotate:-330, config: {duration: speed}})
+            await next({x:1299, y:610, rotate:-380, config: {duration: speed}})
+            await next({x:1230, y:420, config: {duration: speed}})
+            await next({x:1222, y:340, rotate:-360, config: {duration: speed}})
+            await next({y:285, config: {duration: speed}})
+            await next({x:1215, y:270, rotate:-410, config: {duration: speed}})
+            await next({x:1175, y:270, rotate:-490, config: {duration: speed}})
+            await next({x:1166, y:300, rotate:-540, config: {duration: speed}})
+            await next({y:415, config: {duration: speed}})
+            await next({x:1150, y:490, rotate:-505, config: {duration: speed}})
+            await next({x:1070, y:531, rotate:-450, config: {duration: speed}})
+            await next({x:980, y:495, rotate:-400, config: {duration: speed}})
+            await next({x:957, y:400, rotate:-360, config: {duration: speed}})
+            Car3.lapCount()
+            await next({pause: Car3.doneRace})
         },
-        from:{x:955, y:408, rotate: 0, config:{duration:120}},
-        pause:false,
+        from:{x:957, y:400, rotate: 0, config: {duration: speed}},
+        pause: false,
         loop: true
     }))
 
@@ -206,17 +218,21 @@ function Car3Animation() {
 }
 
 export default function RenderCars() {
+
+    
     return(
         <div>
+            <button onClick={toggleAnimation}>toggle animation</button>
             <div>
-                <Car3Animation />
+                <Car3Animation/>
             </div>
-            <div className="div1">
-                <Car2Animation />   
+            <div>
+                <Car2Animation/>   
             </div>
-            <div className="div2">
-                <Car1Animation />
+            <div>
+                <Car1Animation/>
             </div>
+
 
         </div>
 

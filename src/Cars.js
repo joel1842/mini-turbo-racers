@@ -1,3 +1,4 @@
+import { toggleButtonGroupClasses } from "@mui/material";
 import React, { Component } from "react";
 
 export default class Car extends React.Component{
@@ -51,6 +52,16 @@ export default class Car extends React.Component{
                 this.raceOver();
             }
             this.position = 0;
+        }
+    }
+
+    lapCount() {
+        if (this.lap < 3) {
+            this.lap++
+            console.log(this.name,":",this.lap)
+        } else if (this.lap === 3){
+            console.log(this.name, "has finished the race")
+            this.raceOver()
         }
     }
 
