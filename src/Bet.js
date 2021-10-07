@@ -15,6 +15,7 @@ function Bet(props) {
     const [button3Color, setButton3Color] = useState("#ff6868")
 
 
+    // changes button color to show bet is locked
     function change1Color() {
         setButton1Color('#ff4646')
     }
@@ -25,6 +26,7 @@ function Bet(props) {
         setButton3Color('#ff4646')
     }
 
+    // locks bet
     function setCar1() {
         if (lockBet === false) {
             setBetCar(Car1.name)
@@ -52,6 +54,7 @@ function Bet(props) {
         }
     }
 
+    // increase & decrease bet amount
     function increaseBet() {
         if (lockBet === false) {
             setBet(betPrice + 10)
@@ -86,20 +89,6 @@ function Bet(props) {
                     <img className="displayCars" src={Car3.image} />
                     <button className="betButton" style={{backgroundColor: button3Color}} onClick={setCar3}>Bet Car 3</button>
                 </div>
-            </div>
-            <div>
-            <div className="bankButtons">
-                <Link to="/track">
-                    <button className="startButton">
-                        <a href="/track">Start Race!</a>
-                    </button>
-                </Link>
-                <Link to="/">
-                    <button className="backButton">
-                        <a href="/">Go back</a>
-                    </button>
-                </Link>
-            </div>  
             </div>
         </div>
     )

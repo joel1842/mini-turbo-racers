@@ -1,11 +1,14 @@
 .car1 {
     width: 30px;
+    position: absolute;
 }
 
 .car2 {
     width: 30px;
+    position: absolute;
 }
 
 .car3 {
-    width: 30px
+    width: 30px;
+    position: absolute;
 }

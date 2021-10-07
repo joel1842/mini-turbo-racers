@@ -31,10 +31,10 @@ function App() {
                 </div>
 
                 <div className="btn-menu text-center">
-                    <Link to="/bet">
+                    <Link to="/track">
                       <button>
                         <img src={flag} alt="Start" /> 
-                        <a href="/bet">Start Game!</a>
+                        <a href="/track">Start Game!</a>
                       </button>
                     </Link>
                     {/* <Link to="/track">

@@ -24,6 +24,10 @@ export default class Car extends React.Component{
         this.moneyBet = money
     }
 
+    carStart() {
+        this.startTime = Date.now()
+    }
+
     carInterval = () => {
         this.startTime = Date.now();
         this.timer = setInterval(() => {
@@ -60,10 +64,17 @@ export default class Car extends React.Component{
             this.lap++
             console.log(this.name,":",this.lap)
         } else if (this.lap === 3){
-            console.log(this.name, "has finished the race")
+            this.time = (Date.now() - this.startTime) / 1000;
+            console.log(this.name, "has finished the race in", this.time, "seconds")
             this.raceOver()
         }
     }
+
+    // setLap() {
+    //     this.setState({
+    //         count: this.state.count + 1
+    //     })
+    // }
 
     setPlace(value) {
         this.place = value
