@@ -1,11 +1,10 @@
-import React, {Component, useState, useEffect} from 'react';
-import { Link } from "react-router-dom";
+import React, {useState, useEffect} from 'react';
 import "./css/racetrack.css";
 import track from "./img/track v5.png";
 import Car1 from './Car1.js';
-import RenderCars from './CarAnimations';
 import Car2 from './Car2.js';
 import Car3 from './Car3.js';
+import RenderCars from './CarAnimations';
 import Bet from './Bet';
 
 const Racetrack = () => {
@@ -14,11 +13,12 @@ const Racetrack = () => {
     let carArray = [];
 
     const [seconds, setSeconds] = useState(3);
+    const [active, toggleActive] = useState(false)
     const [betDisplay, toggleBetDisplay] = useState(true)
     const [trackDisplay, toggleTrackDisplay] = useState(false)
     const [visible, setVisible] = useState(false)
 
-    const [lap, setLap] = useState(Car1.lap)
+    // const [lap, setLap] = useState(0)
 
     const [firstPlace, setFirstPlace] = useState(undefined)
     const [firstPlaceTime, setFirstPlaceTime] = useState(null)
@@ -29,38 +29,52 @@ const Racetrack = () => {
 
     const [moneyWon, setMoneyWon] = useState(undefined)
 
-    // bet & track switch
-    function conditionalDisplay() {
-        toggleBetDisplay(false)
-        toggleTrackDisplay(true)
+    const [betCar, setBetCar] = useState(undefined)
+
+    // sets bet car
+    function checkBetCar() {
+        if (Car1.isBet) {
+            setBetCar(Car1)
+        } if (Car2.isBet) {
+            setBetCar(Car2)
+        } if (Car3.isBet) {
+            setBetCar(Car3)
+        }
     }
 
-    //starts interval on load
-    useEffect(() => {
+    // triggers race
+    function onStart() {
+        toggleBetDisplay(false)
+        toggleTrackDisplay(true)
+        toggleActive(true)
+        setTimeout(() => toggleActive(false), 3000)
         startRace()
-    }, [])
-    
-    let countdown;
+        checkBetCar()
+    }
 
+    // resets race
+    function playAgain() {
+        toggleBetDisplay(true)
+        toggleTrackDisplay(false)
+        setVisible(false)
+
+        Car1.reset()
+        Car2.reset()
+        Car3.reset()
+    }
+
+    //starts countdown timer
+    useEffect(() => {
+        active && seconds > 0 && setTimeout(() => setSeconds(seconds - 1), 1000);
+    }, [seconds, active])
+    
     // continuously checks if race is done
     function startRace() {
         interval = setInterval(carChecker, 100);
-        countdown = setInterval(countDownTimer, 1000)
-    }
-
-    // not working yet
-    function countDownTimer() {
-        if (seconds > 0) {
-            setSeconds(seconds - 1)
-        } else {
-            setSeconds(null)
-            clearInterval(countdown)
-        }
     }
 
     // updates lap & checks for race end
     function carChecker() {
-        setLap(Car1.lap)
         if (Car1.doneRace && Car2.doneRace && Car3.doneRace) {
             clearInterval(interval)
             carArray = [Car1, Car2, Car3];
@@ -149,28 +163,44 @@ const Racetrack = () => {
             {betDisplay ? 
                 <div>
                     <Bet />
-                    <button onClick={conditionalDisplay}>Go to track!</button>
+                    <div className='button-container'>
+                        <button className='start-button' onClick={onStart}>Go to track!</button>
+                    </div>
                 </div>
             : null}
 
             {trackDisplay ? 
                 <div className='track-container'>
                     <h1 className="header">Racetrack</h1>
-                    <h3>Starting in: {seconds}</h3>
+                    <div className='betDisplay'>
+                        <h2>Bet Car: {betCar.name}</h2>
+                        {/* <img className='betCar' src={betCar.image} alt="Bet Car" />  */}
+                    </div>
+                                      
+                    {active ? <h3>Starting in: {seconds}</h3>: null}
+                
                     {visible ? 
                         <div>
-                            <h2>First Place: {firstPlace} in {firstPlaceTime} seconds!</h2>
-                            <h2>Second Place: {secondPlace} in {secondPlaceTime} seconds!</h2>
-                            <h2>Third Place: {thirdPlace} in {thirdPlaceTime} seconds!</h2>
-                            <h1>You made {moneyWon} coins!</h1>
+                            <div className='leaderboard'>
+                                <h3>First Place: {firstPlace} in {firstPlaceTime} seconds!</h3>
+                                <h3>Second Place: {secondPlace} in {secondPlaceTime} seconds!</h3>
+                                <h3>Third Place: {thirdPlace} in {thirdPlaceTime} seconds!</h3>
+                            </div>
+                            <div className='container'>
+                                <h2>You made {moneyWon} coins!</h2>
+                                <button className='play-again' onClick={playAgain}>Play Again!</button>
+                            </div>
                         </div> 
                     : null}
-
-                    <RenderCars/>
-                    <img className="track" src={track} />
                 </div>
             : null}
 
+            {trackDisplay ? 
+                <div>
+                    <RenderCars/>
+                    <img className="track" src={track} alt="track"/>
+                </div>
+            : null}
         </div>
     )
 }

@@ -1,7 +1,7 @@
-import { toggleButtonGroupClasses } from "@mui/material";
 import React, { Component } from "react";
 
-export default class Car extends React.Component{
+// logic & props for all cars
+export default class Car extends Component{
     constructor (name, image, speed, startTime, time, lane, lap, position, doneRace, isBet, place, moneyBet, moneyMade) {
         super();
         this.name = name;
@@ -19,46 +19,18 @@ export default class Car extends React.Component{
         this.moneyMade = moneyMade;
     }
 
+    // sets bet car & amount bet
     setBet(money) {
         this.isBet = true
         this.moneyBet = money
     }
 
+    // checks when cars started the race
     carStart() {
         this.startTime = Date.now()
     }
 
-    carInterval = () => {
-        this.startTime = Date.now();
-        this.timer = setInterval(() => {
-            this.carCounter()
-        }, this.speed); 
-    }
-
-    resetCarInterval () {
-        clearInterval(this.timer);
-        this.speed = this.speed - 20;
-        this.carInterval();
-    }
-
-    carCounter() {
-        if (this.position < 10) {
-            this.position = this.position + 1;
-            console.log(this.name, "Position:", this.position);
-        } else if (this.position === 10) {
-            if (this.lap < 3) {
-                this.lap = this.lap + 1;
-                console.log(this.name, "Lap:", this.lap);
-            } else if (this.lap === 3) {
-                this.time = (Date.now() - this.startTime) / 1000;
-                console.log(this.name, "has finished the race in", this.time);
-                clearInterval(this.timer);
-                this.raceOver();
-            }
-            this.position = 0;
-        }
-    }
-
+    // counts current lap of car & stops car after 3
     lapCount() {
         if (this.lap < 3) {
             this.lap++
@@ -70,16 +42,16 @@ export default class Car extends React.Component{
         }
     }
 
-    // setLap() {
-    //     this.setState({
-    //         count: this.state.count + 1
-    //     })
-    // }
+    raceOver() {
+        this.doneRace = true;
+    }
 
+    // sets place prop
     setPlace(value) {
         this.place = value
     }
 
+    // multiplies bet money based on place of car
     betMultiplier() {
         if (this.place === 1) {
             this.moneyMade = this.moneyBet * 2
@@ -89,15 +61,11 @@ export default class Car extends React.Component{
             this.moneyMade = this.moneyBet - (this.moneyBet * 0.5)
         }
     }
-    
 
-    raceOver() {
+    // full reset of all props
+    reset() {
         this.position = 0;
         this.lap = 0;
-        this.doneRace = true;
-    }
-
-    reset() {
         this.isBet = false;
         this.doneRace = false;
         this.place = null;

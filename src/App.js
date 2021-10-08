@@ -8,12 +8,10 @@ import {
 import logo from "./img/logo.png";
 import flag from "./img/checkeredFlag.png";
 import garageIcon from "./img/garageIcon.png";
-import moneyIcon from "./img/moneyIcon.png";
 import rulesIcon from "./img/rulesIcon.png";
 import starIcon from "./img/starIcon.png";
 import Racetrack from "./Racetrack";
 import Garage from "./Garage";
-import Bank from "./Bank";
 import HowToPlay from './HowToPlay';
 import Credits from './Credits';
 import Bet from "./Bet";
@@ -37,12 +35,6 @@ function App() {
                         <a href="/track">Start Game!</a>
                       </button>
                     </Link>
-                    {/* <Link to="/track">
-                      <button>
-                        <img src={flag} alt="Track" />
-                        <a href="/track">Track</a>
-                      </button>
-                    </Link>   */}
                     <Link to="/garage">
                       <button>
                         <img src={garageIcon} alt="Garage" />

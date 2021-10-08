@@ -1,14 +1,14 @@
-import React, { useState, useEffect } from "react";
-import { Link } from "react-router-dom";
+import React, { useState } from "react";
+import Slider from 'rc-slider';
+import 'rc-slider/assets/index.css';
 import "./css/bet.css";
 import Car1 from "./Car1.js";
 import Car2 from "./Car2.js";
 import Car3 from "./Car3.js";
 
-function Bet(props) {
+function Bet() {
     const [betPrice, setBet] = useState(100)
     const [bank, setBank] = useState(500)
-    const [betCar, setBetCar] = useState(null)
     const [lockBet, setLockBet] = useState(false)
     const [button1Color, setButton1Color] = useState("#ff6868")
     const [button2Color, setButton2Color] = useState("#ff6868")
@@ -29,7 +29,6 @@ function Bet(props) {
     // locks bet
     function setCar1() {
         if (lockBet === false) {
-            setBetCar(Car1.name)
             Car1.setBet(betPrice)
             setLockBet(true)
             change1Color()
@@ -38,7 +37,6 @@ function Bet(props) {
 
     function setCar2() {
         if (lockBet === false) {
-            setBetCar(Car2.name)
             Car2.setBet(betPrice)
             setLockBet(true)
             change2Color()
@@ -47,24 +45,14 @@ function Bet(props) {
 
     function setCar3() {
         if (lockBet === false) {
-            setBetCar(Car3.name)
             Car3.setBet(betPrice)
             setLockBet(true)
             change3Color()
         }
     }
 
-    // increase & decrease bet amount
-    function increaseBet() {
-        if (lockBet === false) {
-            setBet(betPrice + 10)
-        }
-    }
-
-    function decreaseBet() {
-        if (lockBet === false) {
-            setBet(betPrice - 10)
-        }
+    function sliderValue(value) {
+        setBet(value)
     }
 
     return (
@@ -72,21 +60,30 @@ function Bet(props) {
             <div className="betModule">
                 <h2>My Coins: {bank}</h2>
                 <h2>Bet Price: {betPrice}</h2>
-                <button onClick={increaseBet}>Increase Bet</button>
-                <button onClick={decreaseBet}>Decrease Bet</button>
+                <Slider 
+                    className='slider' 
+                    min={50} 
+                    max={200} 
+                    step={10} 
+                    defaultValue={100}
+                    trackStyle={{backgroundColor: '#ff4646', height: 10}}
+                    handleStyle={{borderColor: '#ff6868',height: 28, width: 28, marginLeft: -14, marginTop: -9}}
+                    railStyle={{backgroundColor: '#ff9e9e', height: 10}}
+                    disabled={lockBet}
+                    onChange={sliderValue}/>
             </div>
             <div className="chooseCar">
                 <h1>Choose a car!</h1>
                 <div className="displayCards">
-                    <img className="displayCars" src={Car1.image} />
+                    <img className="displayCars" src={Car1.image} alt="Car 1"/>
                     <button className="betButton" style={{backgroundColor: button1Color}} onClick={setCar1}>Bet Car 1</button>
                 </div>
                 <div className="displayCards">
-                    <img className="displayCars" src={Car2.image} />
+                    <img className="displayCars" src={Car2.image} alt="Car 2"/>
                     <button className="betButton" style={{backgroundColor: button2Color}} onClick={setCar2}>Bet Car 2</button>
                 </div>
                 <div className="displayCards">
-                    <img className="displayCars" src={Car3.image} />
+                    <img className="displayCars" src={Car3.image} alt="Car 3"/>
                     <button className="betButton" style={{backgroundColor: button3Color}} onClick={setCar3}>Bet Car 3</button>
                 </div>
             </div>

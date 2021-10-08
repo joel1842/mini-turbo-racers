@@ -1,11 +1,45 @@
-.wrapper {
+.button-container{
     text-align: center;
+    padding-top: 25px;
+}
 
+.start-button {
+    text-align: center;
+    font-weight: 800;
+    font-size: large;
+    color: white;
+    background-color: rgb(38, 255, 19);
+    margin: 20px;
+    padding: 10px 24px;
+    border: none;
+    border-radius: 10px;
+    text-decoration: none;
 }
 
 .track-container {
-    padding-top: 30px;
+    text-align: center;
+} 
+
+.leaderboard {
+    padding-top: 5px;
+    padding-bottom: 5px;
 }
+
+.container {
+    padding-bottom: 30px;
+}
+
+.play-again {
+    font-weight: 800;
+    font-size: large;
+    color: white;
+    background-color: rgb(38, 255, 19);
+    padding: 10px 24px;
+    border: none;
+    border-radius: 10px;
+    text-decoration: none;
+}
+
 
 .track {
     width: 1000px;

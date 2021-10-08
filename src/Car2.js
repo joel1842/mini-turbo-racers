@@ -1,4 +1,3 @@
-import React from "react";
 import Car from "./Cars";
 import carImg from './img/neon car.png'
 
