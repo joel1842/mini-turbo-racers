@@ -6,7 +6,7 @@ import Car2 from "./Car2";
 import Car3 from "./Car3";
 
 
-function Car1Animation() {
+const Car1Animation = (props) => {
 
     useEffect(() => {
         setTimeout(startAnimation, 3000)
@@ -17,61 +17,116 @@ function Car1Animation() {
         Car1.carStart()
     }
     
+    // new car counter
+    let carPos = 0
+    function carCounter() {
+        if (carPos < 45){
+            carPos++
+        } else {
+            carPos = 1
+        }
+    }
+    
     const [style, animate] = useSpring(()=> ({
         to: async (next, cancel) => {
             await next({x:1040, y:115.3, rotate:0, config: {duration: Car1.speed}}) 
+            carCounter()
             await next({x:1018, y:50.3, rotate:-45, config: {duration: Car1.speed}})
+            carCounter()
             await next({x:943, y:21.3, rotate: -90, config: {duration: Car1.speed}})
+            carCounter()
             await next({x:807, config: {duration: Car1.speed}})
+            carCounter()
             await next({x:657, config: {duration: Car1.speed}})
+            carCounter()
             // 5
             await next({x:562, config: {duration: Car1.speed}})
+            carCounter()
             await next({x:501, y:52.3, rotate:-135, config: {duration: Car1.speed}})
+            carCounter()
             await next({x:482, y:125.3, rotate: -180, config: {duration: Car1.speed}})
+            carCounter()
             await next({y:325.3, config: {duration: Car1.speed}})
+            carCounter()
             await next({y:540.3, config: {duration: Car1.speed}})
+            carCounter()
             // 10
             await next({x:514, y:597.3, rotate: -225, config: {duration: Car1.speed}})
+            carCounter()
             await next({x:572, y:625, rotate: -270, config: {duration: Car1.speed}})
+            carCounter()
             await next({x:627, config: {duration: Car1.speed}})
+            carCounter()
             await next({x:692, y:595.3, rotate: -315, config: {duration: Car1.speed}})
+            carCounter()
             await next({x:722, y:525.3, rotate: -360, config: {duration: Car1.speed}})
+            carCounter()
             // 15
             await next({y:425.3, config: {duration: Car1.speed}})
+            carCounter()
             await next({x:710, y:375.3, rotate:-390, config: {duration: Car1.speed}})
+            carCounter()
             await next({x:687, y:315.3, rotate:-360, config: {duration: Car1.speed}})
+            carCounter()
             await next({x:697, y:285.3, rotate:-315, config: {duration: Car1.speed}})
+            carCounter()
             await next({x:727, y:272.3, rotate:-270, config: {duration: Car1.speed}})
+            carCounter()
             // 20
             await next({x:787, config: {duration: Car1.speed}})
+            carCounter()
             await next({x:827, y:295.3, rotate:-210, config: {duration: Car1.speed}})
+            carCounter()
             await next({x:832, y:315.3, rotate:-180, config: {duration: Car1.speed}})
+            carCounter()
             await next({x:819, y:355.3, rotate:-150, config: {duration: Car1.speed}})
+            carCounter()
             await next({x:795, y:425.3, rotate:-180, config: {duration: Car1.speed}})
+            carCounter()
             // 25
             await next({y:525.3, config: {duration: Car1.speed}})
+            carCounter()
             await next({x:822, y:590.3, rotate:-225, config: {duration: Car1.speed}})
+            carCounter()
             await next({x:892, y:625.3, rotate:-270, config: {duration: Car1.speed}})
+            carCounter()
             await next({x:1096, config: {duration: Car1.speed}})
+            carCounter()
             await next({x:1307, config: {duration: Car1.speed}})
+            carCounter()
             // 30
             await next({x:1377, y:590.3, rotate:-325, config: {duration: Car1.speed}})
+            carCounter()
             await next({x:1392, y:545.3, rotate:-360, config: {duration: Car1.speed}})
+            carCounter()
             await next({x:1392, y:495.3, rotate:-375, config: {duration: Car1.speed}})
+            carCounter()
             await next({x:1352, y:360.3, config: {duration: Car1.speed}})
+            carCounter()
             await next({x:1307, y:215.3, rotate:-360, config: {duration: Car1.speed}})
+            carCounter()
             // 35
             await next({x:1304, y:100.3, config: {duration: Car1.speed}})
+            carCounter()
             await next({x:1284, y:43.3, rotate:-410, config: {duration: Car1.speed}})
+            carCounter()
             await next({x:1202, y:21.3, rotate:-450, config: {duration: Car1.speed}})
+            carCounter()
             await next({x:1124, y:45.3, rotate:-490, config: {duration: Car1.speed}})
+            carCounter()
             await next({x:1096, y:105.3, rotate:-540, config: {duration: Car1.speed}})
+            carCounter()
             // 40
             await next({x:1097, y:250.3, config: {duration: Car1.speed}})
+            carCounter()
             await next({x:1087, y:285.3, rotate:-480, config: {duration: Car1.speed}})
+            carCounter()
             await next({x:1067, y:290.3, rotate:-450, config: {duration: Car1.speed}})
+            carCounter()
             await next({x:1045, y:285.3, rotate:-410, config: {duration: Car1.speed}})
+            carCounter()
             await next({x:1040, y:235.3, rotate:-360, config: {duration: Car1.speed}})
+            carCounter()
             //45
             Car1.lapCount()
             await next({pause: Car1.doneRace})
@@ -250,7 +305,7 @@ function Car3Animation() {
     )
 }
 
-export default function RenderCars() {
+export default function RenderCars(props) {
     return(
         <div>
             <div>
@@ -260,7 +315,7 @@ export default function RenderCars() {
                 <Car2Animation/>   
             </div>
             <div>
-                <Car1Animation/>
+                <Car1Animation props={props}/>
             </div>
         </div>
 

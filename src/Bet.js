@@ -6,9 +6,9 @@ import Car1 from "./Car1.js";
 import Car2 from "./Car2.js";
 import Car3 from "./Car3.js";
 
-function Bet() {
+const Bet = (props) => {
     const [betPrice, setBet] = useState(100)
-    const [bank, setBank] = useState(500)
+    
     const [lockBet, setLockBet] = useState(false)
     const [button1Color, setButton1Color] = useState("#ff6868")
     const [button2Color, setButton2Color] = useState("#ff6868")
@@ -25,21 +25,21 @@ function Bet() {
     function change3Color() {
         setButton3Color('#ff4646')
     }
-
+    
     // locks bet
     function setCar1() {
         if (lockBet === false) {
-            Car1.setBet(betPrice)
             setLockBet(true)
             change1Color()
+            props.betGetter(betPrice, Car1)
         }
     }
 
     function setCar2() {
         if (lockBet === false) {
-            Car2.setBet(betPrice)
             setLockBet(true)
             change2Color()
+            props.betGetter(betPrice, Car2)
         }
     }
 
@@ -48,6 +48,7 @@ function Bet() {
             Car3.setBet(betPrice)
             setLockBet(true)
             change3Color()
+            props.betGetter(betPrice, Car3)
         }
     }
 
@@ -58,7 +59,7 @@ function Bet() {
     return (
         <div className="betWrapper">
             <div className="betModule">
-                <h2>My Coins: {bank}</h2>
+                <h2>My Coins: {props.bank}</h2>
                 <h2>Bet Price: {betPrice}</h2>
                 <Slider 
                     className='slider' 
