@@ -1,5 +1,6 @@
 import React, { useEffect } from "react";
 import { useSpring, animated } from "react-spring";
+import { PowerUpPositions } from './PowerUpPositions';
 import './css/car1.css'
 import Car1 from "./Car1";
 import Car2 from "./Car2";
@@ -308,6 +309,9 @@ function Car3Animation() {
 export default function RenderCars(props) {
     return(
         <div>
+            <div>
+                <PowerUpPositions />
+            </div>
             <div>
                 <Car3Animation/>
             </div>

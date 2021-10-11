@@ -44,19 +44,7 @@ const Racetrack = () => {
         setBetCar(car)
     }
 
-    // not working the way i want it to
-    let powerUpPos;
-    let powerUpLn;
-    const powerUpGenerator = () => { 
-        const powerUpLane = () => {
-            return Math.floor(Math.random() * 3) + 1;
-        }
-        const powerUpPosition = () => {
-            return Math.floor(Math.random() * 45) + 1;
-        }
-        powerUpLn = powerUpLane()
-        powerUpPos = powerUpPosition()
-    }
+
 
     // countdown timer
     useEffect(() => {
@@ -82,13 +70,11 @@ const Racetrack = () => {
         toggleActive(true)
         setTimeout(() => toggleActive(false), 3000)
         isRaceDone()
-        powerUpGenerator()
     }
 
     // continuously checks if race is done
     function isRaceDone() {
         interval = setInterval(raceChecker, 100);
-        powerUpInterval = setInterval(powerUpGenerator, 10000)
     }
 
     // checks for race end
@@ -185,7 +171,7 @@ const Racetrack = () => {
 
             {trackDisplay ? 
                 <div>
-                    <RenderCars powerUpPos={powerUpPos} powerUpLn={powerUpLn}/>
+                    <RenderCars/>
                     <img className="track" src={track} alt="track"/>
                 </div>
             : null}
