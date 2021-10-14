@@ -45,7 +45,6 @@ const Bet = (props) => {
 
     function setCar3() {
         if (lockBet === false) {
-            Car3.setBet(betPrice)
             setLockBet(true)
             change3Color()
             props.betGetter(betPrice, Car3)

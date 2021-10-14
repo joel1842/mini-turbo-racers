@@ -1,10 +1,13 @@
 import React, { useEffect, useState } from "react";
 import { useSpring, animated } from "react-spring";
-import { PowerUpPositions } from './PowerUpPositions';
-import './css/car1.css'
+import { GasCanPowerUp } from './GasCanPowerUp';
+import './css/caranimations.css'
 import Car1 from "./Car1";
 import Car2 from "./Car2";
 import Car3 from "./Car3";
+import track from './img/track v5.png';
+import { TurboPowerUp } from "./TurboPowerUp";
+import { OilSpillEffect } from "./OilSpillEffect";
 
 
 const Car1Animation = (props) => {
@@ -420,26 +423,74 @@ function Car3Animation() {
     )
 }
 
-export default function RenderCars(props) {
+function Track () {
 
-    const [displayPowerUp, togglePowerUp] = useState(false)
+    const [style, animate] = useSpring(() => ({
+        from: {x: 450, y: 0}
+    }))
 
-    const reRenderPowerUp = () => {
-        togglePowerUp(true)
-        function off() {
-            togglePowerUp(false)
+    return (
+        <div>
+            <animated.img src={track} style={style} className="racetrack" alt="Racetrack" />
+        </div>
+    )
+}
+
+export default function RenderCars() {
+
+    const [displayGasCan, toggleGasCan] = useState(false)
+    const [displayTurbo, toggleTurbo] = useState(false)
+    const [displayOilSpill, toggleOilSpill] = useState(false)
+
+    const reRenderGasCan = () => {
+        if (!Car1.doneRace && !Car2.doneRace && !Car3.doneRace) {
+            toggleGasCan(true)
+            function off() {
+                toggleGasCan(false)
+            }
+            setTimeout(off, 3000)
         }
-        setTimeout(off, 3000)
     }
- 
+
+    const reRenderTurbo = () => {
+        if (!Car1.doneRace && !Car2.doneRace && !Car3.doneRace) {
+            toggleTurbo(true)
+            function off() {
+                toggleTurbo(false)
+            }
+            setTimeout(off, 5000) 
+        }
+    }
+
+    const reRenderOilSpill = () => {
+        if (!Car1.doneRace && !Car2.doneRace && !Car3.doneRace) {
+            toggleOilSpill(true)
+            function off() {
+                toggleOilSpill(false)
+            }
+            setTimeout(off, 6000) 
+        }
+    }
+    
     useEffect(()=> {
-        setInterval(reRenderPowerUp, 5000)
+        setInterval(reRenderGasCan, 5000)
+        setInterval(reRenderTurbo, 8000)
+        setInterval(reRenderOilSpill, 8000)
     }, [])
 
     return(
         <div>
             <div>
-                {displayPowerUp ? <PowerUpPositions /> : null}
+                <Track />
+            </div>
+            <div>
+                {displayOilSpill ? <OilSpillEffect/>: null}
+            </div>
+            <div>
+                {displayTurbo ? <TurboPowerUp /> : null}
+            </div>
+            <div>
+                {displayGasCan ? <GasCanPowerUp /> : null}
             </div>
             <div>
                 <Car3Animation/>
