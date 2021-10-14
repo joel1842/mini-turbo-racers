@@ -2,18 +2,11 @@ import React, { useEffect, useState } from "react";
 import { useSpring, animated } from "react-spring";
 import gasCan from "./img/gas can.png";
 import './css/powerup.css';
+import Car1 from "./Car1";
+import Car2 from "./Car2";
+import Car3 from "./Car3";
 
-export const PowerUpPositions = () => {
-
-    const powerUpGenerator = () => { 
-        // const powerUpLane = () => {
-        //     return Math.floor(Math.random() * 3) + 1;
-        // }
-        const powerUpPosition = () => {
-        return Math.floor(Math.random() * 45) + 1;
-        }
-        return powerUpPosition()
-    }
+export const PowerUpPositions = (props) => {
 
     let lane1Positions = {
         1: {
@@ -197,12 +190,420 @@ export const PowerUpPositions = () => {
             y:235.3
         }
     }
-    
-    let powerUpX = lane1Positions[powerUpGenerator()].x
-    let powerUpY = lane1Positions[powerUpGenerator()].y
+
+    let lane2Positions = {
+        1: {
+            x: 1002,
+            y: 130.6
+        },
+        2: {
+            x: 987,
+            y: 80.6
+        },
+        3: {
+            x: 922, 
+            y: 56
+        },
+        4: {
+            x: 815,
+            y: 56
+        },
+        5: {
+            x: 708,
+            y: 56
+        },
+        6: {
+            x: 600,
+            y: 56 
+        },
+        7: {
+            x: 537, 
+            y: 75.6  
+        },
+        8: {
+            x: 521, 
+            y: 125.6
+        },
+        9: {
+            x: 521,
+            y: 258
+        },
+        10: {
+            x: 521,
+            y: 391
+        },
+        11: {
+            x: 521, 
+            y: 525.6
+        }, 
+        12: {
+            x: 537, 
+            y: 561
+        }, 
+        13: {
+            x: 600,
+            y: 585
+        },
+        14: {
+            x: 668, 
+            y: 562
+        },
+        15: {
+            x: 686, 
+            y: 522
+        }, 
+        16: {
+            x: 686,
+            y: 430.6
+        }, 
+        17: {
+            x: 669, 
+            y: 370
+        }, 
+        18: {
+            x: 650, 
+            y: 313
+        }, 
+        19: {
+            x: 667, 
+            y: 257.6
+        }, 
+        20: {
+            x: 760, 
+            y: 229
+        }, 
+        21: {
+            x: 849,
+            y: 252
+        }, 
+        22: {
+            x: 872, 
+            y: 300.6
+        },
+        23: {
+            x: 851, 
+            y: 370.6
+        }, 
+        24: {
+            x: 835, 
+            y: 430.6
+        }, 
+        25: {
+            x: 835, 
+            y: 520.6
+        },
+        26: {
+            x: 857,
+            y: 568
+        }, 
+        27: {
+            x: 917, 
+            y: 585
+        }, 
+        28: {
+            x: 1040, 
+            y: 585
+        },
+        29: {
+            x: 1163,
+            y: 585
+        },
+        30: {
+            x: 1287,
+            y: 585
+        },
+        31: {
+            x: 1350, 
+            y: 550
+        }, 
+        32: { 
+            x: 1354, 
+            y: 479
+        },
+        33: {
+            x: 1323, 
+            y: 383   
+        }, 
+        34: {
+            x: 1288, 
+            y: 288
+        }, 
+        35: {
+            x: 1268, 
+            y: 208
+        }, 
+        36: {
+            x: 1268, 
+            y: 123
+        }, 
+        37: {
+            x: 1252, 
+            y: 73
+        }, 
+        38: {
+            x: 1207, 
+            y: 55
+        },
+        39: {
+            x: 1152, 
+            y: 73
+        }, 
+        40: {
+            x: 1136, 
+            y: 118
+        },
+        41: {
+            x: 1136, 
+            y: 263
+        },
+        42: {
+            x: 1122, 
+            y: 302
+        }, 
+        43: {
+            x: 1072, 
+            y: 327
+        }, 
+        44: {
+            x: 1017, 
+            y: 301
+        },
+        45: {
+            x: 1002, 
+            y: 234.6
+        }
+    }
+
+    let lane3Positions = {
+        1: {
+            x: 964,
+            y: 130.6
+        },
+        2: {
+            x: 987,
+            y: 80.6
+        },
+        3: {
+            x: 922, 
+            y: 56
+        },
+        4: {
+            x: 815,
+            y: 56
+        },
+        5: {
+            x: 708,
+            y: 56
+        },
+        6: {
+            x: 600,
+            y: 56
+        },
+        7: {
+            x: 537, 
+            y: 75.6  
+        },
+        8: {
+            x: 521, 
+            y: 125.6
+        },
+        9: {
+            x: 521,
+            y: 258
+        },
+        10: {
+            x: 521,
+            y: 391
+        },
+        11: {
+            x: 521, 
+            y: 525.6
+        }, 
+        12: {
+            x: 537, 
+            y: 561
+        }, 
+        13: {
+            x: 600,
+            y: 585
+        },
+        14: {
+            x: 668, 
+            y: 562
+        },
+        15: {
+            x: 686, 
+            y: 522
+        }, 
+        16: {
+            x: 686,
+            y: 430.6
+        }, 
+        17: {
+            x: 669, 
+            y: 370
+        }, 
+        18: {
+            x: 650, 
+            y: 313
+        }, 
+        19: {
+            x: 667, 
+            y: 257.6
+        }, 
+        20: {
+            x: 760, 
+            y: 229
+        }, 
+        21: {
+            x: 849,
+            y: 252
+        }, 
+        22: {
+            x: 872, 
+            y: 300.6
+        },
+        23: {
+            x: 851, 
+            y: 370.6
+        }, 
+        24: {
+            x: 835, 
+            y: 430.6
+        }, 
+        25: {
+            x: 835, 
+            y: 520.6
+        },
+        26: {
+            x: 857,
+            y: 568
+        }, 
+        27: {
+            x: 917, 
+            y: 585
+        }, 
+        28: {
+            x: 1040, 
+            y: 585
+        },
+        29: {
+            x: 1163,
+            y: 585
+        },
+        30: {
+            x: 1287,
+            y: 585
+        },
+        31: {
+            x: 1350, 
+            y: 550
+        }, 
+        32: { 
+            x: 1354, 
+            y: 479
+        },
+        33: {
+            x: 1323, 
+            y: 383  
+        }, 
+        34: {
+            x: 1288, 
+            y: 288
+        }, 
+        35: {
+            x: 1268, 
+            y: 208
+        }, 
+        36: {
+            x: 1268, 
+            y: 123
+        }, 
+        37: {
+            x: 1252, 
+            y: 73
+        }, 
+        38: {
+            x: 1207, 
+            y: 55
+        },
+        39: {
+            x: 1152, 
+            y: 73
+        }, 
+        40: {
+            x: 1136, 
+            y: 118
+        },
+        41: {
+            x: 1136, 
+            y: 263
+        },
+        42: {
+            x: 1122, 
+            y: 302
+        }, 
+        43: {
+            x: 1072, 
+            y: 327
+        }, 
+        44: {
+            x: 1017, 
+            y: 301
+        },
+        45: {
+            x: 1002, 
+            y: 234.6
+        }
+    }
+
+    let lanePositions = [lane1Positions, lane2Positions, lane3Positions]
+
+    const powerUpLane = () => {
+        return Math.floor(Math.random() * 3) + 1;
+    }
+
+    const powerUpPosition = () => {
+        return Math.floor(Math.random() * 45) + 1;
+    }
+
+    let powerUp;
+    let randPos;
+    let randLane
+    function getPowerUpPos() {
+        randPos = powerUpPosition()
+        randLane = powerUpLane()
+        if (randLane === 1) {
+            powerUp = lane1Positions[randPos]
+        } if (randLane === 2) {
+            powerUp = lane2Positions[randPos]
+        } if (randLane === 3) {
+            powerUp = lane3Positions[randPos]
+        }
+    }
+
     const [style, animate] = useSpring(() => ({
-        from: {x:powerUpX, y: powerUpY}
+        props: getPowerUpPos(),
+        from: {x: powerUp.x, y: powerUp.y}
     }))
+
+    useEffect(() => {
+        setInterval(carChecker, 10)
+    }, [])
+
+    function carChecker() {
+        if ((Car1.position === randPos) && (Car1.lane === randLane)) {
+            Car1.speed = 80
+            animate({opacity: 0})
+        } if ((Car2.position === randPos) && (Car2.lane === randLane)) {
+            Car2.speed = 80
+            animate({opacity: 0})
+        } if ((Car3.position === randPos) && (Car3.lane === randLane)) {
+            Car3.speed = 80
+            animate({opacity: 0})
+        }
+    }
+    
 
     return(
         <animated.img className='gasCan' src={gasCan} style={style} alt="Gas Can" />
