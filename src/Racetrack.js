@@ -1,19 +1,20 @@
 import React, {useState, useEffect} from 'react';
 import "./css/racetrack.css";
-import Car1 from './Car1.js';
-import Car2 from './Car2.js';
-import Car3 from './Car3.js';
+import {Car1Props, resetCar1} from './Car1.js';
+import {Car2Props, resetCar2} from './Car2.js';
+import {Car3Props, resetCar3} from './Car3.js';
 import RenderCars from './CarAnimations';
 import Bet from './Bet';
 
 const Racetrack = () => {
     
     let interval;
-    let carArray = [];
+    let carArray = [Car1Props, Car2Props, Car3Props];
 
     const [seconds, setSeconds] = useState(3);
     const [counting, setCounting] = useState(0);
-    const [active, toggleActive] = useState(false);
+    const [countdown, toggleCountdown] = useState(false);
+    const [timer, toggleTimer] = useState(false)
     const [betDisplay, toggleBetDisplay] = useState(true);
     const [trackDisplay, toggleTrackDisplay] = useState(false);
     const [visible, setVisible] = useState(false);
@@ -31,36 +32,36 @@ const Racetrack = () => {
     const [betCar, setBetCar] = useState(undefined);
 
     const [bank, setBank] = useState(500);
-    const [betAmount, setBetAmount] = useState(undefined)
+    const [betAmount, setBetAmount] = useState(undefined);
 
 
-    // const [winstreak, setWinstreak] = useState(1)
-                // setWinstreak(winstreak + 1)
+    const [winstreak, setWinstreak] = useState(0);
+    const [winDisplay, toggleWinDisplay] = useState(false);
+
+    const [first, setFirst] = useState(null);
+    const [second, setSecond] = useState(null);
+    const [third, setThird] = useState(null);
 
     const betGetter = (betPrice, car) => {
         setBetAmount(betPrice)
         setBetCar(car)
     }
 
-    // countdown timer
+    // stopwatch
     useEffect(() => {
-        active && seconds > 0 && setTimeout(() => setSeconds(seconds - 1), 1000);
-    }, [seconds, active])
+        countdown && setTimeout(() => setSeconds(seconds - 1), 1000);
+        !raceOver && timer && setTimeout(() => setCounting(counting + 1), 1000);
 
-    // race timer
-    useEffect(()=> {
-        if (!raceOver) {
-            seconds === 0 && setTimeout(() => setCounting(counting + 1), 1000);
-        }
-    }, [counting, seconds])
+    }, [seconds, counting, countdown, timer])
 
     // triggers race
     function onStart() {
         if (betCar !== undefined) {
             toggleBetDisplay(false)
             toggleTrackDisplay(true)
-            toggleActive(true)
-            setTimeout(() => toggleActive(false), 3000)
+            toggleCountdown(true)
+            setTimeout(() => toggleCountdown(false), 3000)
+            setTimeout(() => toggleTimer(true), 3000)
             isRaceDone()
         }
     }
@@ -68,16 +69,23 @@ const Racetrack = () => {
     // continuously checks if race is done
     function isRaceDone() {
         interval = setInterval(raceChecker, 100);
+        let leaderboardInterval = setInterval(liveLeaderboard, 100)
     }
 
     // checks for race end
     function raceChecker() {
-        if (Car1.doneRace && Car2.doneRace && Car3.doneRace) {
+        if (Car1Props.doneRace && Car2Props.doneRace && Car3Props.doneRace) {
             clearInterval(interval)
-            carArray = [Car1, Car2, Car3];
             setRaceOver(true)
             raceEnded()
         }
+    }
+
+    function liveLeaderboard() {
+        carArray.sort((a,b)=>(a.leaderboard < b.leaderboard) ? 1 : ((b.leaderboard < a.leaderboard) ? -1 : 0));
+        setFirst(carArray[0].name)
+        setSecond(carArray[1].name)
+        setThird(carArray[2].name)
     }
 
     // sorts cars by time and sets each place
@@ -94,6 +102,7 @@ const Racetrack = () => {
         setThirdPlaceTime(carArray[2].time)
 
         checkMoney()
+        checkWinstreak()
         
         setVisible(true)
     }
@@ -112,15 +121,27 @@ const Racetrack = () => {
         }
     }
 
+    function checkWinstreak() {
+        if (carArray[0].name === betCar.name) {
+            setWinstreak(winstreak + 1)
+            if (winstreak > 1) {
+                toggleWinDisplay(true)
+            }
+        } else {
+            setWinstreak(0)
+            toggleWinDisplay(false)
+        }
+    }
+
     // resets race
     function playAgain() {
-        carArray = []
         toggleBetDisplay(true)
         toggleTrackDisplay(false)
         setVisible(false)
         setSeconds(3)
         setCounting(0)
-        toggleActive(false)
+        toggleCountdown(false)
+        toggleTimer(false)
         setFirstPlace(undefined)
         setFirstPlaceTime(null)
         setSecondPlace(undefined)
@@ -132,9 +153,9 @@ const Racetrack = () => {
         setMoneyWon(undefined)
         setRaceOver(false)
 
-        Car1.reset()
-        Car2.reset()
-        Car3.reset()
+        resetCar1()
+        resetCar2()
+        resetCar3()
     }
 
     return(
@@ -158,16 +179,21 @@ const Racetrack = () => {
                         <h3>My bank: {bank}</h3>
                     </div>
                                       
-                    {active ? <h3>Starting in: {seconds}!</h3>: null}
-                    {active ? null : <h3>Race Timer: {counting} seconds</h3>}
+                    {countdown ? <h3>Starting in: {seconds}!</h3> : null}
+                    {timer ? <h3>Race Timer: {counting} seconds</h3> : null}
                 
+                    <div>
+                        <h3>1st: {first} </h3>
+                        {visible ? <h3>in {firstPlaceTime} seconds!</h3> : null}
+                        <h3>2nd: {second} </h3>
+                        {visible ? <h3>in {secondPlaceTime} seconds!</h3> : null}
+                        <h3>3rd: {third} </h3>
+                        {visible ? <h3>in {thirdPlaceTime} seconds!</h3> : null}
+                        {winDisplay ? <h3>Winstreak: {winstreak}x</h3> : null}
+                    </div>
+
                     {visible ? 
                         <div>
-                            <div className='leaderboard'>
-                                <h3>First Place: {firstPlace} in {firstPlaceTime} seconds!</h3>
-                                <h3>Second Place: {secondPlace} in {secondPlaceTime} seconds!</h3>
-                                <h3>Third Place: {thirdPlace} in {thirdPlaceTime} seconds!</h3>
-                            </div>
                             <div className='container'>
                                 <h2>You made {moneyWon} coins!</h2>
                                 <button className='play-again' onClick={playAgain}>Play Again!</button>

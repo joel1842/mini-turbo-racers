@@ -2,9 +2,9 @@ import React, { useEffect } from "react";
 import { useSpring, animated } from "react-spring";
 import turboImg from "./img/turbo.png";
 import './css/turbo.css';
-import Car1 from "./Car1";
-import Car2 from "./Car2";
-import Car3 from "./Car3";
+import { Car1Props } from "./Car1.js";
+import { Car2Props } from "./Car2.js";
+import { Car3Props } from "./Car3.js";
 import { lane1Positions, lane2Positions, lane3Positions } from "./LanePositions";
 
 export const TurboPowerUp = () => {
@@ -42,14 +42,14 @@ export const TurboPowerUp = () => {
     }, [])
 
     function turboChecker() {
-        if ((Car1.position === randPos) && (Car1.lane === randLane)) {
-            Car1.speed = 65
+        if ((Car1Props.position === randPos) && (Car1Props.lane === randLane)) {
+            Car1Props.speed = 65
             animate({opacity: 0})
-        } if ((Car2.position === randPos) && (Car2.lane === randLane)) {
-            Car2.speed = 65
+        } if ((Car2Props.position === randPos) && (Car2Props.lane === randLane)) {
+            Car2Props.speed = 65
             animate({opacity: 0})
-        } if ((Car3.position === randPos) && (Car3.lane === randLane)) {
-            Car3.speed = 65
+        } if ((Car3Props.position === randPos) && (Car3Props.lane === randLane)) {
+            Car3Props.speed = 65
             animate({opacity: 0})
         }
     }

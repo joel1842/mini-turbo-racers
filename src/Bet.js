@@ -2,9 +2,9 @@ import React, { useState } from "react";
 import Slider from 'rc-slider';
 import 'rc-slider/assets/index.css';
 import "./css/bet.css";
-import Car1 from "./Car1.js";
-import Car2 from "./Car2.js";
-import Car3 from "./Car3.js";
+import { Car1Props } from "./Car1.js";
+import { Car2Props } from "./Car2.js";
+import { Car3Props } from "./Car3.js";
 
 const Bet = (props) => {
     const [betPrice, setBet] = useState(100)
@@ -31,7 +31,7 @@ const Bet = (props) => {
         if (lockBet === false) {
             setLockBet(true)
             change1Color()
-            props.betGetter(betPrice, Car1)
+            props.betGetter(betPrice, Car1Props)
         }
     }
 
@@ -39,7 +39,7 @@ const Bet = (props) => {
         if (lockBet === false) {
             setLockBet(true)
             change2Color()
-            props.betGetter(betPrice, Car2)
+            props.betGetter(betPrice, Car2Props)
         }
     }
 
@@ -47,7 +47,7 @@ const Bet = (props) => {
         if (lockBet === false) {
             setLockBet(true)
             change3Color()
-            props.betGetter(betPrice, Car3)
+            props.betGetter(betPrice, Car3Props)
         }
     }
 
@@ -75,15 +75,15 @@ const Bet = (props) => {
             <div className="chooseCar">
                 <h1>Choose a car!</h1>
                 <div className="displayCards">
-                    <img className="displayCars" src={Car1.image} alt="Car 1"/>
+                    <img className="displayCars" src={Car1Props.img} alt="Car 1"/>
                     <button className="betButton" style={{backgroundColor: button1Color}} onClick={setCar1}>Bet Car 1</button>
                 </div>
                 <div className="displayCards">
-                    <img className="displayCars" src={Car2.image} alt="Car 2"/>
+                    <img className="displayCars" src={Car2Props.img} alt="Car 2"/>
                     <button className="betButton" style={{backgroundColor: button2Color}} onClick={setCar2}>Bet Car 2</button>
                 </div>
                 <div className="displayCards">
-                    <img className="displayCars" src={Car3.image} alt="Car 3"/>
+                    <img className="displayCars" src={Car3Props.img} alt="Car 3"/>
                     <button className="betButton" style={{backgroundColor: button3Color}} onClick={setCar3}>Bet Car 3</button>
                 </div>
             </div>
