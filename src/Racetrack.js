@@ -1,10 +1,15 @@
 import React, {useState, useEffect} from 'react';
 import "./css/racetrack.css";
-import {Car1Props, resetCar1} from './Car1.js';
-import {Car2Props, resetCar2} from './Car2.js';
-import {Car3Props, resetCar3} from './Car3.js';
-import RenderCars from './CarAnimations';
+import {Car1Props, resetCar1} from './Car1Props';
+import {Car2Props, resetCar2} from './Car2Props';
+import {Car3Props, resetCar3} from './Car3Props';
+import RenderCars from './Animations';
 import Bet from './Bet';
+import coin from "./img/coin.png";
+import gasCanImg from "./img/gas can.png";
+import turboImg from "./img/turbo.png";
+import oilSpillImg from "./img/oil spill.png";
+
 
 const Racetrack = () => {
     
@@ -41,6 +46,9 @@ const Racetrack = () => {
     const [first, setFirst] = useState(null);
     const [second, setSecond] = useState(null);
     const [third, setThird] = useState(null);
+    const [firstImg, setFirstImg] = useState(null);
+    const [secondImg, setSecondImg] = useState(null);
+    const [thirdImg, setThirdImg] = useState(null);
 
     const betGetter = (betPrice, car) => {
         setBetAmount(betPrice)
@@ -84,8 +92,11 @@ const Racetrack = () => {
     function liveLeaderboard() {
         carArray.sort((a,b)=>(a.leaderboard < b.leaderboard) ? 1 : ((b.leaderboard < a.leaderboard) ? -1 : 0));
         setFirst(carArray[0].name)
+        setFirstImg(carArray[0].img)
         setSecond(carArray[1].name)
+        setSecondImg(carArray[1].img)
         setThird(carArray[2].name)
+        setThirdImg(carArray[2].img)
     }
 
     // sorts cars by time and sets each place
@@ -170,28 +181,72 @@ const Racetrack = () => {
                 </div>
             : null}
 
-            {trackDisplay ? 
-                <div className='track-container'>
-                    <h1 className="header">Racetrack</h1>
-                    <div className='betDisplay'>
-                        <h2>Bet Car: {betCar.name}</h2>
-                        <h3>Lap: {betCar.lap}</h3>
-                        <h3>My bank: {bank}</h3>
+            {trackDisplay ?
+            <div className="widgets">
+                <div className="leaderboard">
+                    <div className="headerbox">
+                        <h2 className="header">Leaderboard</h2>
+                        <hr />
                     </div>
-                                      
-                    {countdown ? <h3>Starting in: {seconds}!</h3> : null}
-                    {timer ? <h3>Race Timer: {counting} seconds</h3> : null}
-                
-                    <div>
-                        <h3>1st: {first} </h3>
-                        {visible ? <h3>in {firstPlaceTime} seconds!</h3> : null}
-                        <h3>2nd: {second} </h3>
-                        {visible ? <h3>in {secondPlaceTime} seconds!</h3> : null}
-                        <h3>3rd: {third} </h3>
-                        {visible ? <h3>in {thirdPlaceTime} seconds!</h3> : null}
-                        {winDisplay ? <h3>Winstreak: {winstreak}x</h3> : null}
-                    </div>
+                    <h2 className="place">#1</h2>
+                    <h2 className="car">{first}</h2>
+                    <img className="carimg" src={firstImg} alt="First Place" />
+                    <h2 className="place">#2</h2>
+                    <h2 className="car">{second}</h2>
+                    <img className="carimg" src={secondImg} alt="Second Place" />
+                    <h2 className="place">#3</h2>
+                    <h2 className="car">{third}</h2>
+                    <img className="carimg" src={thirdImg} alt="Third Place" />
+                </div>
 
+                <div className="betcar">
+                    <h2 className="betheader">Bet Car</h2>
+                    <h2 className="betdisplay">{betCar.name}</h2>
+                    <img className="betcardisplay" src={betCar.img} alt={betCar.name} />
+                </div>
+
+                <div className="bank">
+                    <h2 className="bankheader">Bank</h2>
+                    <h2 className="bankdisplay">{bank}</h2>
+                    <img className="coin" src={coin} alt="Coins" />
+                </div>
+
+                <div className="timer">
+                    <h2 className="timerheader">Timer</h2>
+                    <h2 className="timerdisplay">{counting}</h2>
+                </div>
+
+                <div className="lap">
+                    <h2 className="lapheader">Lap</h2>
+                    <h2 className="lapdisplay">{betCar.lap}/3</h2>
+                </div>
+
+                <div className="shop">
+                    <div className="shopheaderbox">
+                        <h2 className="shopheader">Shop</h2>
+                        <hr />
+                    </div>
+                    <img className="itemimg" src={gasCanImg} alt="Gas Can" />
+                    <h2 className="itemname">Gas Can</h2>
+                    <button className="buybutton">100 <img className="shopcoin" src={coin} alt="Coin" /></button>
+                    <img className="itemimg" src={turboImg} alt="Turbo" />
+                    <h2 className="itemname">Turbo</h2>
+                    <button className="buybutton">200 <img className="shopcoin" src={coin} alt="Coin" /></button>
+                    <img className="itemimg" src={oilSpillImg} alt="Oil Spill" />
+                    <h2 className="itemname">Oil Spill</h2>
+                    <button className="buybutton">75 <img className="shopcoin" src={coin} alt="Coin" /></button>
+                </div>
+
+            </div>
+
+            
+            : null}
+
+            {trackDisplay ? 
+                <div className='track-container'>                  
+                    {/* {countdown ? <h3>Starting in: {seconds}!</h3> : null}
+                    {timer ? <h3>Race Timer: {counting} seconds</h3> : null} */}
+                    {winDisplay ? <h3>Winstreak: {winstreak}x</h3> : null}
                     {visible ? 
                         <div>
                             <div className='container'>

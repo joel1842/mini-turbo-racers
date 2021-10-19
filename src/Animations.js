@@ -1,11 +1,14 @@
 import React, { useEffect, useState } from "react";
 import { useSpring, animated } from "react-spring";
 import { GasCanPowerUp } from './GasCanPowerUp';
-import './css/caranimations.css'
-import Car1, {Car1Props} from "./Car1";
-import Car2, {Car2Props} from "./Car2";
-import Car3, {Car3Props} from "./Car3";
-import track from './img/track v5.png';
+import './css/animations.css'
+import Car1 from "./Car1";
+import { Car1Props } from "./Car1Props";
+import Car2 from "./Car2";
+import { Car2Props } from "./Car2Props";
+import Car3 from "./Car3";
+import { Car3Props } from "./Car3Props";
+import track from './img/track.png';
 import { TurboPowerUp } from "./TurboPowerUp";
 import { OilSpillEffect } from "./OilSpillEffect";
 
@@ -25,8 +28,8 @@ function Track () {
 export default function RenderCars() {
 
     const [displayGasCan, toggleGasCan] = useState(false)
-    const [displayTurbo, toggleTurbo] = useState(false)
-    const [displayOilSpill, toggleOilSpill] = useState(false)
+    // const [displayTurbo, toggleTurbo] = useState(false)
+    // const [displayOilSpill, toggleOilSpill] = useState(false)
 
     const reRenderGasCan = () => {
         if (!Car1Props.doneRace && !Car2Props.doneRace && !Car3Props.doneRace) {
@@ -38,30 +41,30 @@ export default function RenderCars() {
         }
     }
 
-    const reRenderTurbo = () => {
-        if (!Car1Props.doneRace && !Car2Props.doneRace && !Car3Props.doneRace) {
-            toggleTurbo(true)
-            function off() {
-                toggleTurbo(false)
-            }
-            setTimeout(off, 5000) 
-        }
-    }
+    // const reRenderTurbo = () => {
+    //     if (!Car1Props.doneRace && !Car2Props.doneRace && !Car3Props.doneRace) {
+    //         toggleTurbo(true)
+    //         function off() {
+    //             toggleTurbo(false)
+    //         }
+    //         setTimeout(off, 5000) 
+    //     }
+    // }
 
-    const reRenderOilSpill = () => {
-        if (!Car1Props.doneRace && !Car2Props.doneRace && !Car3Props.doneRace) {
-            toggleOilSpill(true)
-            function off() {
-                toggleOilSpill(false)
-            }
-            setTimeout(off, 6000) 
-        }
-    }
+    // const reRenderOilSpill = () => {
+    //     if (!Car1Props.doneRace && !Car2Props.doneRace && !Car3Props.doneRace) {
+    //         toggleOilSpill(true)
+    //         function off() {
+    //             toggleOilSpill(false)
+    //         }
+    //         setTimeout(off, 6000) 
+    //     }
+    // }
     
     useEffect(()=> {
         setInterval(reRenderGasCan, 5000)
-        setInterval(reRenderTurbo, 8000)
-        setInterval(reRenderOilSpill, 8000)
+        // setInterval(reRenderTurbo, 8000)
+        // setInterval(reRenderOilSpill, 8000)
     }, [])
 
     return(
@@ -69,12 +72,12 @@ export default function RenderCars() {
             <div>
                 <Track />
             </div>
-            <div>
+            {/* <div>
                 {displayOilSpill ? <OilSpillEffect/>: null}
             </div>
             <div>
                 {displayTurbo ? <TurboPowerUp /> : null}
-            </div>
+            </div> */}
             <div>
                 {displayGasCan ? <GasCanPowerUp /> : null}
             </div>

@@ -2,9 +2,9 @@ import React, { useEffect } from "react";
 import { useSpring, animated } from "react-spring";
 import turboImg from "./img/turbo.png";
 import './css/turbo.css';
-import { Car1Props } from "./Car1.js";
-import { Car2Props } from "./Car2.js";
-import { Car3Props } from "./Car3.js";
+import { Car1Props } from "./Car1Props.js";
+import { Car2Props } from "./Car2Props.js";
+import { Car3Props } from "./Car3Props.js";
 import { lane1Positions, lane2Positions, lane3Positions } from "./LanePositions";
 
 export const TurboPowerUp = () => {

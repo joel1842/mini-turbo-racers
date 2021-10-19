@@ -1,29 +1,7 @@
 import React, { useEffect } from "react";
 import { useSpring, animated } from "react-spring";
-import carImg from "./img/orange car.png";
+import { Car1Props } from "./Car1Props";
 import "./css/car1.css";
-
-export const Car1Props = {
-    name: 'Car 1',
-    img: carImg,
-    lane: 1,
-    speed: 100,
-    startTime: null,
-    time: null,
-    lap: 0,
-    position: 0,
-    doneRace: false,
-    leaderboard: 0
-}
-
-export const resetCar1 = () => {
-    Car1Props.position = 0;
-    Car1Props.lap = 0;
-    Car1Props.doneRace = false;
-    Car1Props.startTime = null;
-    Car1Props.time = null;
-    Car1Props.speed = 100;
-}
 
 const Car1 = () => {
 

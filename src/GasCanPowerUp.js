@@ -2,10 +2,11 @@ import React, { useEffect } from "react";
 import { useSpring, animated } from "react-spring";
 import gasCanImg from "./img/gas can.png";
 import './css/powerup.css';
-import { Car1Props } from "./Car1.js";
-import { Car2Props } from "./Car2.js";
-import { Car3Props } from "./Car3.js";
+import { Car1Props } from "./Car1Props.js";
+import { Car2Props } from "./Car2Props.js";
+import { Car3Props } from "./Car3Props.js";
 import { lane1Positions, lane2Positions, lane3Positions } from "./LanePositions";
+import Car3 from "./Car3";
 
 export const GasCanPowerUp = () => {
 
@@ -42,15 +43,40 @@ export const GasCanPowerUp = () => {
     }, [])
 
     function gasCanChecker() {
-        if ((Car1Props.position === randPos) && (Car1Props.lane === randLane)) {
+        if ((Car1Props.position === randPos) && (1 === randLane) && (Car1Props.hasEffect === false)) {
             Car1Props.speed = 80
+            Car1Props.hasEffect = true
+            console.log('Gas Can picked up by Car 1')
             animate({opacity: 0})
-        } if ((Car2Props.position === randPos) && (Car2Props.lane === randLane)) {
+
+            setTimeout(()=> {
+                Car1Props.speed = 100;
+                Car1Props.hasEffect = false;
+                console.log('Gas Can has worn off!')
+            }, 2000)
+        } if ((Car2Props.position === randPos) && (2 === randLane) && (Car2Props.hasEffect === false)) {
             Car2Props.speed = 80
+            Car2Props.hasEffect = true
+            console.log('Gas Can picked up by Car 2')
             animate({opacity: 0})
-        } if ((Car3Props.position === randPos) && (Car3Props.lane === randLane)) {
+
+            setTimeout(()=> {
+                Car2Props.speed = 100;
+                Car2Props.hasEffect = false;
+                console.log('Gas Can has worn off!')
+            }, 2000)
+        } if ((Car3Props.position === randPos) && (3 === randLane) && (Car3Props.hasEffect === false)) {
             Car3Props.speed = 80
+            Car3Props.hasEffect = true
+            console.log('Gas Can picked up by Car 3')
             animate({opacity: 0})
+
+            setTimeout(()=> {
+                Car3Props.speed = 100;
+                Car3Props.hasEffect = false;
+                console.log('Gas Can has worn off!')
+                
+            }, 2000)
         }
     }
     

@@ -2,9 +2,9 @@ import React, { useState } from "react";
 import Slider from 'rc-slider';
 import 'rc-slider/assets/index.css';
 import "./css/bet.css";
-import { Car1Props } from "./Car1.js";
-import { Car2Props } from "./Car2.js";
-import { Car3Props } from "./Car3.js";
+import { Car1Props } from "./Car1Props.js";
+import { Car2Props } from "./Car2Props.js";
+import { Car3Props } from "./Car3Props.js";
 
 const Bet = (props) => {
     const [betPrice, setBet] = useState(100)
