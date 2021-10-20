@@ -1,4 +1,5 @@
 import React, {useState, useEffect} from 'react';
+import { Link } from "react-router-dom";
 import "./css/racetrack.css";
 import {Car1Props, resetCar1} from './Car1Props';
 import {Car2Props, resetCar2} from './Car2Props';
@@ -59,7 +60,7 @@ const Racetrack = () => {
     useEffect(() => {
         countdown && setTimeout(() => setSeconds(seconds - 1), 1000);
         !raceOver && timer && setTimeout(() => setCounting(counting + 1), 1000);
-
+        timerDisplay();
     }, [seconds, counting, countdown, timer])
 
     // triggers race
@@ -74,6 +75,12 @@ const Racetrack = () => {
         }
     }
 
+    const[padding, setPadding] = useState(0);
+    function timerDisplay() {
+        if (counting >= 10) {
+            setPadding(null)
+        }
+    }
     // continuously checks if race is done
     function isRaceDone() {
         interval = setInterval(raceChecker, 100);
@@ -121,13 +128,13 @@ const Racetrack = () => {
     // checks how much money was won
     function checkMoney() {
         if (carArray[0].name === betCar.name) {
-            setBank(bank + (betAmount * 2))
+            setBank(prevBank => prevBank + (betAmount * 2))
             setMoneyWon(betAmount * 2)
         } else if (carArray[1].name === betCar.name) {
-            setBank(bank + (betAmount * 1.25))
+            setBank(prevBank => prevBank + (betAmount * 1.25))
             setMoneyWon(betAmount * 1.25)
         } else if (carArray[2].name === betCar.name) {
-            setBank(bank - (betAmount * 0.5))
+            setBank(prevBank => prevBank - (betAmount * 0.5))
             setMoneyWon(betAmount * 0.5)
         }
     }
@@ -143,6 +150,41 @@ const Racetrack = () => {
             toggleWinDisplay(false)
         }
     }
+
+    function buyGasCan() {
+        if (betCar.hasEffect === false) {
+            setBank(prevBank => prevBank - 100)
+            betCar.speed = 80;
+            betCar.hasEffect = true;
+            console.log('Gas Can picked up by', betCar.name);
+    
+            setTimeout(() => {
+                betCar.speed = 100;
+                betCar.hasEffect = false;
+                console.log("Gas Can has worn off", betCar.name)
+            }, 3000)
+        } else {
+            console.log(betCar.name, "has effect currently, please try again")
+        }
+    }
+
+    function buyTurbo() {
+        if (betCar.hasEffect === false) {
+            setBank(prevBank => prevBank - 200)
+            betCar.speed = 70;
+            betCar.hasEffect = true;
+            console.log('Turbo picked up by', betCar.name);
+    
+            setTimeout(() => {
+                betCar.speed = 100;
+                betCar.hasEffect = false;
+                console.log("Turbo has worn off", betCar.name)
+            }, 2000)
+        } else {
+            console.log(betCar.name, "has effect currently, please try again")
+        }
+    }
+
 
     // resets race
     function playAgain() {
@@ -163,6 +205,7 @@ const Racetrack = () => {
         setBetAmount(undefined)
         setMoneyWon(undefined)
         setRaceOver(false)
+        setPadding(0)
 
         resetCar1()
         resetCar2()
@@ -170,12 +213,15 @@ const Racetrack = () => {
     }
 
     return(
-        <div>
+        <div className="racetrack-container">
 
             {betDisplay ? 
                 <div>
                     <Bet betGetter={betGetter} bank={bank}/>
                     <div className='button-container'>
+                        <Link to="/">
+                            <button className='home-button'>Go Home</button>
+                        </Link>
                         <button className='start-button' onClick={onStart}>Go to track!</button>
                     </div>
                 </div>
@@ -213,12 +259,12 @@ const Racetrack = () => {
 
                 <div className="timer">
                     <h2 className="timerheader">Timer</h2>
-                    <h2 className="timerdisplay">{counting}</h2>
+                    <h2 className="timerdisplay">00:{padding}{counting}</h2>
                 </div>
 
                 <div className="lap">
                     <h2 className="lapheader">Lap</h2>
-                    <h2 className="lapdisplay">{betCar.lap}/3</h2>
+                    <h2 className="lapdisplay">{betCar.lap}/7</h2>
                 </div>
 
                 <div className="shop">
@@ -228,10 +274,10 @@ const Racetrack = () => {
                     </div>
                     <img className="itemimg" src={gasCanImg} alt="Gas Can" />
                     <h2 className="itemname">Gas Can</h2>
-                    <button className="buybutton">100 <img className="shopcoin" src={coin} alt="Coin" /></button>
+                    <button className="buybutton" onClick={buyGasCan}>100 <img className="shopcoin" src={coin} alt="Coin" /></button>
                     <img className="itemimg" src={turboImg} alt="Turbo" />
                     <h2 className="itemname">Turbo</h2>
-                    <button className="buybutton">200 <img className="shopcoin" src={coin} alt="Coin" /></button>
+                    <button className="buybutton" onClick={buyTurbo}>200 <img className="shopcoin" src={coin} alt="Coin" /></button>
                     <img className="itemimg" src={oilSpillImg} alt="Oil Spill" />
                     <h2 className="itemname">Oil Spill</h2>
                     <button className="buybutton">75 <img className="shopcoin" src={coin} alt="Coin" /></button>
@@ -259,7 +305,7 @@ const Racetrack = () => {
             : null}
 
             {trackDisplay ? 
-                <div>
+                <div className="rendercars">
                     <RenderCars/>
                 </div>
             : null}

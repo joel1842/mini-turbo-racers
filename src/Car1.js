@@ -10,10 +10,10 @@ const Car1 = () => {
     }
 
     function lapCount() {
-        if (Car1Props.lap < 3) {
+        if (Car1Props.lap < 7) {
             Car1Props.lap++
             console.log(Car1Props.name, ':', Car1Props.lap) 
-        } else if (Car1Props.lap === 3) {
+        } else if (Car1Props.lap === 7) {
             Car1Props.time = (Date.now() - Car1Props.startTime) / 1000
             console.log(Car1Props.name, 'has finished the race in:', Car1Props.time, 'seconds!')
             raceOver()
@@ -145,6 +145,9 @@ const Car1 = () => {
             carCounter()
             //45
             lapCount()
+            if (Car1Props.doneRace === true) {
+                await next({y: 150})
+            }
             await next({pause: Car1Props.doneRace})
         },
         from:{x:1040, y:235.3, rotate: 0, config: {duration: Car1Props.speed}},

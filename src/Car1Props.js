@@ -21,4 +21,5 @@ export const resetCar1 = () => {
     Car1Props.startTime = null;
     Car1Props.time = null;
     Car1Props.speed = 100;
+    Car1Props.hasEffect = false;
 }

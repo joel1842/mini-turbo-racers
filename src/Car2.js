@@ -1,29 +1,7 @@
 import React, { useEffect } from "react";
 import { useSpring, animated } from "react-spring";
-import carImg from './img/neon car.png';
+import { Car2Props } from "./Car2Props";
 import './css/car2.css';
-
-export const Car2Props = {
-    name: 'Car 2',
-    img: carImg,
-    lane: 2,
-    speed: 100,
-    startTime: null,
-    time: null,
-    lap: 0,
-    position: 0,
-    doneRace: false,
-    leaderboard: 0
-}
-
-export const resetCar2 = () => {
-    Car2Props.position = 0;
-    Car2Props.lap = 0;
-    Car2Props.doneRace = false;
-    Car2Props.startTime = null;
-    Car2Props.time = null;
-    Car2Props.speed = 100;
-}
 
 const Car2 = () => {
     
@@ -32,10 +10,10 @@ const Car2 = () => {
     }
 
     function lapCount() {
-        if (Car2Props.lap < 3) {
+        if (Car2Props.lap < 7) {
             Car2Props.lap++
             console.log(Car2Props.name, ':', Car2Props.lap) 
-        } else if (Car2Props.lap === 3) {
+        } else if (Car2Props.lap === 7) {
             Car2Props.time = (Date.now() - Car2Props.startTime) / 1000
             console.log(Car2Props.name, 'has finished the race in:', Car2Props.time, 'seconds!')
             raceOver()
@@ -58,7 +36,7 @@ const Car2 = () => {
         if (Car2Props.position < 45){
             Car2Props.position++
         } else {
-            Car2Props.position = 1
+            Car2Props.position = 1;
         }
         Car2Props.leaderboard++
     }
@@ -165,6 +143,9 @@ const Car2 = () => {
             carCounter()
             //45
             lapCount()
+            if (Car2Props.doneRace === true) {
+                await next({y: 150})
+            }
             await next({pause: Car2Props.doneRace})
         },
         from:{x:1002, y:234.6, rotate: 0, config: {duration: Car2Props.speed}},

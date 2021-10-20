@@ -55,7 +55,15 @@ const Bet = (props) => {
         setBet(value)
     }
 
+    function resetBet() {
+        setLockBet(false)
+        setButton1Color("#ff6868")
+        setButton2Color("#ff6868")
+        setButton3Color("#ff6868")
+    }
+
     return (
+        
         <div className="betWrapper">
             <div className="betModule">
                 <h2>My Coins: {props.bank}</h2>
@@ -85,6 +93,9 @@ const Bet = (props) => {
                 <div className="displayCards">
                     <img className="displayCars" src={Car3Props.img} alt="Car 3"/>
                     <button className="betButton" style={{backgroundColor: button3Color}} onClick={setCar3}>Bet Car 3</button>
+                </div>
+                <div className="changebetcontainer">
+                    <button className="changebet" onClick={resetBet}>Change Bet</button>
                 </div>
             </div>
         </div>

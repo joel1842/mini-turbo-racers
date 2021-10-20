@@ -1,84 +1,34 @@
-import React, { useEffect } from "react";
+import React from "react";
 import { useSpring, animated } from "react-spring";
 import gasCanImg from "./img/gas can.png";
 import './css/powerup.css';
-import { Car1Props } from "./Car1Props.js";
-import { Car2Props } from "./Car2Props.js";
-import { Car3Props } from "./Car3Props.js";
 import { lane1Positions, lane2Positions, lane3Positions } from "./LanePositions";
-import Car3 from "./Car3";
+
+export const GasCan = {
+    lane: null,
+    pos: null
+} 
 
 export const GasCanPowerUp = () => {
 
-    const powerUpLane = () => {
-        return Math.floor(Math.random() * 3) + 1;
-    }
-
-    const powerUpPosition = () => {
-        return Math.floor(Math.random() * 45) + 1;
-    }
-
-    let gasCan;
-    let randPos;
-    let randLane;
-    function getPowerUpPos() {
-        randPos = powerUpPosition()
-        randLane = powerUpLane()
-        if (randLane === 1) {
-            gasCan = lane1Positions[randPos]
-        } if (randLane === 2) {
-            gasCan = lane2Positions[randPos]
-        } if (randLane === 3) {
-            gasCan = lane3Positions[randPos]
+    let gasCanCoords;
+    const gasCanSpawn = () => {
+        GasCan.lane = Math.floor(Math.random() * 3) + 1;
+        GasCan.pos = Math.floor(Math.random() * 45) + 1;
+        if (GasCan.lane === 1) {
+            gasCanCoords = lane1Positions[GasCan.pos]
+        } else if (GasCan.lane === 2) {
+            gasCanCoords = lane2Positions[GasCan.pos]
+        } else if (GasCan.lane === 3) {
+            gasCanCoords = lane3Positions[GasCan.pos]
         }
-    }
+    }   
 
     const [style, animate] = useSpring(() => ({
-        props: getPowerUpPos(),
-        from: {x: gasCan.x, y: gasCan.y}
+        props: gasCanSpawn(),
+        from: {x: gasCanCoords.x, y: gasCanCoords.y},
+        loop: false
     }))
-
-    useEffect(() => {
-        setInterval(gasCanChecker, 1)
-    }, [])
-
-    function gasCanChecker() {
-        if ((Car1Props.position === randPos) && (1 === randLane) && (Car1Props.hasEffect === false)) {
-            Car1Props.speed = 80
-            Car1Props.hasEffect = true
-            console.log('Gas Can picked up by Car 1')
-            animate({opacity: 0})
-
-            setTimeout(()=> {
-                Car1Props.speed = 100;
-                Car1Props.hasEffect = false;
-                console.log('Gas Can has worn off!')
-            }, 2000)
-        } if ((Car2Props.position === randPos) && (2 === randLane) && (Car2Props.hasEffect === false)) {
-            Car2Props.speed = 80
-            Car2Props.hasEffect = true
-            console.log('Gas Can picked up by Car 2')
-            animate({opacity: 0})
-
-            setTimeout(()=> {
-                Car2Props.speed = 100;
-                Car2Props.hasEffect = false;
-                console.log('Gas Can has worn off!')
-            }, 2000)
-        } if ((Car3Props.position === randPos) && (3 === randLane) && (Car3Props.hasEffect === false)) {
-            Car3Props.speed = 80
-            Car3Props.hasEffect = true
-            console.log('Gas Can picked up by Car 3')
-            animate({opacity: 0})
-
-            setTimeout(()=> {
-                Car3Props.speed = 100;
-                Car3Props.hasEffect = false;
-                console.log('Gas Can has worn off!')
-                
-            }, 2000)
-        }
-    }
     
     return(
         <animated.img className='gasCan' src={gasCanImg} style={style} alt="Gas Can" />

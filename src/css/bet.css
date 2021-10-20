@@ -11,6 +11,8 @@
 
 .chooseCar {
     text-align: center;
+    padding-top: 10px;
+    padding-bottom: 10px;
 }
 
 .displayCards {
@@ -21,6 +23,8 @@
 
 .betButton {
     text-align: center;
+    font-weight: 700;
+    font-size: 20px;
     color: white;
     margin: 20px;
     padding: 10px 24px;
@@ -35,6 +39,27 @@
 
 .betModule {
     text-align: center;
+}
+
+.changebetcontainer {
+    padding-top: 10px;
+}
+
+.changebet {
+    text-align: center;
+    font-weight: 700;
+    font-size: 13px;
+    color: white;
+    background-color: #FFE662;
+    margin: 20px;
+    padding: 10px 24px;
+    border: none;
+    border-radius: 10px;
+    text-decoration: none;
+}
+
+.changebet:hover {
+    background-color: #ffd500;
 }
 
 .bankButtons a {
