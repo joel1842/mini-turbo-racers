@@ -5,22 +5,29 @@
     text-align: center;
 }
 
-.credits img {
+.creditsimg {
     width:225px;
 }
 
 .credits h3 {
     color: #ff0000;
-    font-size: 25px;
+    font-size: 20px;
     font-weight: 600;
     padding-top: 15px;
 }
 
 .credits p {
-    color: #ff0000;
+    color: #ff6868;
+    font-size: 30px;
+    font-weight: 700;
 }
 
-.credits p strong{
-    color: #ff6868;
-    font-size: 20px; 
+.githubicon {
+    width: 50px;
+    margin-right: 10px;
+}
+
+.linkedinicon {
+    width: 50px;
+    margin-left: 10px;
 }

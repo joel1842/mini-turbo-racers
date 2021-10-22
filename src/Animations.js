@@ -18,7 +18,7 @@ import { OilSpill } from "./OilSpillEffect";
 function Track () {
 
     const [style] = useSpring(() => ({
-        from: {x: 450, y: 0}
+        from: {x: 0, y: 15},
     }))
 
     return (
@@ -188,7 +188,7 @@ export default function RenderCars() {
     }, [])
 
     return(
-        <div>
+        <div className="racetrackcontainer">
             <div>
                 <Track />
             </div>
@@ -201,13 +201,13 @@ export default function RenderCars() {
             <div>
                 {displayGasCan ? <GasCanPowerUp /> : null}
             </div>
-            <div>
+            <div className="car">
                 <Car3 />
             </div>
-            <div>
+            <div className="car">
                 <Car2 />   
             </div>
-            <div>
+            <div className="car">
                 <Car1 />
             </div>
         </div>

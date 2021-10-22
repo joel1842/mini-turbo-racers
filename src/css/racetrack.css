@@ -2,16 +2,11 @@
 @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@600;700&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@500&display=swap');
 
-.racetrack-container {
-}
-
 .button-container{
     text-align: center;
-    padding-top: 25px;
 }
 
 .start-button {
-    text-align: center;
     font-weight: 800;
     font-size: large;
     color: white;
@@ -28,7 +23,6 @@
 }
 
 .home-button {
-    text-align: center;
     font-weight: 800;
     font-size: large;
     color: white;
@@ -52,33 +46,30 @@
     margin: auto;
     display: grid;
     width: 800px;
-    grid-template-columns: 1fr 1fr 1fr 1fr;
-    column-gap: 10px;
+    grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+    column-gap: 5px;
     grid-template-rows: auto;
-    row-gap: none;
     grid-template-areas: 
-    "leaderboard betcar bank shop"
-    "leaderboard timer lap shop";
+    "leaderboard betcar bank shop home"
+    "leaderboard timer lap shop rules";
 }
 
 .leaderboard {
     text-align: center;
     justify-content: center;
     color: white;
-    padding: 0;
-    border: 15px solid #FF4848;
+    border: 12px solid #FF4848;
     background: #FF8686;
     border-radius: 53px;
-    width: 175px;
-    display: grid;
-    grid-template-columns: 1fr 1fr 1fr;
+    width: 160px;
+    padding-bottom: 10px;
     grid-area: leaderboard;
 }
 
 .headerbox hr {
-    border: 5px solid white;
+    border: 3px solid white;
     border-radius: 7px;
-    width: 85%;
+    width: 60%;
     margin-top: 0;
     margin-bottom: 0;
 }
@@ -92,7 +83,7 @@
 
 .header{
     font-family: Bungee;
-    font-size: 19px;
+    font-size: 15px;
     color: white;
     text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
     margin-top: 0;
@@ -103,35 +94,40 @@
     font-family: Bungee;
     color: white;
     align-self: center;
-    font-size: 20px;
+    font-size: 15px;
     text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
     margin-top: 0;
+    margin-right: 15px;
     margin-bottom: 0;
+    display: inline-block;
 }
 
 .car {
     font-family: Montserrat;
     color: white;
     align-self: center;
-    font-size: 20px;
+    font-size: 15px;
     text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
     margin-top: 0;
     margin-bottom: 0;
+    display: inline-block;
 }
 
 .carimg {
     transform: rotate(90deg);
-    width: 25px;
-    align-self: center;
-    margin: auto;
+    width: 20px;
+    vertical-align: middle;
+    margin-left: 20px;
     margin-top: 0;
     margin-bottom: 0;
+    display: inline-block;
+    margin-bottom: 2px;
 }
 
 .betcar {
     justify-self: center;
     align-self: center;
-    border: 15px solid #BEFFB9;
+    border: 12px solid #BEFFB9;
     border-radius: 53px;
     background: #81FF95;
     text-align: center;
@@ -144,7 +140,7 @@
 
 .betheader {
     font-family: Bungee;
-    font-size: 19px;
+    font-size: 15px;
     color: white;
     text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
     margin-top: 0;
@@ -158,7 +154,7 @@
     color: white;
     align-self: center;
     justify-self: end;
-    font-size: 19px;
+    font-size: 15px;
     text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
     margin-top: 0;
     margin-bottom: 0;
@@ -167,17 +163,18 @@
 
 .betcardisplay {
     transform: rotate(90deg);
-    width: 26px;
+    width: 20px;
     align-self: center;
-    margin: auto;
+    justify-self: start;
     margin-top: 0;
+    margin-left: 15px;
     margin-bottom: 0;
 }
 
 .bank {
     justify-self: center;
     align-self: center;
-    border: 15px solid #FFFA8A;
+    border: 12px solid #FFFA8A;
     border-radius: 53px;
     background: #FFE662;
     text-align: center;
@@ -190,7 +187,7 @@
 
 .bankheader {
     font-family: Bungee;
-    font-size: 19px;
+    font-size: 15px;
     color: white;
     text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
     margin-top: 0;
@@ -203,8 +200,8 @@
     font-family: Montserrat;
     color: white;
     align-self: center;
-    padding-left: 25px;
-    font-size: 24px;
+    padding-left: 30px;
+    font-size: 20px;
     text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
     margin-top: 0;
     margin-bottom: 0;
@@ -212,10 +209,10 @@
 }
 
 .coin {
-    width: 25px;
+    width: 20px;
     justify-self: center;
     align-self: center;
-    padding-right: 18px;
+    padding-right: 25px;
     margin-top: 0;
     margin-bottom: 0;
 }
@@ -227,7 +224,7 @@
     color: white;
     width: 125px;
     padding: 0;
-    border: 15px solid #FF4848;
+    border: 12px solid #FF4848;
     background: #FF8686;
     border-radius: 53px;
     padding-bottom: 10px;
@@ -236,7 +233,7 @@
 
 .timerheader {
     font-family: Bungee;
-    font-size: 19px;
+    font-size: 15px;
     color: white;
     text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
     margin-top: 0;
@@ -246,7 +243,7 @@
 .timerdisplay {
     font-family: Orbitron;
     color: white;
-    font-size: 25px;
+    font-size: 20px;
     text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
     margin-top: 0;
     margin-bottom: 0;
@@ -260,7 +257,7 @@
     color: white;
     width: 125px;
     padding: 0;
-    border: 15px solid #FF4848;
+    border: 12px solid #FF4848;
     background: #FF8686;
     border-radius: 53px;
     padding-bottom: 10px;
@@ -269,7 +266,7 @@
 
 .lapheader {
     font-family: Bungee;
-    font-size: 19px;
+    font-size: 15px;
     color: white;
     text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
     margin-top: 0;
@@ -279,7 +276,7 @@
 .lapdisplay {
     font-family: Montserrat;
     color: white;
-    font-size: 25px;
+    font-size: 20px;
     text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
     margin-top: 0;
     margin-bottom: 0;
@@ -291,15 +288,15 @@
     justify-content: center;
     color: white;
     padding: 0;
-    border: 15px solid #FF4848;
+    border: 12px solid #FF4848;
     background: #FF8686;
     border-radius: 53px;
     width: 225px;
-    height: 210px;
     margin: auto;
     display: grid;
     grid-template-columns: 1fr 1fr 1fr;
     grid-area: shop;
+    padding-bottom: 10px;
 }
 
 .shopheaderbox {
@@ -308,24 +305,24 @@
 }
 
 .shopheaderbox hr {
-    border: 5px solid white;
+    border: 3px solid white;
     border-radius: 10px;
     width: 30%;
     margin-top: 0;
-    margin-bottom: 0;
+    margin-bottom: 5px;
 }
 
 .shopheader {
     font-family: Bungee;
-    font-size: 19px;
+    font-size: 15px;
     color: white;
     text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
     margin-top: 0;
-    margin-bottom: 0;
+    margin-bottom: -3px;
 }
 
 .itemimg {
-    width: 30px;
+    width: 25px;
     margin-left: 5px;
     justify-self: center;
     align-self: center;
@@ -345,7 +342,7 @@
 
 .buybutton {
     font-family: Bungee;
-    font-size: 22;
+    font-size: 10px;
     text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.1);
     color: white;
     background-color: rgb(115, 255, 102);
@@ -353,8 +350,8 @@
     border-radius: 25px;
     text-decoration: none;
     margin: 2px;
-    height: 40px;
-    width: 60px;
+    height: 30px;
+    width: 50px;
 }
 
 .buybutton:hover {
@@ -362,8 +359,69 @@
 }
 
 .shopcoin {
-    width: 20px;
+    width: 15px;
     vertical-align: middle;
+}
+
+.homecontainer {
+    justify-self: center;
+    align-self: end;
+    display: grid;
+    grid-area: home;
+    margin-bottom: 5px;
+
+}
+
+.home {
+    font-family: Bungee;
+    font-size: 10px;
+    text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.1);
+    color: white;
+    background-color: #FF4848;
+    border: 5px solid #ff7070;
+    border-radius: 22px;
+    text-decoration: none;
+    width: 50px;
+    height: 75px;
+}
+
+.home:hover {
+    background-color: #ff7070;
+}
+
+.homeimg {
+    width: 25px;
+    margin-top: 10px;
+}
+
+.rulescontainer {
+    justify-self: center;
+    align-self: start;
+    display: grid;
+    grid-area: rules;
+    margin-top: 5px;
+}
+
+.rules {
+    font-family: Bungee;
+    font-size: 10px;
+    text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.1);
+    color: white;
+    background-color: #FF4848;
+    border: 5px solid #ff7070;
+    border-radius: 22px;
+    text-decoration: none;
+    width: 50px;
+    height: 75px;
+}
+
+.rules:hover {
+    background-color: #ff7070;
+}
+
+.rulesimg {
+    width: 25px;
+    margin-top: 10px;
 }
 
 .container {

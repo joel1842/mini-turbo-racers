@@ -10,6 +10,8 @@ import coin from "./img/coin.png";
 import gasCanImg from "./img/gas can.png";
 import turboImg from "./img/turbo.png";
 import oilSpillImg from "./img/oil spill.png";
+import home from "./img/home icon.png";
+import rules from "./img/rulesIcon.png";
 
 
 const Racetrack = () => {
@@ -25,12 +27,6 @@ const Racetrack = () => {
     const [trackDisplay, toggleTrackDisplay] = useState(false);
     const [visible, setVisible] = useState(false);
 
-    const [firstPlace, setFirstPlace] = useState(undefined);
-    const [firstPlaceTime, setFirstPlaceTime] = useState(null);
-    const [secondPlace, setSecondPlace] = useState(undefined);
-    const [secondPlaceTime, setSecondPlaceTime] = useState(null);
-    const [thirdPlace, setThirdPlace] = useState(undefined);
-    const [thirdPlaceTime, setThirdPlaceTime] = useState(null);
     const [raceOver, setRaceOver] = useState(false)
 
     const [moneyWon, setMoneyWon] = useState(undefined);
@@ -47,6 +43,9 @@ const Racetrack = () => {
     const [first, setFirst] = useState(null);
     const [second, setSecond] = useState(null);
     const [third, setThird] = useState(null);
+    const [firstPlaceTime, setFirstPlaceTime] = useState(null);
+    const [secondPlaceTime, setSecondPlaceTime] = useState(null);
+    const [thirdPlaceTime, setThirdPlaceTime] = useState(null);
     const [firstImg, setFirstImg] = useState(null);
     const [secondImg, setSecondImg] = useState(null);
     const [thirdImg, setThirdImg] = useState(null);
@@ -84,7 +83,7 @@ const Racetrack = () => {
     // continuously checks if race is done
     function isRaceDone() {
         interval = setInterval(raceChecker, 100);
-        let leaderboardInterval = setInterval(liveLeaderboard, 100)
+        let leaderboardInterval = setInterval(liveLeaderboard, 500)
     }
 
     // checks for race end
@@ -104,19 +103,35 @@ const Racetrack = () => {
         setSecondImg(carArray[1].img)
         setThird(carArray[2].name)
         setThirdImg(carArray[2].img)
+
+        highlightBetCar()
+    }
+
+    const [firstColor, setFirstColor] = useState('none')
+    const [secondColor, setSecondColor] = useState('none')
+    const [thirdColor, setThirdColor] = useState('none')
+    function highlightBetCar() {
+        if (betCar.name === carArray[0].name) {
+            setFirstColor('#81FF95')
+            setSecondColor('none')
+            setThirdColor('none')
+        } else if (betCar.name === carArray[1].name) {
+            setFirstColor('none')
+            setSecondColor('#81FF95')
+            setThirdColor('none')
+        } else if (betCar.name === carArray[2].name) {
+            setFirstColor('none')
+            setSecondColor('none')
+            setThirdColor('#81FF95')
+        }
     }
 
     // sorts cars by time and sets each place
     function raceEnded() {
         carArray.sort((a,b)=>(a.time > b.time) ? 1 : ((b.time > a.time) ? -1 : 0));
         
-        setFirstPlace(carArray[0].name)
         setFirstPlaceTime(carArray[0].time)
-
-        setSecondPlace(carArray[1].name)
         setSecondPlaceTime(carArray[1].time)
-
-        setThirdPlace(carArray[2].name)
         setThirdPlaceTime(carArray[2].time)
 
         checkMoney()
@@ -195,11 +210,8 @@ const Racetrack = () => {
         setCounting(0)
         toggleCountdown(false)
         toggleTimer(false)
-        setFirstPlace(undefined)
         setFirstPlaceTime(null)
-        setSecondPlace(undefined)
         setSecondPlaceTime(null)
-        setThirdPlace(undefined)
         setThirdPlaceTime(null)
         setBetCar(undefined)
         setBetAmount(undefined)
@@ -234,15 +246,21 @@ const Racetrack = () => {
                         <h2 className="header">Leaderboard</h2>
                         <hr />
                     </div>
-                    <h2 className="place">#1</h2>
-                    <h2 className="car">{first}</h2>
-                    <img className="carimg" src={firstImg} alt="First Place" />
-                    <h2 className="place">#2</h2>
-                    <h2 className="car">{second}</h2>
-                    <img className="carimg" src={secondImg} alt="Second Place" />
-                    <h2 className="place">#3</h2>
-                    <h2 className="car">{third}</h2>
-                    <img className="carimg" src={thirdImg} alt="Third Place" />
+                    <div className="carplace" style={{borderRadius: '53px', background: firstColor}}>
+                        <h2 className="place">#1</h2>
+                        <h2 className="car">{first}</h2>
+                        <img className="carimg" src={firstImg} alt="First Place" />
+                    </div>
+                    <div className="carplace" style={{borderRadius: '53px', background: secondColor}}>
+                        <h2 className="place">#2</h2>
+                        <h2 className="car">{second}</h2>
+                        <img className="carimg" src={secondImg} alt="Second Place" />
+                    </div>
+                    <div className="carplace" style={{borderRadius: '53px', background: thirdColor}}>
+                        <h2 className="place">#3</h2>
+                        <h2 className="car">{third}</h2>
+                        <img className="carimg" src={thirdImg} alt="Third Place" />
+                    </div>
                 </div>
 
                 <div className="betcar">
@@ -281,6 +299,16 @@ const Racetrack = () => {
                     <img className="itemimg" src={oilSpillImg} alt="Oil Spill" />
                     <h2 className="itemname">Oil Spill</h2>
                     <button className="buybutton">75 <img className="shopcoin" src={coin} alt="Coin" /></button>
+                </div>
+                <div className="homecontainer">
+                    <Link to="/">
+                        <button className="home" onClick={playAgain}><img className="homeimg" src={home} alt="Home!" /></button>
+                    </Link>
+                </div>
+                <div className="rulescontainer">
+                <Link to="/howtoplay">
+                    <button className="rules" onClick={playAgain}><img className="rulesimg" src={rules} alt="How to play!" /></button>
+                </Link>
                 </div>
 
             </div>

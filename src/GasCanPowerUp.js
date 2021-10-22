@@ -26,7 +26,7 @@ export const GasCanPowerUp = () => {
 
     const [style, animate] = useSpring(() => ({
         props: gasCanSpawn(),
-        from: {x: gasCanCoords.x, y: gasCanCoords.y},
+        from: {x: gasCanCoords.x, y: gasCanCoords.y, top: 15},
         loop: false
     }))
     

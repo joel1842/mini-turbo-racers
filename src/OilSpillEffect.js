@@ -26,7 +26,7 @@ export const OilSpillEffect = () => {
 
     const [style, animate] = useSpring(() => ({
         props: oilSpillSpawn(),
-        from: {x: oilSpillCoords.x, y: oilSpillCoords.y}
+        from: {x: oilSpillCoords.x, y: oilSpillCoords.y, top: 15}
     }))
     
     return(

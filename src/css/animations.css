@@ -1,5 +1,16 @@
 
+.racetrackcontainer {
+    position: relative;
+    text-align: center;
+    margin-right: 750px;
+}
+
 .racetrack {
     width: 1000px;
     position: absolute;
+}
+
+.car {
+    position: relative;
+    margin: auto;
 }

@@ -26,7 +26,7 @@ export const TurboPowerUp = () => {
 
     const [style, animate] = useSpring(() => ({
         props: turboSpawn(),
-        from: {x: turboCoords.x, y: turboCoords.y},
+        from: {x: turboCoords.x, y: turboCoords.y, top: 15},
         loop: false
     }))
     
