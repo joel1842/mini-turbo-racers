@@ -15,12 +15,22 @@ import Garage from "./Garage";
 import HowToPlay from './HowToPlay';
 import Credits from './Credits';
 import Bet from "./Bet";
+import background from './img/trackbackground.jpg';
 
 function App() {
 
+  const styles = {
+    backgroundImage: `url(${background})`,
+    backgroundPosition: 'center',
+    backgroundSize: 'cover',
+    backgroundRepeat: 'no-repeat',
+    width: '100vw',
+    height: '100vh'
+  }
+
   return (
     <Router>
-      <div className="App">
+      <div className="App" style={styles}>
         <Switch>
           <Route path="/" exact>
             <nav className="navbar">

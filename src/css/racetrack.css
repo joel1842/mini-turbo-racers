@@ -430,13 +430,14 @@
 
 .play-again {
     font-weight: 800;
-    font-size: large;
+    font-size: x-large;
     color: white;
     background-color: rgb(115, 255, 102);
-    padding: 10px 24px;
+    padding: 15px 24px;
     border: none;
     border-radius: 10px;
     text-decoration: none;
+    margin-top: 20px;
 }
 
 .play-again:hover {
@@ -452,4 +453,73 @@
     width: 1000px;
     margin: auto;
     display: block;
+}
+
+.popupcontainer {
+    display: flex;
+    justify-content: center;
+    align-self: center;
+}
+
+.popup {
+    text-align: center;
+    border: 20px solid #FF4848;
+    background: #FF8686;
+    border-radius: 53px;
+    position: absolute;
+    width: 400px;
+    height: 410px;
+}
+
+.popup h1 {
+    color: white;
+    text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.3);
+}
+
+.finalplace {
+    color: white;
+    text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.3);
+    font-family: Montserrat;
+    font-size: 30px;
+    margin-top: 30px;
+    margin-bottom: 0px;
+    padding-bottom: 0;
+}
+
+.numberplace {
+    font-family: Bungee;
+    font-size: 72px;
+    margin-top: -35px;
+    margin-bottom: -35px;
+}
+
+.popupcoin {
+    width: 35px;
+    vertical-align: middle;
+    margin-bottom: 7px;
+}
+
+.popupcar {
+    width: 60px;
+    transform: rotate(90deg);
+    vertical-align: middle;
+    margin-bottom: 15px;
+    margin-left: 20px;
+}
+
+.won {
+    color: white;
+    text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.3);
+    font-family: Montserrat;
+    font-size: 30px;
+    margin-top: 10px;
+    margin-bottom: 0px;
+    padding-bottom: 0;
+}
+
+.moneywon {
+    font-family: Bungee;
+    font-size: 50px;
+    margin-top: -25px;
+    margin-bottom: -25px;
 }

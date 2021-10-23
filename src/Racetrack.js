@@ -81,9 +81,11 @@ const Racetrack = () => {
         }
     }
     // continuously checks if race is done
+
+    let leaderboardInterval;
     function isRaceDone() {
         interval = setInterval(raceChecker, 100);
-        let leaderboardInterval = setInterval(liveLeaderboard, 500)
+        leaderboardInterval = setInterval(liveLeaderboard, 500)
     }
 
     // checks for race end
@@ -136,8 +138,21 @@ const Racetrack = () => {
 
         checkMoney()
         checkWinstreak()
+        playerPlace()
+        clearInterval(leaderboardInterval)
         
         setVisible(true)
+    }
+
+    const [place, setPlace] = useState(null);
+    function playerPlace() {
+        if (betCar.name === carArray[0].name) {
+            setPlace('#1')
+        } else if (betCar.name === carArray[1].name) {
+            setPlace('#2')
+        } else if (betCar.name === carArray[2].name) {
+            setPlace('#3')
+        }
     }
 
     // checks how much money was won
@@ -218,6 +233,10 @@ const Racetrack = () => {
         setMoneyWon(undefined)
         setRaceOver(false)
         setPadding(0)
+        setFirstColor('none')
+        setSecondColor('none')
+        setThirdColor('none')
+        setPlace(null)
 
         resetCar1()
         resetCar2()
@@ -306,37 +325,33 @@ const Racetrack = () => {
                     </Link>
                 </div>
                 <div className="rulescontainer">
-                <Link to="/howtoplay">
-                    <button className="rules" onClick={playAgain}><img className="rulesimg" src={rules} alt="How to play!" /></button>
-                </Link>
+                    <Link to="/howtoplay">
+                        <button className="rules" onClick={playAgain}><img className="rulesimg" src={rules} alt="How to play!" /></button>
+                    </Link>
                 </div>
-
             </div>
-
-            
             : null}
 
-            {trackDisplay ? 
-                <div className='track-container'>                  
-                    {/* {countdown ? <h3>Starting in: {seconds}!</h3> : null}
-                    {timer ? <h3>Race Timer: {counting} seconds</h3> : null} */}
-                    {winDisplay ? <h3>Winstreak: {winstreak}x</h3> : null}
-                    {visible ? 
-                        <div>
-                            <div className='container'>
-                                <h2>You made {moneyWon} coins!</h2>
-                                <button className='play-again' onClick={playAgain}>Play Again!</button>
-                            </div>
-                        </div> 
-                    : null}
-                </div>
-            : null}
 
             {trackDisplay ? 
                 <div className="rendercars">
                     <RenderCars/>
                 </div>
             : null}
+
+            {visible ? 
+            <div className="popupcontainer">
+                <div className="popup">
+                    <h2 className="finalplace">You placed</h2>
+                    <h1 className="numberplace">{place} <img className="popupcar" src={betCar.img} alt={betCar.name} /></h1>
+                    <h2 className="won">You won</h2>
+                    <h1 className="moneywon">{moneyWon} <img className="popupcoin" src={coin} alt="Coins" /></h1>
+                    {winDisplay ? <h3>Winstreak: {winstreak}x</h3> : null}
+                    <button className='play-again' onClick={playAgain}>Play Again!</button>
+                </div>
+            </div>
+            : null}
+
         </div>
     )
 }
