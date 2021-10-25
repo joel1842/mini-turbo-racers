@@ -4,10 +4,24 @@ import { Car3Props } from "./Car3Props";
 import './css/car3.css';
 
 const Car3 = () => {
-    function carStart() {
+
+    // starts car animation after 3 seconds
+    useEffect(() => {
+        setTimeout(startAnimation, 3000)
+    }, []);
+
+    // starts animation
+    function startAnimation() {
+        animate({pause: false})
+        startTime()
+    }
+
+    // logs time at start of race
+    function startTime() {
         Car3Props.startTime = Date.now()
     }
 
+    // counts car lap, triggers race end
     function lapCount() {
         if (Car3Props.lap < 7) {
             Car3Props.lap++
@@ -19,19 +33,7 @@ const Car3 = () => {
         }
     }
 
-    function raceOver() {
-        Car3Props.doneRace = true;
-    }
-
-    useEffect(() => {
-        setTimeout(startAnimation, 3000)
-    }, []);
-
-    function startAnimation() {
-        animate({pause: false})
-        carStart()
-    }
-
+    // counts position of car on track
     function carCounter() {
         if (Car3Props.position < 45){
             Car3Props.position++
@@ -41,6 +43,12 @@ const Car3 = () => {
         Car3Props.leaderboard++
     }
 
+    // sets car to done race
+    function raceOver() {
+        Car3Props.doneRace = true;
+    }
+
+    // car animation
     const [style, animate] = useSpring(()=> ({
         to: async (next, cancel) => {
             await next({x:514, y:140, rotate:0, config: {duration: Car3Props.speed}})

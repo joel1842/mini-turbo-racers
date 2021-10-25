@@ -17,6 +17,7 @@ import { OilSpill } from "./OilSpillEffect";
 
 function Track () {
 
+    // positions track
     const [style] = useSpring(() => ({
         from: {x: 0, y: 15},
     }))
@@ -28,12 +29,21 @@ function Track () {
     )
 }
 
-export default function RenderCars() {
+export default function RenderGame() {
 
+    // toggles power-up spawns
     const [displayGasCan, toggleGasCan] = useState(false)
     const [displayTurbo, toggleTurbo] = useState(false)
     const [displayOilSpill, toggleOilSpill] = useState(false)
 
+    // rerenders effects on interval
+    useEffect(()=> {
+        setInterval(reRenderGasCan, 5000)
+        setInterval(reRenderTurbo, 8000)
+        setInterval(reRenderOilSpill, 8000)
+    }, [])
+
+    // gas can renderer
     const reRenderGasCan = () => {
         if (!Car1Props.doneRace && !Car2Props.doneRace && !Car3Props.doneRace) {
             toggleGasCan(true)
@@ -48,6 +58,7 @@ export default function RenderCars() {
         }
     }
 
+    // give car gas can
     const giveGasPowerUp = () => {
         if (GasCan.pos === Car1Props.position && GasCan.lane === Car1Props.lane && Car1Props.hasEffect === false) {
             Car1Props.speed = 80;
@@ -83,6 +94,7 @@ export default function RenderCars() {
         }
     }
 
+    // turbo renderer
     const reRenderTurbo = () => {
         if (!Car1Props.doneRace && !Car2Props.doneRace && !Car3Props.doneRace) {
             toggleTurbo(true)
@@ -97,6 +109,7 @@ export default function RenderCars() {
         }
     }
 
+    // gives car turbo
     const giveTurboPowerUp = () => {
         if (Turbo.pos === Car1Props.position && Turbo.lane === Car1Props.lane && Car1Props.hasEffect === false) {
             Car1Props.speed = 70;
@@ -132,6 +145,7 @@ export default function RenderCars() {
         }
     }
 
+    // oilspill renderer
     const reRenderOilSpill = () => {
         if (!Car1Props.doneRace && !Car2Props.doneRace && !Car3Props.doneRace) {
             toggleOilSpill(true)
@@ -146,6 +160,7 @@ export default function RenderCars() {
         }
     }
 
+    // gives car oilspill
     const giveOilSpillEffect = () => {
         if (OilSpill.pos === Car1Props.position && OilSpill.lane === Car1Props.lane && Car1Props.hasEffect === false) {
             Car1Props.speed = 115;
@@ -180,12 +195,6 @@ export default function RenderCars() {
             }, 3000)
         }
     }
-    
-    useEffect(()=> {
-        setInterval(reRenderGasCan, 5000)
-        setInterval(reRenderTurbo, 8000)
-        setInterval(reRenderOilSpill, 8000)
-    }, [])
 
     return(
         <div className="racetrackcontainer">

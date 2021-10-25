@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import {
   BrowserRouter as Router,
   Switch,
@@ -14,30 +14,26 @@ import Racetrack from "./Racetrack";
 import Garage from "./Garage";
 import HowToPlay from './HowToPlay';
 import Credits from './Credits';
-import Bet from "./Bet";
-import background from './img/trackbackground.jpg';
 
 function App() {
 
-  const styles = {
-    backgroundImage: `url(${background})`,
-    backgroundPosition: 'center',
-    backgroundSize: 'cover',
-    backgroundRepeat: 'no-repeat',
-    width: '100vw',
-    height: '100vh'
+  // bank is stored globally
+  const [globalBank, setGlobalBank] = useState(1000)
+
+  // sets bank amount
+  function setBank(amount) {
+    setGlobalBank(prevGlobalBank => prevGlobalBank + amount)
   }
 
   return (
     <Router>
-      <div className="App" style={styles}>
+      <div className="App">
         <Switch>
           <Route path="/" exact>
             <nav className="navbar">
                 <div className="logo">
                     <img src={logo} alt="Mini Turbo Racers" />
                 </div>
-
                 <div className="btn-menu text-center">
                     <Link to="/track">
                       <button>
@@ -67,13 +63,10 @@ function App() {
             </nav>
           </Route>
           <Route path="/track">
-            <Racetrack/>
+            <Racetrack globalBank={globalBank} setBank={setBank}/>
           </Route>
           <Route path="/garage">
             <Garage />
-          </Route>
-          <Route path="/bet">
-            <Bet />
           </Route>
           <Route path="/howtoplay">
             <HowToPlay />

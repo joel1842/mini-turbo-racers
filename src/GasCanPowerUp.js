@@ -4,6 +4,7 @@ import gasCanImg from "./img/gas can.png";
 import './css/powerup.css';
 import { lane1Positions, lane2Positions, lane3Positions } from "./LanePositions";
 
+// gas can props
 export const GasCan = {
     lane: null,
     pos: null
@@ -11,6 +12,7 @@ export const GasCan = {
 
 export const GasCanPowerUp = () => {
 
+    // random position & lane generator
     let gasCanCoords;
     const gasCanSpawn = () => {
         GasCan.lane = Math.floor(Math.random() * 3) + 1;
@@ -24,6 +26,7 @@ export const GasCanPowerUp = () => {
         }
     }   
 
+    // renders gas can at random pos & lane
     const [style, animate] = useSpring(() => ({
         props: gasCanSpawn(),
         from: {x: gasCanCoords.x, y: gasCanCoords.y, top: 15},

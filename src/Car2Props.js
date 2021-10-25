@@ -1,5 +1,6 @@
 import carImg from './img/neon car.png';
 
+// car 2 props
 export const Car2Props = {
     name: 'Car 2',
     img: carImg,
@@ -14,6 +15,7 @@ export const Car2Props = {
     hasEffect: false
 }
 
+// resets car 2 props
 export const resetCar2 = () => {
     Car2Props.position = 0;
     Car2Props.lap = 0;

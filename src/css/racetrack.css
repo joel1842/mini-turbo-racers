@@ -2,27 +2,12 @@
 @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@600;700&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@500&display=swap');
 
-.button-container{
+.buttonContainer{
+    margin-top: 25px;
     text-align: center;
 }
 
-.start-button {
-    font-weight: 800;
-    font-size: large;
-    color: white;
-    background-color: rgb(115, 255, 102);
-    margin: 20px;
-    padding: 10px 24px;
-    border: none;
-    border-radius: 10px;
-    text-decoration: none;
-}
-
-.start-button:hover {
-    background-color: rgb(21, 255, 0);
-}
-
-.home-button {
+.homeButton {
     font-weight: 800;
     font-size: large;
     color: white;
@@ -34,13 +19,25 @@
     text-decoration: none;
 }
 
-.home-button:hover {
+.homeButton:hover {
     background-color: #FF4848;
 }
 
-.track-container {
-    text-align: center;
-} 
+.start-Button {
+    font-weight: 800;
+    font-size: large;
+    color: white;
+    background-color: rgb(115, 255, 102);
+    margin: 20px;
+    padding: 10px 24px;
+    border: none;
+    border-radius: 10px;
+    text-decoration: none;
+}
+
+.start-Button:hover {
+    background-color: rgb(21, 255, 0);
+}
 
 .widgets {
     margin: auto;
@@ -66,19 +63,19 @@
     grid-area: leaderboard;
 }
 
-.headerbox hr {
+.headerBox {
+    grid-column: 1/4;
+    padding: 0;
+    margin-top: 5px;
+    margin-bottom: 5px;
+}
+
+.headerBox hr {
     border: 3px solid white;
     border-radius: 7px;
     width: 60%;
     margin-top: 0;
     margin-bottom: 0;
-}
-
-.headerbox {
-    grid-column: 1/4;
-    padding: 0;
-    margin-top: 5px;
-    margin-bottom: 5px;
 }
 
 .header{
@@ -113,7 +110,7 @@
     display: inline-block;
 }
 
-.carimg {
+.carImg {
     transform: rotate(90deg);
     width: 20px;
     vertical-align: middle;
@@ -124,7 +121,7 @@
     margin-bottom: 2px;
 }
 
-.betcar {
+.betCar {
     justify-self: center;
     align-self: center;
     border: 12px solid #BEFFB9;
@@ -138,7 +135,7 @@
     grid-area: betcar;
 }
 
-.betheader {
+.betHeader {
     font-family: Bungee;
     font-size: 15px;
     color: white;
@@ -149,7 +146,7 @@
     justify-content: center;
 }
 
-.betdisplay{
+.betDisplay{
     font-family: Montserrat;
     color: white;
     align-self: center;
@@ -161,7 +158,7 @@
     
 }
 
-.betcardisplay {
+.betCarDisplay {
     transform: rotate(90deg);
     width: 20px;
     align-self: center;
@@ -185,7 +182,7 @@
     grid-area: bank;
 }
 
-.bankheader {
+.bankHeader {
     font-family: Bungee;
     font-size: 15px;
     color: white;
@@ -196,7 +193,7 @@
     justify-content: center;
 }
 
-.bankdisplay {
+.bankDisplay {
     font-family: Montserrat;
     color: white;
     align-self: center;
@@ -231,7 +228,7 @@
     grid-area: timer;
 }
 
-.timerheader {
+.timerHeader {
     font-family: Bungee;
     font-size: 15px;
     color: white;
@@ -240,7 +237,7 @@
     margin-bottom: 0;
 }
 
-.timerdisplay {
+.timerDisplay {
     font-family: Orbitron;
     color: white;
     font-size: 20px;
@@ -264,7 +261,7 @@
     grid-area: lap;
 }
 
-.lapheader {
+.lapHeader {
     font-family: Bungee;
     font-size: 15px;
     color: white;
@@ -273,7 +270,7 @@
     margin-bottom: 0;
 }
 
-.lapdisplay {
+.lapDisplay {
     font-family: Montserrat;
     color: white;
     font-size: 20px;
@@ -299,12 +296,12 @@
     padding-bottom: 10px;
 }
 
-.shopheaderbox {
+.shopHeaderBox {
     grid-column: 1/4;
     padding: 0;
 }
 
-.shopheaderbox hr {
+.shopHeaderBox hr {
     border: 3px solid white;
     border-radius: 10px;
     width: 30%;
@@ -312,7 +309,7 @@
     margin-bottom: 5px;
 }
 
-.shopheader {
+.shopHeader {
     font-family: Bungee;
     font-size: 15px;
     color: white;
@@ -321,14 +318,14 @@
     margin-bottom: -3px;
 }
 
-.itemimg {
+.itemImg {
     width: 25px;
     margin-left: 5px;
     justify-self: center;
     align-self: center;
 }
 
-.itemname {
+.itemName {
     font-family: Montserrat;
     color: white;
     font-size: 16px;
@@ -340,7 +337,7 @@
     align-self: center;
 }
 
-.buybutton {
+.buyButton {
     font-family: Bungee;
     font-size: 10px;
     text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.1);
@@ -354,16 +351,16 @@
     width: 50px;
 }
 
-.buybutton:hover {
+.buyButton:hover {
     background-color: rgb(21, 255, 0);
 }
 
-.shopcoin {
+.shopCoin {
     width: 15px;
     vertical-align: middle;
 }
 
-.homecontainer {
+.homeContainer {
     justify-self: center;
     align-self: end;
     display: grid;
@@ -389,12 +386,12 @@
     background-color: #ff7070;
 }
 
-.homeimg {
+.homeImg {
     width: 25px;
     margin-top: 10px;
 }
 
-.rulescontainer {
+.rulesContainer {
     justify-self: center;
     align-self: start;
     display: grid;
@@ -419,43 +416,17 @@
     background-color: #ff7070;
 }
 
-.rulesimg {
+.rulesImg {
     width: 25px;
     margin-top: 10px;
 }
 
-.container {
-    padding-bottom: 30px;
-}
-
-.play-again {
-    font-weight: 800;
-    font-size: x-large;
-    color: white;
-    background-color: rgb(115, 255, 102);
-    padding: 15px 24px;
-    border: none;
-    border-radius: 10px;
-    text-decoration: none;
-    margin-top: 20px;
-}
-
-.play-again:hover {
-    background-color:rgb(21, 255, 0);
-}
-
-.rendercars {
+.renderCars {
    position: relative;
    padding-right: 200px;
 }
 
-.track {
-    width: 1000px;
-    margin: auto;
-    display: block;
-}
-
-.popupcontainer {
+.popupContainer {
     display: flex;
     justify-content: center;
     align-self: center;
@@ -476,7 +447,7 @@
     text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.3);
 }
 
-.finalplace {
+.finalPlace {
     color: white;
     text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.3);
     font-family: Montserrat;
@@ -486,20 +457,20 @@
     padding-bottom: 0;
 }
 
-.numberplace {
+.numberPlace {
     font-family: Bungee;
     font-size: 72px;
     margin-top: -35px;
     margin-bottom: -35px;
 }
 
-.popupcoin {
+.popupCoin {
     width: 35px;
     vertical-align: middle;
     margin-bottom: 7px;
 }
 
-.popupcar {
+.popupCar {
     width: 60px;
     transform: rotate(90deg);
     vertical-align: middle;
@@ -517,9 +488,25 @@
     padding-bottom: 0;
 }
 
-.moneywon {
+.moneyWon {
     font-family: Bungee;
     font-size: 50px;
     margin-top: -25px;
     margin-bottom: -25px;
+}
+
+.playAgain {
+    font-weight: 800;
+    font-size: x-large;
+    color: white;
+    background-color: rgb(115, 255, 102);
+    padding: 15px 24px;
+    border: none;
+    border-radius: 10px;
+    text-decoration: none;
+    margin-top: 20px;
+}
+
+.playAgain:hover {
+    background-color:rgb(21, 255, 0);
 }

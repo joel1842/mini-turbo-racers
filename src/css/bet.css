@@ -1,12 +1,11 @@
-.betWrapper {
-    margin-top: 70px;
-}
+
 
 .slider {
-    padding-top: 15px;
-    padding-bottom: 30px;
+    vertical-align: middle;
     margin: auto;
-    max-width: 300px;
+    width: 150px;
+    display: inline-block;
+
 }
 
 .chooseCar {
@@ -22,23 +21,113 @@
 }
 
 .betButton {
+    background-color: rgb(115, 255, 102);
     text-align: center;
     font-weight: 700;
     font-size: 20px;
     color: white;
-    margin: 20px;
-    padding: 10px 24px;
+    margin: 15px;
+    margin-left: 20px;
+    padding: 8px 15px;
     border: none;
     border-radius: 10px;
     text-decoration: none;
 }
 
+.betbankcontainer {
+    border: 12px solid #FFFA8A;
+    border-radius: 53px;
+    background: #FFE662;
+    width: 175px;
+    height: 100px;
+    margin: auto;
+    margin-top: 15px;
+    margin-bottom: 10px;
+}
+
+.betprompt {
+    font-family: Bungee;
+    font-size: 25px;
+    margin-top: 0;
+    margin-bottom: -20px;
+    color: white;
+    text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+}
+
+.mybank {
+    color: white;
+    font-size: 20px;
+    text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    padding-top: 0px;
+    margin-top: 15px;
+    margin-bottom: -10px;
+}
+
+.bankamount {
+    font-size: 30px;
+    display: inline-block;
+    color: white;
+    text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    vertical-align: middle;
+    margin-right: 5px;
+}
+
+.bankcoin {
+    width: 30px;
+    vertical-align: middle;
+    padding-right: 0;
+}
+
+.betprice {
+    margin-left: 10px;
+    font-size: 30px;
+    display: inline-block;
+    color: white;
+    text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    vertical-align: middle;
+}
+
+.betcoin {
+    width: 30px;
+    vertical-align: middle;
+    margin-left: 5px;
+}
+
+.chooseCar {
+    color: white;
+    border: 20px solid #FF4848;
+    background: #FF8686;
+    border-radius: 53px;
+    width: 300px;
+    margin: auto;
+}
+
+.choosecarprompt {
+    font-family: Bungee;
+    font-size: 25px;
+    margin-top: 0;
+    margin-bottom: 0;
+    color: white;
+    text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+}
+
+.slidercontainer {
+    margin-top: -15px;
+}
+
 .displayCars {
-    width: 40px;
+    width: 35px;
 }
 
 .betModule {
     text-align: center;
+    margin: auto;
+    border: 20px solid #BEFFB9;
+    border-radius: 53px;
+    background: #81FF95;
+    width: 300px;
+    margin-top: 40px;
+    margin-bottom: 20px;
 }
 
 .changebetcontainer {
@@ -51,7 +140,7 @@
     font-size: 13px;
     color: white;
     background-color: #FFE662;
-    margin: 20px;
+    margin: 10px;
     padding: 10px 24px;
     border: none;
     border-radius: 10px;

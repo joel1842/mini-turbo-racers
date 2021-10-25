@@ -5,14 +5,26 @@ import './css/car2.css';
 
 const Car2 = () => {
     
-    function carStart() {
+    // starts car animation after 3 seconds
+    useEffect(() => {
+        setTimeout(startAnimation, 3000)
+    }, []);
+
+    // starts animation
+    function startAnimation() {
+        animate({pause: false})
+        startTime()
+    }
+
+    // logs time at start of race
+    function startTime() {
         Car2Props.startTime = Date.now()
     }
 
+    // counts car lap, triggers race end
     function lapCount() {
         if (Car2Props.lap < 7) {
             Car2Props.lap++
-            console.log(Car2Props.name, ':', Car2Props.lap) 
         } else if (Car2Props.lap === 7) {
             Car2Props.time = (Date.now() - Car2Props.startTime) / 1000
             console.log(Car2Props.name, 'has finished the race in:', Car2Props.time, 'seconds!')
@@ -20,18 +32,7 @@ const Car2 = () => {
         }
     }
 
-    function raceOver() {
-        Car2Props.doneRace = true;
-    }
-    useEffect(() => {
-        setTimeout(startAnimation, 3000)
-    }, []);
-
-    function startAnimation() {
-        animate({pause: false})
-        carStart()
-    }
-
+    // counts position of car on track
     function carCounter() {
         if (Car2Props.position < 45){
             Car2Props.position++
@@ -40,7 +41,14 @@ const Car2 = () => {
         }
         Car2Props.leaderboard++
     }
+
+    // sets car to done race
+    function raceOver() {
+        Car2Props.doneRace = true;
+    }
     
+
+    // car animation
     const [style, animate] = useSpring(()=> ({
         to: async (next, cancel) => {
             await next({x:552, y:130, config: {duration: Car2Props.speed}})

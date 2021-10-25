@@ -1,40 +1,38 @@
 import React, { useEffect } from "react";
 import { useSpring, animated } from "react-spring";
 import { Car1Props } from "./Car1Props";
-import { lane1Positions } from "./LanePositions";
 import "./css/car1.css";
 
 const Car1 = () => {
 
-    function carStart() {
+    // starts car animation after 3 seconds
+    useEffect(() => {
+        setTimeout(startAnimation, 3000)
+    }, []);
+
+    // starts animation
+    function startAnimation() {
+        animate({pause: false})
+        startTime()
+    }
+
+    // logs time at start of race
+    function startTime() {
         Car1Props.startTime = Date.now()
     }
 
+    // counts car lap, triggers race end
     function lapCount() {
         if (Car1Props.lap < 7) {
             Car1Props.lap++
-            console.log(Car1Props.name, ':', Car1Props.lap) 
         } else if (Car1Props.lap === 7) {
             Car1Props.time = (Date.now() - Car1Props.startTime) / 1000
             console.log(Car1Props.name, 'has finished the race in:', Car1Props.time, 'seconds!')
             raceOver()
         }
     }
-
-    function raceOver() {
-        Car1Props.doneRace = true;
-    }
-
-    useEffect(() => {
-        setTimeout(startAnimation, 3000)
-    }, []);
-
-    function startAnimation() {
-        animate({pause: false})
-        carStart()
-    }
     
-    // new car counter
+    // counts position of car on track
     function carCounter() {
         if (Car1Props.position < 45){
             Car1Props.position++
@@ -43,7 +41,13 @@ const Car1 = () => {
         }
         Car1Props.leaderboard++
     }
+
+    // sets car to done race
+    function raceOver() {
+        Car1Props.doneRace = true;
+    }
     
+    // car animation
     const [style, animate] = useSpring(()=> ({
         to: async (next, cancel) => {
             await next({x:590, y:115, rotate:0, config: {duration: Car1Props.speed}}) 

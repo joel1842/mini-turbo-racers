@@ -4,7 +4,7 @@ import "./css/racetrack.css";
 import {Car1Props, resetCar1} from './Car1Props';
 import {Car2Props, resetCar2} from './Car2Props';
 import {Car3Props, resetCar3} from './Car3Props';
-import RenderCars from './Animations';
+import RenderGame from './Animations';
 import Bet from './Bet';
 import coin from "./img/coin.png";
 import gasCanImg from "./img/gas can.png";
@@ -14,48 +14,25 @@ import home from "./img/home icon.png";
 import rules from "./img/rulesIcon.png";
 
 
-const Racetrack = () => {
+const Racetrack = (props) => {
     
-    let interval;
     let carArray = [Car1Props, Car2Props, Car3Props];
-
-    const [seconds, setSeconds] = useState(3);
-    const [counting, setCounting] = useState(0);
-    const [countdown, toggleCountdown] = useState(false);
-    const [timer, toggleTimer] = useState(false)
     const [betDisplay, toggleBetDisplay] = useState(true);
     const [trackDisplay, toggleTrackDisplay] = useState(false);
-    const [visible, setVisible] = useState(false);
 
-    const [raceOver, setRaceOver] = useState(false)
-
-    const [moneyWon, setMoneyWon] = useState(undefined);
-
-    const [betCar, setBetCar] = useState(undefined);
-
-    const [bank, setBank] = useState(500);
+    // gets bet amount & bet car
     const [betAmount, setBetAmount] = useState(undefined);
-
-
-    const [winstreak, setWinstreak] = useState(0);
-    const [winDisplay, toggleWinDisplay] = useState(false);
-
-    const [first, setFirst] = useState(null);
-    const [second, setSecond] = useState(null);
-    const [third, setThird] = useState(null);
-    const [firstPlaceTime, setFirstPlaceTime] = useState(null);
-    const [secondPlaceTime, setSecondPlaceTime] = useState(null);
-    const [thirdPlaceTime, setThirdPlaceTime] = useState(null);
-    const [firstImg, setFirstImg] = useState(null);
-    const [secondImg, setSecondImg] = useState(null);
-    const [thirdImg, setThirdImg] = useState(null);
-
+    const [betCar, setBetCar] = useState(undefined);
     const betGetter = (betPrice, car) => {
         setBetAmount(betPrice)
         setBetCar(car)
     }
 
     // stopwatch
+    const [seconds, setSeconds] = useState(3);
+    const [counting, setCounting] = useState(0);
+    const [countdown, toggleCountdown] = useState(false);
+    const [timer, toggleTimer] = useState(false)
     useEffect(() => {
         countdown && setTimeout(() => setSeconds(seconds - 1), 1000);
         !raceOver && timer && setTimeout(() => setCounting(counting + 1), 1000);
@@ -65,12 +42,13 @@ const Racetrack = () => {
     // triggers race
     function onStart() {
         if (betCar !== undefined) {
+            props.setBank(-betAmount)
             toggleBetDisplay(false)
             toggleTrackDisplay(true)
             toggleCountdown(true)
             setTimeout(() => toggleCountdown(false), 3000)
             setTimeout(() => toggleTimer(true), 3000)
-            isRaceDone()
+            raceIntervals()
         }
     }
 
@@ -80,15 +58,16 @@ const Racetrack = () => {
             setPadding(null)
         }
     }
-    // continuously checks if race is done
 
+    let interval;
     let leaderboardInterval;
-    function isRaceDone() {
+    function raceIntervals() {
         interval = setInterval(raceChecker, 100);
         leaderboardInterval = setInterval(liveLeaderboard, 500)
     }
 
-    // checks for race end
+    // continuously checks for end of race
+    const [raceOver, setRaceOver] = useState(false)
     function raceChecker() {
         if (Car1Props.doneRace && Car2Props.doneRace && Car3Props.doneRace) {
             clearInterval(interval)
@@ -97,6 +76,13 @@ const Racetrack = () => {
         }
     }
 
+    // live leaderboard
+    const [first, setFirst] = useState(null);
+    const [second, setSecond] = useState(null);
+    const [third, setThird] = useState(null);
+    const [firstImg, setFirstImg] = useState(null);
+    const [secondImg, setSecondImg] = useState(null);
+    const [thirdImg, setThirdImg] = useState(null);
     function liveLeaderboard() {
         carArray.sort((a,b)=>(a.leaderboard < b.leaderboard) ? 1 : ((b.leaderboard < a.leaderboard) ? -1 : 0));
         setFirst(carArray[0].name)
@@ -109,6 +95,7 @@ const Racetrack = () => {
         highlightBetCar()
     }
 
+    // highlights bet car on leaderboard
     const [firstColor, setFirstColor] = useState('none')
     const [secondColor, setSecondColor] = useState('none')
     const [thirdColor, setThirdColor] = useState('none')
@@ -128,7 +115,12 @@ const Racetrack = () => {
         }
     }
 
-    // sorts cars by time and sets each place
+    // sorts cars by time & triggers other race end functions
+    const [visible, setVisible] = useState(false);
+
+    const [firstPlaceTime, setFirstPlaceTime] = useState(null);
+    const [secondPlaceTime, setSecondPlaceTime] = useState(null);
+    const [thirdPlaceTime, setThirdPlaceTime] = useState(null);
     function raceEnded() {
         carArray.sort((a,b)=>(a.time > b.time) ? 1 : ((b.time > a.time) ? -1 : 0));
         
@@ -144,6 +136,7 @@ const Racetrack = () => {
         setVisible(true)
     }
 
+    // sets place display at the end of race
     const [place, setPlace] = useState(null);
     function playerPlace() {
         if (betCar.name === carArray[0].name) {
@@ -155,20 +148,24 @@ const Racetrack = () => {
         }
     }
 
-    // checks how much money was won
+    // checks player place and how much money was won
+    const [moneyWon, setMoneyWon] = useState(undefined);
     function checkMoney() {
         if (carArray[0].name === betCar.name) {
-            setBank(prevBank => prevBank + (betAmount * 2))
+            props.setBank(betAmount * 2)
             setMoneyWon(betAmount * 2)
         } else if (carArray[1].name === betCar.name) {
-            setBank(prevBank => prevBank + (betAmount * 1.25))
+            props.setBank(betAmount * 1.25)
             setMoneyWon(betAmount * 1.25)
         } else if (carArray[2].name === betCar.name) {
-            setBank(prevBank => prevBank - (betAmount * 0.5))
+            props.setBank(-(betAmount * 0.5))
             setMoneyWon(betAmount * 0.5)
         }
     }
 
+    // tracks winstreak and displays winstreak
+    const [winstreak, setWinstreak] = useState(0);
+    const [winDisplay, toggleWinDisplay] = useState(false);
     function checkWinstreak() {
         if (carArray[0].name === betCar.name) {
             setWinstreak(winstreak + 1)
@@ -183,7 +180,7 @@ const Racetrack = () => {
 
     function buyGasCan() {
         if (betCar.hasEffect === false) {
-            setBank(prevBank => prevBank - 100)
+            props.setBank(-100)
             betCar.speed = 80;
             betCar.hasEffect = true;
             console.log('Gas Can picked up by', betCar.name);
@@ -200,7 +197,7 @@ const Racetrack = () => {
 
     function buyTurbo() {
         if (betCar.hasEffect === false) {
-            setBank(prevBank => prevBank - 200)
+            props.setBank(-200)
             betCar.speed = 70;
             betCar.hasEffect = true;
             console.log('Turbo picked up by', betCar.name);
@@ -248,12 +245,12 @@ const Racetrack = () => {
 
             {betDisplay ? 
                 <div>
-                    <Bet betGetter={betGetter} bank={bank}/>
-                    <div className='button-container'>
+                    <Bet betGetter={betGetter} {...props}/>
+                    <div className='buttonContainer'>
                         <Link to="/">
-                            <button className='home-button'>Go Home</button>
+                            <button className='homeButton'>Go Home</button>
                         </Link>
-                        <button className='start-button' onClick={onStart}>Go to track!</button>
+                        <button className='start-Button' onClick={onStart}>Go to track!</button>
                     </div>
                 </div>
             : null}
@@ -261,72 +258,72 @@ const Racetrack = () => {
             {trackDisplay ?
             <div className="widgets">
                 <div className="leaderboard">
-                    <div className="headerbox">
+                    <div className="headerBox">
                         <h2 className="header">Leaderboard</h2>
                         <hr />
                     </div>
-                    <div className="carplace" style={{borderRadius: '53px', background: firstColor}}>
+                    <div className="carPlace" style={{borderRadius: '53px', background: firstColor}}>
                         <h2 className="place">#1</h2>
                         <h2 className="car">{first}</h2>
-                        <img className="carimg" src={firstImg} alt="First Place" />
+                        <img className="carImg" src={firstImg} alt="First Place" />
                     </div>
-                    <div className="carplace" style={{borderRadius: '53px', background: secondColor}}>
+                    <div className="carPlace" style={{borderRadius: '53px', background: secondColor}}>
                         <h2 className="place">#2</h2>
                         <h2 className="car">{second}</h2>
-                        <img className="carimg" src={secondImg} alt="Second Place" />
+                        <img className="carImg" src={secondImg} alt="Second Place" />
                     </div>
-                    <div className="carplace" style={{borderRadius: '53px', background: thirdColor}}>
+                    <div className="carPlace" style={{borderRadius: '53px', background: thirdColor}}>
                         <h2 className="place">#3</h2>
                         <h2 className="car">{third}</h2>
-                        <img className="carimg" src={thirdImg} alt="Third Place" />
+                        <img className="carImg" src={thirdImg} alt="Third Place" />
                     </div>
                 </div>
 
-                <div className="betcar">
-                    <h2 className="betheader">Bet Car</h2>
-                    <h2 className="betdisplay">{betCar.name}</h2>
-                    <img className="betcardisplay" src={betCar.img} alt={betCar.name} />
+                <div className="betCar">
+                    <h2 className="betHeader">Bet Car</h2>
+                    <h2 className="betDisplay">{betCar.name}</h2>
+                    <img className="betCarDisplay" src={betCar.img} alt={betCar.name} />
                 </div>
 
                 <div className="bank">
-                    <h2 className="bankheader">Bank</h2>
-                    <h2 className="bankdisplay">{bank}</h2>
+                    <h2 className="bankHeader">Bank</h2>
+                    <h2 className="bankDisplay">{props.globalBank}</h2>
                     <img className="coin" src={coin} alt="Coins" />
                 </div>
 
                 <div className="timer">
-                    <h2 className="timerheader">Timer</h2>
-                    <h2 className="timerdisplay">00:{padding}{counting}</h2>
+                    <h2 className="timerHeader">Timer</h2>
+                    <h2 className="timerDisplay">00:{padding}{counting}</h2>
                 </div>
 
                 <div className="lap">
-                    <h2 className="lapheader">Lap</h2>
-                    <h2 className="lapdisplay">{betCar.lap}/7</h2>
+                    <h2 className="lapHeader">Lap</h2>
+                    <h2 className="lapDisplay">{betCar.lap}/7</h2>
                 </div>
 
                 <div className="shop">
-                    <div className="shopheaderbox">
-                        <h2 className="shopheader">Shop</h2>
+                    <div className="shopHeaderBox">
+                        <h2 className="shopHeader">Shop</h2>
                         <hr />
                     </div>
-                    <img className="itemimg" src={gasCanImg} alt="Gas Can" />
-                    <h2 className="itemname">Gas Can</h2>
-                    <button className="buybutton" onClick={buyGasCan}>100 <img className="shopcoin" src={coin} alt="Coin" /></button>
-                    <img className="itemimg" src={turboImg} alt="Turbo" />
-                    <h2 className="itemname">Turbo</h2>
-                    <button className="buybutton" onClick={buyTurbo}>200 <img className="shopcoin" src={coin} alt="Coin" /></button>
-                    <img className="itemimg" src={oilSpillImg} alt="Oil Spill" />
-                    <h2 className="itemname">Oil Spill</h2>
-                    <button className="buybutton">75 <img className="shopcoin" src={coin} alt="Coin" /></button>
+                    <img className="itemImg" src={gasCanImg} alt="Gas Can" />
+                    <h2 className="itemName">Gas Can</h2>
+                    <button className="buyButton" onClick={buyGasCan}>100 <img className="shopcoin" src={coin} alt="Coin" /></button>
+                    <img className="itemImg" src={turboImg} alt="Turbo" />
+                    <h2 className="itemName">Turbo</h2>
+                    <button className="buyButton" onClick={buyTurbo}>200 <img className="shopcoin" src={coin} alt="Coin" /></button>
+                    <img className="itemImg" src={oilSpillImg} alt="Oil Spill" />
+                    <h2 className="itemName">Oil Spill</h2>
+                    <button className="buyButton">75 <img className="shopCoin" src={coin} alt="Coin" /></button>
                 </div>
-                <div className="homecontainer">
+                <div className="homeContainer">
                     <Link to="/">
-                        <button className="home" onClick={playAgain}><img className="homeimg" src={home} alt="Home!" /></button>
+                        <button className="home" onClick={playAgain}><img className="homeImg" src={home} alt="Home!" /></button>
                     </Link>
                 </div>
-                <div className="rulescontainer">
+                <div className="rulesContainer">
                     <Link to="/howtoplay">
-                        <button className="rules" onClick={playAgain}><img className="rulesimg" src={rules} alt="How to play!" /></button>
+                        <button className="rules" onClick={playAgain}><img className="rulesImg" src={rules} alt="How to play!" /></button>
                     </Link>
                 </div>
             </div>
@@ -334,20 +331,20 @@ const Racetrack = () => {
 
 
             {trackDisplay ? 
-                <div className="rendercars">
-                    <RenderCars/>
+                <div className="renderCars">
+                    <RenderGame/>
                 </div>
             : null}
 
             {visible ? 
-            <div className="popupcontainer">
+            <div className="popupContainer">
                 <div className="popup">
-                    <h2 className="finalplace">You placed</h2>
-                    <h1 className="numberplace">{place} <img className="popupcar" src={betCar.img} alt={betCar.name} /></h1>
+                    <h2 className="finalPlace">You placed</h2>
+                    <h1 className="numberPlace">{place} <img className="popupCar" src={betCar.img} alt={betCar.name} /></h1>
                     <h2 className="won">You won</h2>
-                    <h1 className="moneywon">{moneyWon} <img className="popupcoin" src={coin} alt="Coins" /></h1>
+                    <h1 className="moneyWon">{moneyWon} <img className="popupCoin" src={coin} alt="Coins" /></h1>
                     {winDisplay ? <h3>Winstreak: {winstreak}x</h3> : null}
-                    <button className='play-again' onClick={playAgain}>Play Again!</button>
+                    <button className='playAgain' onClick={playAgain}>Play Again!</button>
                 </div>
             </div>
             : null}

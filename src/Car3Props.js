@@ -1,5 +1,6 @@
 import carImg from "./img/blue car.png";
 
+// car 3 props
 export const Car3Props = {
     name: 'Car 3',
     img: carImg,
@@ -14,6 +15,7 @@ export const Car3Props = {
     hasEffect: false
 }
 
+// resets car 3 props
 export const resetCar3 = () => {
     Car3Props.position = 0;
     Car3Props.lap = 0;

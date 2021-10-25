@@ -13,22 +13,23 @@ const HowToPlay = () => {
                 <h2>Wondering how to play? You're in the right place!</h2>
 
                 <h3>Place a bet!</h3>
-                <p>Place a bet on the car you think will win! You can bet between 10 and 100 coins. You will win coins based on what postition your car comes in!</p>
+                <p>Place a bet on the car you think will win! or you can bet on the car you like the most!</p>
                 
                 <h3>Power-ups</h3>
-                <p>Power ups randomly spawn on the track for cars to pick up, or you can buy power-ups for your car! Power ups give cars a boost!</p>
+                <p>Power ups randomly spawn on the track for cars to pick up, or you can buy power-ups for your car! Buying a power-up will give your car a boost, but don’t spend all your money!</p>
                 
-                <h3>Blocks</h3>
-                <p>Three blocks are available at the beginning of each race. They can be placed wherever you want! You influence the position of each car based on where you place your blocks, if a car you don’t want to win is leading, place a block down in front of it! Ran out of blocks? Buy some more!</p>
-
-                <h3>Car Stats</h3>
-                <p>Each car has different stats that affect the way it drives. Stop by the garage to check the stats of each car before you bet! A car may have faster acceleration but a slower top speed. Choose wisely!</p>
+                <h3>Roadblocks</h3>
+                <p>Oil spills spawn on the track to slow down your car and other cars! You can buy an oil spill to slow down the car in first place!</p>
 
                 <h3>Postition Earnings</h3>
-                <p>You win or lose coins based on what position the car you bet on places.</p>
+                <p>How do I win coins?</p>
+                <p>You win or lose coins based on what place your car comes in!</p>
+                <p>#1 – the coins you bet are doubled!</p>
+                <p>#2 – you win 1.25x the coins you bet!</p>
+                <p>#3 – you get back half of the coins you bet</p>
 
-                <h3>What if I run out of coins?</h3>
-                <p>Ran out of coins? Stop by the bank! Rumour has it they give away a lot of coins!</p>
+                <h3>Win Streak!</h3>
+                <p>If you win more than twice in a row, you will start a win streak! The more you win in a row, the more coins you make per win!</p>
             </div>
 
            <div className="homebtn">
