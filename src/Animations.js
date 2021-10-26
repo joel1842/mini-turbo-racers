@@ -31,170 +31,383 @@ function Track () {
 
 export default function RenderGame() {
 
-    // toggles power-up spawns
-    const [displayGasCan, toggleGasCan] = useState(false)
-    const [displayTurbo, toggleTurbo] = useState(false)
-    const [displayOilSpill, toggleOilSpill] = useState(false)
-
-    // rerenders effects on interval
-    useEffect(()=> {
-        setInterval(reRenderGasCan, 5000)
-        setInterval(reRenderTurbo, 8000)
-        setInterval(reRenderOilSpill, 8000)
-    }, [])
-
-    // gas can renderer
-    const reRenderGasCan = () => {
-        if (!Car1Props.doneRace && !Car2Props.doneRace && !Car3Props.doneRace) {
-            toggleGasCan(true)
-            setInterval(giveGasPowerUp, 100)
-            function off() {
-                toggleGasCan(false)
-                clearInterval(giveGasPowerUp)
-                GasCan.pos = null
-                GasCan.lane = null
+        // toggles power-up spawns
+        const [displayGasCan, toggleGasCan] = useState(false)
+        const [displayTurbo, toggleTurbo] = useState(false)
+        const [displayOilSpill, toggleOilSpill] = useState(false)
+    
+        // rerenders effects on interval
+        useEffect(()=> {
+            setInterval(reRenderGasCan, 5000)
+            setInterval(reRenderTurbo, 8000)
+            setInterval(reRenderOilSpill, 8000)
+        }, [])
+    
+        // gas can renderer
+        const reRenderGasCan = () => {
+            if (!Car1Props.doneRace && !Car2Props.doneRace && !Car3Props.doneRace) {
+                toggleGasCan(true)
+                setInterval(giveGasPowerUp, 100)
+                function off() {
+                    toggleGasCan(false)
+                    clearInterval(giveGasPowerUp)
+                    GasCan.pos = null
+                    GasCan.lane = null
+                }
+                setTimeout(off, 4000)
             }
-            setTimeout(off, 4000)
         }
-    }
-
-    // give car gas can
-    const giveGasPowerUp = () => {
-        if (GasCan.pos === Car1Props.position && GasCan.lane === Car1Props.lane && Car1Props.hasEffect === false) {
-            Car1Props.speed = 80;
-            Car1Props.hasEffect = true;
-            console.log('Gas Can picked up by Car 1');
-
-            setTimeout(() => {
-                Car1Props.speed = 100;
-                Car1Props.hasEffect = false;
-                console.log("Gas Can has worn off Car 1")
-
-            }, 3000)
-        } else if (GasCan.pos === Car2Props.position && GasCan.lane === Car2Props.lane && Car1Props.hasEffect === false) {
-            Car2Props.speed = 80;
-            Car2Props.hasEffect = true;
-            console.log('Gas Can picked up by Car 2');
-
-            setTimeout(() => {
-                Car2Props.speed = 100;
-                Car2Props.hasEffect = false;
-                console.log("Gas Can has worn off Car 2")
-            }, 3000)
-        } else if (GasCan.pos === Car3Props.position && GasCan.lane === Car3Props.lane && Car1Props.hasEffect === false) {
-            Car3Props.speed = 80;
-            Car3Props.hasEffect = true;
-            console.log('Gas Can picked up by Car 3');
-
-            setTimeout(() => {
-                Car3Props.speed = 100;
-                Car3Props.hasEffect = false;
-                console.log("Gas Can has worn off Car 3")
-            }, 3000)
-        }
-    }
-
-    // turbo renderer
-    const reRenderTurbo = () => {
-        if (!Car1Props.doneRace && !Car2Props.doneRace && !Car3Props.doneRace) {
-            toggleTurbo(true)
-            setInterval(giveTurboPowerUp, 100)
-            function off() {
-                toggleTurbo(false)
-                clearInterval(giveTurboPowerUp)
-                Turbo.lane = null
-                Turbo.pos = null
+    
+        // give car gas can
+        const giveGasPowerUp = () => {
+            if (GasCan.pos === Car1Props.position && GasCan.lane === Car1Props.lane && Car1Props.hasEffect === false) {
+                Car1Props.speed = 80;
+                Car1Props.hasEffect = true;
+                console.log('Gas Can picked up by Car 1');
+    
+                setTimeout(() => {
+                    Car1Props.speed = 100;
+                    Car1Props.hasEffect = false;
+                    console.log("Gas Can has worn off Car 1")
+    
+                }, 3000)
+            } else if (GasCan.pos === Car2Props.position && GasCan.lane === Car2Props.lane && Car1Props.hasEffect === false) {
+                Car2Props.speed = 80;
+                Car2Props.hasEffect = true;
+                console.log('Gas Can picked up by Car 2');
+    
+                setTimeout(() => {
+                    Car2Props.speed = 100;
+                    Car2Props.hasEffect = false;
+                    console.log("Gas Can has worn off Car 2")
+                }, 3000)
+            } else if (GasCan.pos === Car3Props.position && GasCan.lane === Car3Props.lane && Car1Props.hasEffect === false) {
+                Car3Props.speed = 80;
+                Car3Props.hasEffect = true;
+                console.log('Gas Can picked up by Car 3');
+    
+                setTimeout(() => {
+                    Car3Props.speed = 100;
+                    Car3Props.hasEffect = false;
+                    console.log("Gas Can has worn off Car 3")
+                }, 3000)
             }
-            setTimeout(off, 3000) 
         }
-    }
-
-    // gives car turbo
-    const giveTurboPowerUp = () => {
-        if (Turbo.pos === Car1Props.position && Turbo.lane === Car1Props.lane && Car1Props.hasEffect === false) {
-            Car1Props.speed = 70;
-            Car1Props.hasEffect = true;
-            console.log('Turbo picked up by Car 1');
-
-            setTimeout(() => {
-                Car1Props.speed = 100;
-                Car1Props.hasEffect = false;
-                console.log("Turbo has worn off Car 1")
-
-            }, 2000)
-        } else if (Turbo.pos === Car2Props.position && Turbo.lane === Car2Props.lane && Car1Props.hasEffect === false) {
-            Car2Props.speed = 70;
-            Car2Props.hasEffect = true;
-            console.log('Turbo picked up by Car 2');
-
-            setTimeout(() => {
-                Car2Props.speed = 100;
-                Car2Props.hasEffect = false;
-                console.log("Turbo has worn off Car 2")
-            }, 2000)
-        } else if (Turbo.pos === Car3Props.position && Turbo.lane === Car3Props.lane && Car1Props.hasEffect === false) {
-            Car3Props.speed =  70;
-            Car3Props.hasEffect = true;
-            console.log('Turbo picked up by Car 3');
-
-            setTimeout(() => {
-                Car3Props.speed = 100;
-                Car3Props.hasEffect = false;
-                console.log("Turbo has worn off Car 3")
-            }, 2000)
-        }
-    }
-
-    // oilspill renderer
-    const reRenderOilSpill = () => {
-        if (!Car1Props.doneRace && !Car2Props.doneRace && !Car3Props.doneRace) {
-            toggleOilSpill(true)
-            setInterval(giveOilSpillEffect, 100)
-            function off() {
-                toggleOilSpill(false)
-                clearInterval(giveOilSpillEffect)
-                OilSpill.lane = null
-                OilSpill.pos = null
+    
+        // turbo renderer
+        const reRenderTurbo = () => {
+            if (!Car1Props.doneRace && !Car2Props.doneRace && !Car3Props.doneRace) {
+                toggleTurbo(true)
+                setInterval(giveTurboPowerUp, 100)
+                function off() {
+                    toggleTurbo(false)
+                    clearInterval(giveTurboPowerUp)
+                    Turbo.lane = null
+                    Turbo.pos = null
+                }
+                setTimeout(off, 3000) 
             }
-            setTimeout(off, 6000) 
         }
-    }
-
-    // gives car oilspill
-    const giveOilSpillEffect = () => {
-        if (OilSpill.pos === Car1Props.position && OilSpill.lane === Car1Props.lane && Car1Props.hasEffect === false) {
-            Car1Props.speed = 115;
-            Car1Props.hasEffect = true;
-            console.log('Oil Spill picked up by Car 1');
-
-            setTimeout(() => {
-                Car1Props.speed = 100;
-                Car1Props.hasEffect = false;
-                console.log("Oil Spill has worn off Car 1")
-
-            }, 3000)
-        } else if (OilSpill.pos === Car2Props.position && OilSpill.lane === Car2Props.lane && Car1Props.hasEffect === false) {
-            Car2Props.speed = 115;
-            Car2Props.hasEffect = true;
-            console.log('Oil Spill picked up by Car 2');
-
-            setTimeout(() => {
-                Car2Props.speed = 100;
-                Car2Props.hasEffect = false;
-                console.log("Oil Spill has worn off Car 2")
-            }, 3000)
-        } else if (OilSpill.pos === Car3Props.position && OilSpill.lane === Car3Props.lane && Car1Props.hasEffect === false) {
-            Car3Props.speed = 115;
-            Car3Props.hasEffect = true;
-            console.log('Oil Spill picked up by Car 3');
-
-            setTimeout(() => {
-                Car3Props.speed = 100;
-                Car3Props.hasEffect = false;
-                console.log("Oil Spill has worn off Car 3")
-            }, 3000)
+    
+        // gives car turbo
+        const giveTurboPowerUp = () => {
+            if (Turbo.pos === Car1Props.position && Turbo.lane === Car1Props.lane && Car1Props.hasEffect === false) {
+                Car1Props.speed = 70;
+                Car1Props.hasEffect = true;
+                console.log('Turbo picked up by Car 1');
+    
+                setTimeout(() => {
+                    Car1Props.speed = 100;
+                    Car1Props.hasEffect = false;
+                    console.log("Turbo has worn off Car 1")
+    
+                }, 2000)
+            } else if (Turbo.pos === Car2Props.position && Turbo.lane === Car2Props.lane && Car1Props.hasEffect === false) {
+                Car2Props.speed = 70;
+                Car2Props.hasEffect = true;
+                console.log('Turbo picked up by Car 2');
+    
+                setTimeout(() => {
+                    Car2Props.speed = 100;
+                    Car2Props.hasEffect = false;
+                    console.log("Turbo has worn off Car 2")
+                }, 2000)
+            } else if (Turbo.pos === Car3Props.position && Turbo.lane === Car3Props.lane && Car1Props.hasEffect === false) {
+                Car3Props.speed =  70;
+                Car3Props.hasEffect = true;
+                console.log('Turbo picked up by Car 3');
+    
+                setTimeout(() => {
+                    Car3Props.speed = 100;
+                    Car3Props.hasEffect = false;
+                    console.log("Turbo has worn off Car 3")
+                }, 2000)
+            }
         }
-    }
+    
+        // oilspill renderer
+        const reRenderOilSpill = () => {
+            if (!Car1Props.doneRace && !Car2Props.doneRace && !Car3Props.doneRace) {
+                toggleOilSpill(true)
+                setInterval(giveOilSpillEffect, 100)
+                function off() {
+                    toggleOilSpill(false)
+                    clearInterval(giveOilSpillEffect)
+                    OilSpill.lane = null
+                    OilSpill.pos = null
+                }
+                setTimeout(off, 6000) 
+            }
+        }
+    
+        // gives car oilspill
+        const giveOilSpillEffect = () => {
+            if (OilSpill.pos === Car1Props.position && OilSpill.lane === Car1Props.lane && Car1Props.hasEffect === false) {
+                Car1Props.speed = 115;
+                Car1Props.hasEffect = true;
+                console.log('Oil Spill picked up by Car 1');
+    
+                setTimeout(() => {
+                    Car1Props.speed = 100;
+                    Car1Props.hasEffect = false;
+                    console.log("Oil Spill has worn off Car 1")
+    
+                }, 3000)
+            } else if (OilSpill.pos === Car2Props.position && OilSpill.lane === Car2Props.lane && Car1Props.hasEffect === false) {
+                Car2Props.speed = 115;
+                Car2Props.hasEffect = true;
+                console.log('Oil Spill picked up by Car 2');
+    
+                setTimeout(() => {
+                    Car2Props.speed = 100;
+                    Car2Props.hasEffect = false;
+                    console.log("Oil Spill has worn off Car 2")
+                }, 3000)
+            } else if (OilSpill.pos === Car3Props.position && OilSpill.lane === Car3Props.lane && Car1Props.hasEffect === false) {
+                Car3Props.speed = 115;
+                Car3Props.hasEffect = true;
+                console.log('Oil Spill picked up by Car 3');
+    
+                setTimeout(() => {
+                    Car3Props.speed = 100;
+                    Car3Props.hasEffect = false;
+                    console.log("Oil Spill has worn off Car 3")
+                }, 3000)
+            }
+        }
+
+    // // toggles power-up spawns
+    // const [displayGasCan, toggleGasCan] = useState(false)
+    // const [displayTurbo, toggleTurbo] = useState(false)
+    // const [displayOilSpill, toggleOilSpill] = useState(false)
+
+    // // rerenders effects on interval
+    // useEffect(()=> {
+    //     setTimeout(() => {
+    //         reRenderGasCan()
+    //     }, 2000)
+    //     setTimeout(() => {
+    //         reRenderTurbo()
+    //     }, 7000)
+    //     setTimeout(() => {
+    //         reRenderOilSpill()
+    //     }, 3000)
+    // }, [])
+
+    // // gas can renderer
+    // let gasCanInterval;
+    // const reRenderGasCan = () => {
+    //     if (!Car1Props.doneRace && !Car2Props.doneRace && !Car3Props.doneRace) {
+    //         toggleGasCan(true)
+    //         gasCanInterval = setInterval(giveGasPowerUp, 100)
+    //     }
+    // }
+
+    // // give car gas can
+    // const giveGasPowerUp = () => {
+    //     if (GasCan.pos === Car1Props.position && GasCan.lane === Car1Props.lane && Car1Props.hasEffect === false) {
+    //         Car1Props.speed = 80;
+    //         Car1Props.hasEffect = true;
+    //         console.log('Gas Can picked up by Car 1');
+    //         toggleGasCan(false)
+    //         clearInterval(gasCanInterval)
+    //         // GasCan.pos = null
+    //         // GasCan.lane = null
+
+    //         setTimeout(() => {
+    //             Car1Props.speed = 100;
+    //             Car1Props.hasEffect = false;
+    //             console.log("Gas Can has worn off Car 1")
+    //             gasCanTimeout()
+    //         }, 3000)
+    //     } else if (GasCan.pos === Car2Props.position && GasCan.lane === Car2Props.lane && Car2Props.hasEffect === false) {
+    //         Car2Props.speed = 80;
+    //         Car2Props.hasEffect = true;
+    //         console.log('Gas Can picked up by Car 2');
+    //         toggleGasCan(false)
+    //         clearInterval(gasCanInterval)
+    //         // GasCan.pos = null
+    //         // GasCan.lane = null
+
+    //         setTimeout(() => {
+    //             Car2Props.speed = 100;
+    //             Car2Props.hasEffect = false;
+    //             console.log("Gas Can has worn off Car 2")
+    //             gasCanTimeout()
+    //         }, 3000)
+    //     } else if (GasCan.pos === Car3Props.position && GasCan.lane === Car3Props.lane && Car3Props.hasEffect === false) {
+    //         Car3Props.speed = 80;
+    //         Car3Props.hasEffect = true;
+    //         console.log('Gas Can picked up by Car 3');
+    //         toggleGasCan(false)
+    //         clearInterval(gasCanInterval)
+    //         // GasCan.pos = null
+    //         // GasCan.lane = null
+
+    //         setTimeout(() => {
+    //             Car3Props.speed = 100;
+    //             Car3Props.hasEffect = false;
+    //             console.log("Gas Can has worn off Car 3")
+    //             gasCanTimeout()
+    //         }, 3000)
+    //     }
+    // }
+
+    // function gasCanTimeout() {
+    //     setTimeout(() => {
+    //         reRenderGasCan()
+    //     }, 2000)
+    // }
+
+    // // turbo renderer
+    // let turboInterval;
+    // const reRenderTurbo = () => {
+    //     if (!Car1Props.doneRace && !Car2Props.doneRace && !Car3Props.doneRace) {
+    //         toggleTurbo(true)
+    //         turboInterval = setInterval(giveTurboPowerUp, 100)
+    //     }
+    // }
+
+    // // gives car turbo
+    // const giveTurboPowerUp = () => {
+    //     if (Turbo.pos === Car1Props.position && Turbo.lane === Car1Props.lane && Car1Props.hasEffect === false) {
+    //         Car1Props.speed = 70;
+    //         Car1Props.hasEffect = true;
+    //         console.log('Turbo picked up by Car 1');
+    //         toggleTurbo(false)
+    //         clearInterval(turboInterval)
+    //         // Turbo.lane = null
+    //         // Turbo.pos = null
+
+    //         setTimeout(() => {
+    //             Car1Props.speed = 100;
+    //             Car1Props.hasEffect = false;
+    //             console.log("Turbo has worn off Car 1")
+    //             turboTimeout()
+    //         }, 2000)
+    //     } else if (Turbo.pos === Car2Props.position && Turbo.lane === Car2Props.lane && Car2Props.hasEffect === false) {
+    //         Car2Props.speed = 70;
+    //         Car2Props.hasEffect = true;
+    //         console.log('Turbo picked up by Car 2');
+    //         toggleTurbo(false)
+    //         clearInterval(turboInterval)
+    //         // Turbo.lane = null
+    //         // Turbo.pos = null
+
+    //         setTimeout(() => {
+    //             Car2Props.speed = 100;
+    //             Car2Props.hasEffect = false;
+    //             console.log("Turbo has worn off Car 2")
+    //             turboTimeout()
+    //         }, 2000)
+    //     } else if (Turbo.pos === Car3Props.position && Turbo.lane === Car3Props.lane && Car3Props.hasEffect === false) {
+    //         Car3Props.speed =  70;
+    //         Car3Props.hasEffect = true;
+    //         console.log('Turbo picked up by Car 3');
+    //         toggleTurbo(false)
+    //         clearInterval(turboInterval)
+    //         // Turbo.lane = null
+    //         // Turbo.pos = null
+
+    //         setTimeout(() => {
+    //             Car3Props.speed = 100;
+    //             Car3Props.hasEffect = false;
+    //             console.log("Turbo has worn off Car 3")
+    //             turboTimeout()
+    //         }, 2000)
+    //     }
+    // }
+
+    // function turboTimeout() {
+    //     setTimeout(() => {
+    //         reRenderTurbo()
+    //     }, 3000)
+    // }
+
+    // // oilspill renderer
+    // let oilSpillInterval;
+    // const reRenderOilSpill = () => {
+    //     if (!Car1Props.doneRace && !Car2Props.doneRace && !Car3Props.doneRace) {
+    //         toggleOilSpill(true)
+    //         oilSpillInterval = setInterval(giveOilSpillEffect, 100)
+    //     }
+    // }
+
+    // // gives car oilspill
+    // const giveOilSpillEffect = () => {
+    //     if (OilSpill.pos === Car1Props.position && OilSpill.lane === Car1Props.lane && Car1Props.hasEffect === false) {
+    //         Car1Props.speed = 115;
+    //         Car1Props.hasEffect = true;
+    //         console.log('Oil Spill picked up by Car 1');
+    //         toggleOilSpill(false)
+    //         clearInterval(oilSpillInterval)
+    //         // OilSpill.lane = null
+    //         // OilSpill.pos = null
+
+    //         setTimeout(() => {
+    //             Car1Props.speed = 100;
+    //             Car1Props.hasEffect = false;
+    //             console.log("Oil Spill has worn off Car 1")
+    //             oilSpillTimeout()
+    //         }, 2000)
+    //     } else if (OilSpill.pos === Car2Props.position && OilSpill.lane === Car2Props.lane && Car2Props.hasEffect === false) {
+    //         Car2Props.speed = 115;
+    //         Car2Props.hasEffect = true;
+    //         console.log('Oil Spill picked up by Car 2');
+    //         toggleOilSpill(false)
+    //         clearInterval(oilSpillInterval)
+    //         // OilSpill.lane = null
+    //         // OilSpill.pos = null
+
+    //         setTimeout(() => {
+    //             Car2Props.speed = 100;
+    //             Car2Props.hasEffect = false;
+    //             console.log("Oil Spill has worn off Car 2")
+    //             oilSpillTimeout()
+    //         }, 2000)
+    //     }else if (OilSpill.pos === Car3Props.position && OilSpill.lane === Car3Props.lane && Car3Props.hasEffect === false) {
+    //         Car3Props.speed = 115;
+    //         Car3Props.hasEffect = true;
+    //         console.log('Oil Spill picked up by Car 3');
+    //         toggleOilSpill(false)
+    //         clearInterval(oilSpillInterval)
+    //         // OilSpill.lane = null
+    //         // OilSpill.pos = null
+
+    //         setTimeout(() => {
+    //             Car3Props.speed = 100;
+    //             Car3Props.hasEffect = false;
+    //             console.log("Oil Spill has worn off Car 3")
+    //             oilSpillTimeout()
+    //         }, 2000)
+    //     }
+    // }
+
+    // function oilSpillTimeout() {
+    //     setTimeout(() => {
+    //         reRenderOilSpill()
+    //     }, 1000)
+    // }
 
     return(
         <div className="racetrackcontainer">

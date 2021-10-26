@@ -17,6 +17,8 @@
     border: none;
     border-radius: 10px;
     text-decoration: none;
+    text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.1);
+    
 }
 
 .homeButton:hover {
@@ -33,6 +35,7 @@
     border: none;
     border-radius: 10px;
     text-decoration: none;
+    text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.1);
 }
 
 .start-Button:hover {
@@ -119,6 +122,7 @@
     margin-bottom: 0;
     display: inline-block;
     margin-bottom: 2px;
+    filter: drop-shadow(4px 0px 0px  rgba(0, 0, 0, 0.1));
 }
 
 .betCar {
@@ -166,6 +170,7 @@
     margin-top: 0;
     margin-left: 15px;
     margin-bottom: 0;
+    filter: drop-shadow(4px 0px 0px  rgba(0, 0, 0, 0.1));
 }
 
 .bank {
@@ -212,6 +217,7 @@
     padding-right: 25px;
     margin-top: 0;
     margin-bottom: 0;
+    filter: drop-shadow(0px 4px 4px  rgba(0, 0, 0, 0.15));
 }
 
 .timer {
@@ -391,7 +397,7 @@
     margin-top: 10px;
 }
 
-.rulesContainer {
+.ruleButtonContainer {
     justify-self: center;
     align-self: start;
     display: grid;
@@ -476,6 +482,7 @@
     vertical-align: middle;
     margin-bottom: 15px;
     margin-left: 20px;
+    filter: drop-shadow(4px 0px 0px  rgba(0, 0, 0, 0.25));
 }
 
 .won {
@@ -505,8 +512,38 @@
     border-radius: 10px;
     text-decoration: none;
     margin-top: 20px;
+    text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.1);
 }
 
 .playAgain:hover {
     background-color:rgb(21, 255, 0);
+}
+
+.countdownContainer {
+    display: flex;
+    justify-content: center;
+    align-self: center;
+    margin-top: 100px;
+}
+
+.countdownPopup {
+    text-align: center;
+    border: 20px solid #BEFFB9;
+    border-radius: 53px;
+    background: #81FF95;
+    position: absolute;
+    width: 200px;
+    height: 200px;
+}
+
+.starting {
+    margin-top: 30px;
+    text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.1);
+}
+
+.seconds {
+    font-family: Bungee;
+    font-size: 100px;
+    margin-top: -85px;
+    text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.2);
 }

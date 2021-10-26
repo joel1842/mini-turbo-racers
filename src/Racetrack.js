@@ -150,16 +150,20 @@ const Racetrack = (props) => {
 
     // checks player place and how much money was won
     const [moneyWon, setMoneyWon] = useState(undefined);
+    const [outcome, setOutcome] = useState(undefined)
     function checkMoney() {
         if (carArray[0].name === betCar.name) {
-            props.setBank(betAmount * 2)
-            setMoneyWon(betAmount * 2)
+            props.setBank(Math.round(betAmount * 2))
+            setMoneyWon(Math.round(betAmount * 2))
+            setOutcome('won')
         } else if (carArray[1].name === betCar.name) {
-            props.setBank(betAmount * 1.25)
-            setMoneyWon(betAmount * 1.25)
+            props.setBank(Math.round(betAmount * 1.25))
+            setMoneyWon(Math.round(betAmount * 1.25))
+            setOutcome('won')
         } else if (carArray[2].name === betCar.name) {
-            props.setBank(-(betAmount * 0.5))
-            setMoneyWon(betAmount * 0.5)
+            props.setBank(-Math.round(betAmount * 0.5))
+            setMoneyWon(Math.round(betAmount * 0.5))
+            setOutcome('lost')
         }
     }
 
@@ -209,6 +213,55 @@ const Racetrack = (props) => {
             }, 2000)
         } else {
             console.log(betCar.name, "has effect currently, please try again")
+        }
+    }
+
+    function buyOilSpill() {
+        if (Car1Props.name === first) {
+            if (Car1Props.hasEffect === false) {
+                props.setBank(-75)
+                Car1Props.speed = 150;
+                Car1Props.hasEffect = true;
+                console.log("Oil Spill picked up by", Car1Props.name)
+                
+                setTimeout(() => {
+                    Car1Props.speed = 100;
+                    Car1Props.hasEffect = false;
+                    console.log("Oil Spill has worn off", Car1Props.name)
+                }, 2000)
+            } else {
+                console.log(Car1Props.name, "has effect, try again.")
+            }    
+        } else if (Car2Props.name === first) {
+            if (Car2Props.hasEffect === false) {
+                props.setBank(-75)
+                Car2Props.speed = 150;
+                Car2Props.hasEffect = true;
+                console.log("Oil Spill picked up by", Car2Props.name)
+                
+                setTimeout(() => {
+                    Car2Props.speed = 100;
+                    Car2Props.hasEffect = false;
+                    console.log("Oil Spill has worn off", Car2Props.name)
+                }, 2000)
+            } else {
+                console.log(Car2Props.name, "has effect, try again.")
+            }
+        } else if (Car3Props.name === first) {
+            if (Car3Props.hasEffect === false) {
+                props.setBank(-75)
+                Car3Props.speed = 150;
+                Car3Props.hasEffect = true;
+                console.log("Oil Spill picked up by", Car3Props.name)
+                
+                setTimeout(() => {
+                    Car3Props.speed = 100;
+                    Car3Props.hasEffect = false;
+                    console.log("Oil Spill has worn off", Car3Props.name)
+                }, 2000)
+            } else {
+                console.log(Car3Props.name, "has effect, try again.")
+            }
         }
     }
 
@@ -308,20 +361,20 @@ const Racetrack = (props) => {
                     </div>
                     <img className="itemImg" src={gasCanImg} alt="Gas Can" />
                     <h2 className="itemName">Gas Can</h2>
-                    <button className="buyButton" onClick={buyGasCan}>100 <img className="shopcoin" src={coin} alt="Coin" /></button>
+                    <button className="buyButton" onClick={buyGasCan}>100 <img className="shopCoin" src={coin} alt="Coin" /></button>
                     <img className="itemImg" src={turboImg} alt="Turbo" />
                     <h2 className="itemName">Turbo</h2>
-                    <button className="buyButton" onClick={buyTurbo}>200 <img className="shopcoin" src={coin} alt="Coin" /></button>
+                    <button className="buyButton" onClick={buyTurbo}>200 <img className="shopCoin" src={coin} alt="Coin" /></button>
                     <img className="itemImg" src={oilSpillImg} alt="Oil Spill" />
                     <h2 className="itemName">Oil Spill</h2>
-                    <button className="buyButton">75 <img className="shopCoin" src={coin} alt="Coin" /></button>
+                    <button className="buyButton" onClick={buyOilSpill}>75 <img className="shopCoin" src={coin} alt="Coin" /></button>
                 </div>
                 <div className="homeContainer">
                     <Link to="/">
                         <button className="home" onClick={playAgain}><img className="homeImg" src={home} alt="Home!" /></button>
                     </Link>
                 </div>
-                <div className="rulesContainer">
+                <div className="ruleButtonContainer">
                     <Link to="/howtoplay">
                         <button className="rules" onClick={playAgain}><img className="rulesImg" src={rules} alt="How to play!" /></button>
                     </Link>
@@ -341,12 +394,22 @@ const Racetrack = (props) => {
                 <div className="popup">
                     <h2 className="finalPlace">You placed</h2>
                     <h1 className="numberPlace">{place} <img className="popupCar" src={betCar.img} alt={betCar.name} /></h1>
-                    <h2 className="won">You won</h2>
+                    <h2 className="won">You {outcome}</h2>
                     <h1 className="moneyWon">{moneyWon} <img className="popupCoin" src={coin} alt="Coins" /></h1>
                     {winDisplay ? <h3>Winstreak: {winstreak}x</h3> : null}
                     <button className='playAgain' onClick={playAgain}>Play Again!</button>
                 </div>
             </div>
+            : null}
+
+
+            {countdown ? 
+                <div className="countdownContainer">
+                    <div className="countdownPopup">
+                        <h2 className="starting">Starting in...</h2>
+                        <h1 className="seconds">{seconds}</h1>
+                    </div>
+                </div>
             : null}
 
         </div>

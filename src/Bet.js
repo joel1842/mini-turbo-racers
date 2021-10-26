@@ -81,7 +81,7 @@ const Bet = (props) => {
                         min={50} 
                         max={500} 
                         step={10} 
-                        defaultValue={100}
+                        defaultValue={250}
                         trackStyle={{backgroundColor: '#ff4646', height: 10}}
                         handleStyle={{borderColor: '#ff6868',height: 28, width: 28, marginLeft: -14, marginTop: -9}}
                         railStyle={{backgroundColor: '#ff9e9e', height: 10}}
@@ -96,15 +96,15 @@ const Bet = (props) => {
                 <h1 className="choosecarprompt">Choose a car!</h1>
                 <div className="displayCards">
                     <img className="displayCars" src={Car1Props.img} alt="Car 1"/>
-                    <button className="betButton" style={{backgroundColor: button1Color}} onClick={setCar1}>Bet Car 1</button>
+                    <button className="betButton" style={{backgroundColor: button1Color, textShadow: '0px 4px 4px rgba(0, 0, 0, 0.1)'}} onClick={setCar1}>Bet Car 1</button>
                 </div>
                 <div className="displayCards">
                     <img className="displayCars" src={Car2Props.img} alt="Car 2"/>
-                    <button className="betButton" style={{backgroundColor: button2Color}} onClick={setCar2}>Bet Car 2</button>
+                    <button className="betButton" style={{backgroundColor: button2Color, textShadow: '0px 4px 4px rgba(0, 0, 0, 0.1)'}} onClick={setCar2}>Bet Car 2</button>
                 </div>
                 <div className="displayCards">
                     <img className="displayCars" src={Car3Props.img} alt="Car 3"/>
-                    <button className="betButton" style={{backgroundColor: button3Color}} onClick={setCar3}>Bet Car 3</button>
+                    <button className="betButton" style={{backgroundColor: button3Color, textShadow: '0px 4px 4px rgba(0, 0, 0, 0.1)'}} onClick={setCar3}>Bet Car 3</button>
                 </div>
                 <div className="changebetcontainer">
                     <button className="changebet" onClick={resetBet}>Change Bet</button>
