@@ -29,7 +29,7 @@ export const TurboPowerUp = () => {
     // renders gas can at random pos & lane
     const [style, animate] = useSpring(() => ({
         props: turboSpawn(),
-        from: {x: turboCoords.x, y: turboCoords.y, top: 15},
+        from: {x: turboCoords.x, y: turboCoords.y, top: 18},
         loop: false
     }))
     

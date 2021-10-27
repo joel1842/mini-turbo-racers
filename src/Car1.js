@@ -54,13 +54,13 @@ const Car1 = () => {
             carCounter()
             await next({x:568, y:50, rotate:-45, config: {duration: Car1Props.speed}})
             carCounter()
-            await next({x:357, y:21, rotate: -90, config: {duration: Car1Props.speed}})
+            await next({x:450, y:21, rotate: -90, config: {duration: Car1Props.speed}})
             carCounter()
-            await next({x:357, config: {duration: Car1Props.speed}})
+            await next({x:336, config: {duration: Car1Props.speed}})
             carCounter()
-            await next({x:207, config: {duration: Car1Props.speed}})
+            await next({x:224, config: {duration: Car1Props.speed}})
             carCounter()
-            // 5
+            //5
             await next({x:112, config: {duration: Car1Props.speed}})
             carCounter()
             await next({x:51, y:52, rotate:-135, config: {duration: Car1Props.speed}})

@@ -8,15 +8,15 @@ export const lane1Positions = {
         y:50
     },
     3: {
-        x:357, 
+        x:450, 
         y:21
     },
     4: {
-        x:357, 
+        x:336, 
         y:21
     },
     5: {
-        x: 207,
+        x: 224,
         y: 21
     },
     6: {
@@ -36,7 +36,7 @@ export const lane1Positions = {
         y: 325
     },
     10: {
-        x: 64,
+        x: 32,
         y: 540
     },
     11: {
@@ -81,10 +81,10 @@ export const lane1Positions = {
     }, 
     21: {
         x: 337,
-        y: 295
+        y: 272
     }, 
     22: {
-        x: 337, 
+        x: 377, 
         y: 295
     },
     23: {

@@ -29,7 +29,7 @@ export const GasCanPowerUp = () => {
     // renders gas can at random pos & lane
     const [style, animate] = useSpring(() => ({
         props: gasCanSpawn(),
-        from: {x: gasCanCoords.x, y: gasCanCoords.y, top: 15},
+        from: {x: gasCanCoords.x, y: gasCanCoords.y, top: 18},
         loop: false
     }))
     

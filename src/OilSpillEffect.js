@@ -10,13 +10,14 @@ export const OilSpill = {
     pos: null
 }
 
-export const OilSpillEffect = () => {
+export const OilSpillEffect = (props) => {
 
     // random position & lane generator
     let oilSpillCoords;
     const oilSpillSpawn = () => {
         OilSpill.lane = Math.floor(Math.random() * 3) + 1;
         OilSpill.pos = Math.floor(Math.random() * 45) + 1;
+
         if (OilSpill.lane === 1) {
             oilSpillCoords = lane1Positions[OilSpill.pos]
         } else if (OilSpill.lane === 2) {
@@ -29,7 +30,7 @@ export const OilSpillEffect = () => {
     // renders gas can at random pos & lane
     const [style, animate] = useSpring(() => ({
         props: oilSpillSpawn(),
-        from: {x: oilSpillCoords.x, y: oilSpillCoords.y, top: 15}
+        from: {x: oilSpillCoords.x, y: oilSpillCoords.y, top: 18}
     }))
     
     return(

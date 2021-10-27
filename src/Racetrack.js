@@ -42,6 +42,9 @@ const Racetrack = (props) => {
     // triggers race
     function onStart() {
         if (betCar !== undefined) {
+            console.log(Car1Props.name, Car1Props.speed)
+            console.log(Car2Props.name, Car2Props.speed)
+            console.log(Car3Props.name, Car3Props.speed)
             props.setBank(-betAmount)
             toggleBetDisplay(false)
             toggleTrackDisplay(true)
@@ -132,8 +135,11 @@ const Racetrack = (props) => {
         checkWinstreak()
         playerPlace()
         clearInterval(leaderboardInterval)
+
+        if (!isBankrupt) {
+            setVisible(true)
+        }
         
-        setVisible(true)
     }
 
     // sets place display at the end of race
@@ -153,16 +159,25 @@ const Racetrack = (props) => {
     const [outcome, setOutcome] = useState(undefined)
     function checkMoney() {
         if (carArray[0].name === betCar.name) {
-            props.setBank(Math.round(betAmount * 2))
-            setMoneyWon(Math.round(betAmount * 2))
+            if (winstreak >= 2) {
+                setMoneyWon(Math.round((betAmount * 2) * winstreak))
+                props.setBank(Math.round((betAmount * 2) * winstreak))
+            } else {
+                setMoneyWon(Math.round(betAmount * 2))
+                props.setBank(Math.round(betAmount * 2))
+            }
             setOutcome('won')
         } else if (carArray[1].name === betCar.name) {
-            props.setBank(Math.round(betAmount * 1.25))
             setMoneyWon(Math.round(betAmount * 1.25))
+            props.setBank(Math.round(betAmount * 1.25))
             setOutcome('won')
         } else if (carArray[2].name === betCar.name) {
-            props.setBank(-Math.round(betAmount * 0.5))
             setMoneyWon(Math.round(betAmount * 0.5))
+            if (props.globalBank >= moneyWon) {
+                props.setBank(-Math.round(betAmount * 0.5))
+            } else {
+                bankrupt()
+            }
             setOutcome('lost')
         }
     }
@@ -184,16 +199,21 @@ const Racetrack = (props) => {
 
     function buyGasCan() {
         if (betCar.hasEffect === false) {
-            props.setBank(-100)
-            betCar.speed = 80;
-            betCar.hasEffect = true;
-            console.log('Gas Can picked up by', betCar.name);
-    
-            setTimeout(() => {
-                betCar.speed = 100;
-                betCar.hasEffect = false;
-                console.log("Gas Can has worn off", betCar.name)
-            }, 3000)
+            if (props.globalBank >= 100) {
+                props.setBank(-100)
+                betCar.speed = 80;
+                betCar.hasEffect = true;
+                console.log('Gas Can picked up by', betCar.name);
+        
+                setTimeout(() => {
+                    betCar.speed = 100;
+                    betCar.hasEffect = false;
+                    console.log("Gas Can has worn off", betCar.name)
+                }, 3000)
+            } else {
+                bankrupt()
+            }
+
         } else {
             console.log(betCar.name, "has effect currently, please try again")
         }
@@ -201,16 +221,21 @@ const Racetrack = (props) => {
 
     function buyTurbo() {
         if (betCar.hasEffect === false) {
-            props.setBank(-200)
-            betCar.speed = 70;
-            betCar.hasEffect = true;
-            console.log('Turbo picked up by', betCar.name);
-    
-            setTimeout(() => {
-                betCar.speed = 100;
-                betCar.hasEffect = false;
-                console.log("Turbo has worn off", betCar.name)
-            }, 2000)
+            if (props.globalBank >= 200) { 
+                props.setBank(-200)
+                betCar.speed = 70;
+                betCar.hasEffect = true;
+                console.log('Turbo picked up by', betCar.name);
+        
+                setTimeout(() => {
+                    betCar.speed = 100;
+                    betCar.hasEffect = false;
+                    console.log("Turbo has worn off", betCar.name)
+                }, 2000)
+            } else {
+                bankrupt()
+            }
+
         } else {
             console.log(betCar.name, "has effect currently, please try again")
         }
@@ -219,50 +244,76 @@ const Racetrack = (props) => {
     function buyOilSpill() {
         if (Car1Props.name === first) {
             if (Car1Props.hasEffect === false) {
-                props.setBank(-75)
-                Car1Props.speed = 150;
-                Car1Props.hasEffect = true;
-                console.log("Oil Spill picked up by", Car1Props.name)
-                
-                setTimeout(() => {
-                    Car1Props.speed = 100;
-                    Car1Props.hasEffect = false;
-                    console.log("Oil Spill has worn off", Car1Props.name)
-                }, 2000)
+                if (props.globalBank >= 75) {
+                    props.setBank(-75)
+                    Car1Props.speed = 115;
+                    Car1Props.hasEffect = true;
+                    console.log("Oil Spill picked up by", Car1Props.name)
+                    
+                    setTimeout(() => {
+                        Car1Props.speed = 100;
+                        Car1Props.hasEffect = false;
+                        console.log("Oil Spill has worn off", Car1Props.name)
+                    }, 2000)
+                } else {
+                    bankrupt()
+                }
             } else {
                 console.log(Car1Props.name, "has effect, try again.")
             }    
         } else if (Car2Props.name === first) {
             if (Car2Props.hasEffect === false) {
-                props.setBank(-75)
-                Car2Props.speed = 150;
-                Car2Props.hasEffect = true;
-                console.log("Oil Spill picked up by", Car2Props.name)
-                
-                setTimeout(() => {
-                    Car2Props.speed = 100;
-                    Car2Props.hasEffect = false;
-                    console.log("Oil Spill has worn off", Car2Props.name)
-                }, 2000)
+                if (props.globalBank >= 75) {
+                    props.setBank(-75)
+                    Car2Props.speed = 115;
+                    Car2Props.hasEffect = true;
+                    console.log("Oil Spill picked up by", Car2Props.name)
+                    
+                    setTimeout(() => {
+                        Car2Props.speed = 100;
+                        Car2Props.hasEffect = false;
+                        console.log("Oil Spill has worn off", Car2Props.name)
+                    }, 2000)
+                } else {
+                    bankrupt()
+                }
             } else {
                 console.log(Car2Props.name, "has effect, try again.")
             }
         } else if (Car3Props.name === first) {
             if (Car3Props.hasEffect === false) {
-                props.setBank(-75)
-                Car3Props.speed = 150;
-                Car3Props.hasEffect = true;
-                console.log("Oil Spill picked up by", Car3Props.name)
-                
-                setTimeout(() => {
-                    Car3Props.speed = 100;
-                    Car3Props.hasEffect = false;
-                    console.log("Oil Spill has worn off", Car3Props.name)
-                }, 2000)
+                if (props.globalBank >= 75) { 
+                    props.setBank(-75)
+                    Car3Props.speed = 115;
+                    Car3Props.hasEffect = true;
+                    console.log("Oil Spill picked up by", Car3Props.name)
+                    
+                    setTimeout(() => {
+                        Car3Props.speed = 100;
+                        Car3Props.hasEffect = false;
+                        console.log("Oil Spill has worn off", Car3Props.name)
+                    }, 2000)
+                } else {
+                    bankrupt()
+                }
+
             } else {
                 console.log(Car3Props.name, "has effect, try again.")
             }
         }
+    }
+
+    // shows bankrupt popup and restarts the game
+    const [isBankrupt, setBankrupt] = useState(false)
+    function bankrupt() {
+        setBankrupt(true)
+        setTimeout(() => {
+            refresh()
+        }, 4000)
+    }
+
+    function refresh() {
+        window.location.reload()
     }
 
 
@@ -287,6 +338,7 @@ const Racetrack = (props) => {
         setSecondColor('none')
         setThirdColor('none')
         setPlace(null)
+        setBankrupt(false)
 
         resetCar1()
         resetCar2()
@@ -394,9 +446,10 @@ const Racetrack = (props) => {
                 <div className="popup">
                     <h2 className="finalPlace">You placed</h2>
                     <h1 className="numberPlace">{place} <img className="popupCar" src={betCar.img} alt={betCar.name} /></h1>
+                    {winDisplay ? <h3 className='winstreak'>Winstreak: {winstreak}x</h3> : null}
                     <h2 className="won">You {outcome}</h2>
                     <h1 className="moneyWon">{moneyWon} <img className="popupCoin" src={coin} alt="Coins" /></h1>
-                    {winDisplay ? <h3>Winstreak: {winstreak}x</h3> : null}
+                    {/*    */}
                     <button className='playAgain' onClick={playAgain}>Play Again!</button>
                 </div>
             </div>
@@ -411,6 +464,17 @@ const Racetrack = (props) => {
                     </div>
                 </div>
             : null}
+
+            {isBankrupt ?
+            <div className="popupContainer">    
+                <div className="popup">
+                    <h1 className="gameOver">Game Over!</h1>
+                    <h2 className="bankrupt">Oh no! YOU'RE BANKRUPT!</h2>
+                    <h3 className="repo">The bank had to repossess your house!</h3>
+                    <button className="tryAgain" onClick={refresh}>Try again!</button>
+                </div>
+            </div>
+            : null }
 
         </div>
     )
