@@ -5,7 +5,7 @@ export const Car1Props = {
     name: 'Car 1',
     img: carImg,
     lane: 1,
-    speed: 100,
+    speed: 95,
     startTime: null,
     time: null,
     lap: 0,
@@ -22,6 +22,6 @@ export const resetCar1 = () => {
     Car1Props.doneRace = false;
     Car1Props.startTime = null;
     Car1Props.time = null;
-    Car1Props.speed = 100;
+    Car1Props.speed = 95;
     Car1Props.hasEffect = false;
 }

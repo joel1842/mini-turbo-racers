@@ -206,7 +206,13 @@ const Racetrack = (props) => {
                 console.log('Gas Can picked up by', betCar.name);
         
                 setTimeout(() => {
-                    betCar.speed = 100;
+                    if (betCar.name === Car1Props.name) {
+                        betCar.speed = 95;
+                    } else if (betCar.name === Car2Props.name){
+                        betCar.speed = 100;
+                    } else if (betCar.name === Car3Props.name) {
+                        betCar.speed = 105;
+                    }
                     betCar.hasEffect = false;
                     console.log("Gas Can has worn off", betCar.name)
                 }, 3000)
@@ -228,7 +234,14 @@ const Racetrack = (props) => {
                 console.log('Turbo picked up by', betCar.name);
         
                 setTimeout(() => {
-                    betCar.speed = 100;
+                    if (betCar.name === Car1Props.name) {
+                        betCar.speed = 95;
+                    } else if (betCar.name === Car2Props.name){
+                        betCar.speed = 100;
+                    } else if (betCar.name === Car3Props.name) {
+                        betCar.speed = 105;
+                    }
+                    
                     betCar.hasEffect = false;
                     console.log("Turbo has worn off", betCar.name)
                 }, 2000)
@@ -251,7 +264,7 @@ const Racetrack = (props) => {
                     console.log("Oil Spill picked up by", Car1Props.name)
                     
                     setTimeout(() => {
-                        Car1Props.speed = 100;
+                        Car1Props.speed = 95;
                         Car1Props.hasEffect = false;
                         console.log("Oil Spill has worn off", Car1Props.name)
                     }, 2000)
@@ -289,7 +302,7 @@ const Racetrack = (props) => {
                     console.log("Oil Spill picked up by", Car3Props.name)
                     
                     setTimeout(() => {
-                        Car3Props.speed = 100;
+                        Car3Props.speed = 105;
                         Car3Props.hasEffect = false;
                         console.log("Oil Spill has worn off", Car3Props.name)
                     }, 2000)

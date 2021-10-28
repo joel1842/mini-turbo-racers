@@ -20,8 +20,9 @@ html {
 }
 
 .logo img {
-  width: 500px;
-  margin-top: 20px;
+  width: 300px;
+  margin-top: 50px;
+  filter: drop-shadow(4px 4px 4px  rgba(0, 0, 0, 0.3));
 }
 
 .navbar hr {
@@ -33,7 +34,6 @@ html {
 }
 
 .btn-menu {
-  padding-top: 20px;
 }
 
 .btn-menu button {

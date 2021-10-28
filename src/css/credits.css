@@ -3,31 +3,59 @@
 .credits {
     padding-top: 5%;
     text-align: center;
+    
 }
 
 .creditsimg {
     width:225px;
+    margin-bottom: 20px;
+}
+
+.creditsContainer {
+    border: 20px solid #FF4848;
+    background: #FF8686;
+    border-radius: 53px;
+    width: 300px;
+    height: 250px;
+    margin: auto;
 }
 
 .credits h3 {
-    color: #ff0000;
-    font-size: 20px;
+    color: white;
+    font-size: 18px;
     font-weight: 600;
-    padding-top: 15px;
+    padding-top: 30px;
+    text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.1);
 }
 
 .credits p {
-    color: #ff6868;
-    font-size: 30px;
+    font-family: Bungee;
+    margin-top: -25px;
+    margin-bottom: 5px;
+    color: white;
+    font-size: 35px;
     font-weight: 700;
+    text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.20);
 }
+
 
 .githubicon {
     width: 50px;
     margin-right: 10px;
+    filter: drop-shadow(0px 2px 0px  rgba(0, 0, 0, 0.1));
 }
 
 .linkedinicon {
     width: 50px;
     margin-left: 10px;
+    filter: drop-shadow(0px 2px 0px  rgba(0, 0, 0, 0.1));
+}
+
+.creditButton {
+    margin-top: 15px;
+    text-align: center;
+}
+
+.homeButton a {
+    text-decoration: none;
 }

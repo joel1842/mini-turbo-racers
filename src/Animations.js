@@ -74,11 +74,11 @@ export default function RenderGame() {
                 console.log('Gas Can picked up by Car 1');
     
                 setTimeout(() => {
-                    Car1Props.speed = 100;
+                    Car1Props.speed = 95;
                     Car1Props.hasEffect = false;
                     console.log("Gas Can has worn off Car 1")
     
-                }, 3000)
+                }, 2000)
             } else if (GasCan.pos === Car2Props.position && GasCan.lane === Car2Props.lane && Car2Props.hasEffect === false) {
                 Car2Props.speed = 85;
                 Car2Props.hasEffect = true;
@@ -86,7 +86,7 @@ export default function RenderGame() {
                 console.log('Gas Can picked up by Car 2');
     
                 setTimeout(() => {
-                    Car2Props.speed = 100;
+                    Car2Props.speed = 97;
                     Car2Props.hasEffect = false;
                     console.log("Gas Can has worn off Car 2")
                 }, 3000)
@@ -100,7 +100,7 @@ export default function RenderGame() {
                     Car3Props.speed = 100;
                     Car3Props.hasEffect = false;
                     console.log("Gas Can has worn off Car 3")
-                }, 3000)
+                }, 4000)
             }
         }
     
@@ -129,11 +129,11 @@ export default function RenderGame() {
                 console.log('Turbo picked up by Car 1');
     
                 setTimeout(() => {
-                    Car1Props.speed = 100;
+                    Car1Props.speed = 95;
                     Car1Props.hasEffect = false;
                     console.log("Turbo has worn off Car 1")
     
-                }, 2000)
+                }, 1000)
             } else if (Turbo.pos === Car2Props.position && Turbo.lane === Car2Props.lane && Car2Props.hasEffect === false) {
                 Car2Props.speed = 70;
                 Car2Props.hasEffect = true;
@@ -141,7 +141,7 @@ export default function RenderGame() {
                 console.log('Turbo picked up by Car 2');
     
                 setTimeout(() => {
-                    Car2Props.speed = 100;
+                    Car2Props.speed = 97;
                     Car2Props.hasEffect = false;
                     console.log("Turbo has worn off Car 2")
                 }, 2000)
@@ -155,7 +155,7 @@ export default function RenderGame() {
                     Car3Props.speed = 100;
                     Car3Props.hasEffect = false;
                     console.log("Turbo has worn off Car 3")
-                }, 2000)
+                }, 3000)
             }
         }
     
@@ -184,7 +184,7 @@ export default function RenderGame() {
                 console.log('Oil Spill picked up by Car 1');
     
                 setTimeout(() => {
-                    Car1Props.speed = 100;
+                    Car1Props.speed = 95;
                     Car1Props.hasEffect = false;
                     console.log("Oil Spill has worn off Car 1")
     
@@ -196,10 +196,10 @@ export default function RenderGame() {
                 console.log('Oil Spill picked up by Car 2');
     
                 setTimeout(() => {
-                    Car2Props.speed = 100;
+                    Car2Props.speed = 97;
                     Car2Props.hasEffect = false;
                     console.log("Oil Spill has worn off Car 2")
-                }, 3000)
+                }, 1000)
             } else if (OilSpill.pos === Car3Props.position && OilSpill.lane === Car3Props.lane && Car3Props.hasEffect === false) {
                 Car3Props.speed = 115;
                 Car3Props.hasEffect = true;
@@ -210,7 +210,7 @@ export default function RenderGame() {
                     Car3Props.speed = 100;
                     Car3Props.hasEffect = false;
                     console.log("Oil Spill has worn off Car 3")
-                }, 3000)
+                }, 2000)
             }
         }
 

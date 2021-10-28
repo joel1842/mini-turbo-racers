@@ -12,12 +12,63 @@
     text-align: center;
     padding-top: 10px;
     padding-bottom: 10px;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    column-gap: 20px;
+    width: 850px;
 }
 
-.displayCards {
-    display: flex;
+.chooseCarPrompt {
+    grid-column: 1/4;
+}
+
+.displayCar1 {
+    border: 20px solid #FFE6A6;
+    border-radius: 53px;
+    background: #FFD772;
+}
+
+.displayCar2 {
+    border: 20px solid #FFC9CF;
+    border-radius: 53px;
+    background: #FFA4AF;
+}
+
+.displayCar3 {
+    border: 20px solid #BAFAEE;
+    border-radius: 53px;
+    background: #6CF0D8;
+}
+
+.carHeader {
+    font-family: Bungee;
+    font-size: 22px;
+    margin-top: 5px;
+    margin-bottom: 0px;
+    color: white;
+    text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+}
+
+.speedContainer {
+    margin-top: -5px;
+    display: inline-flex;
     align-items: center;
-    justify-content: center;
+}
+
+.speed {
+    text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.15);
+}
+
+.speedDisplay {
+    margin-left: 10px;
+    width: 110px;
+    filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.15));
+}
+
+.desc {
+    margin-top: 0;
+    font-size: 15px;
+    text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.05);
 }
 
 .betButton {
@@ -26,8 +77,8 @@
     font-weight: 700;
     font-size: 20px;
     color: white;
-    margin: 15px;
-    margin-left: 20px;
+    margin-top: 5px;
+    margin-bottom: 20px;
     padding: 8px 15px;
     border: none;
     border-radius: 10px;
@@ -95,14 +146,10 @@
 
 .chooseCar {
     color: white;
-    border: 20px solid #FF4848;
-    background: #FF8686;
-    border-radius: 53px;
-    width: 300px;
     margin: auto;
 }
 
-.choosecarprompt {
+.chooseCarPrompt {
     font-family: Bungee;
     font-size: 25px;
     margin-top: 0;
@@ -116,7 +163,8 @@
 }
 
 .displayCars {
-    width: 35px;
+    width: 50px;
+    transform: rotate(-90deg);
     filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));
 }
 
@@ -127,12 +175,13 @@
     border-radius: 53px;
     background: #81FF95;
     width: 300px;
-    margin-top: 40px;
-    margin-bottom: 20px;
+    margin-top: 20px;
+    margin-bottom: 10px;
 }
 
 .changebetcontainer {
     padding-top: 10px;
+    grid-column:  1/4;
 }
 
 .changebet {

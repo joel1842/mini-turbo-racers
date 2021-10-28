@@ -5,9 +5,8 @@ import {
   Route,
   Link
 } from "react-router-dom";
-import logo from "./img/logo.png";
+import logo from "./img/miniturbologo.png";
 import flag from "./img/checkeredFlag.png";
-import garageIcon from "./img/garageIcon.png";
 import rulesIcon from "./img/rulesIcon.png";
 import starIcon from "./img/starIcon.png";
 import Racetrack from "./Racetrack";
@@ -39,12 +38,6 @@ function App() {
                       <button>
                         <img src={flag} alt="Start" /> 
                         <a href="/track">Start Game!</a>
-                      </button>
-                    </Link>
-                    <Link to="/garage">
-                      <button>
-                        <img src={garageIcon} alt="Garage" />
-                        <a href="/garage">Garage</a>
                       </button>
                     </Link>
                     <Link to="/howtoplay">

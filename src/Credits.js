@@ -12,22 +12,24 @@ const Credits = () => {
         <div>
             <div className="credits">
                 <img className="creditsimg" src={creditsTitle} alt="Credits" />
-                <h3>Design & Programming</h3>
-                <p>JOEL LAKE</p>
-                <div>
-                    <a href="https://github.com/joel1842/mini-turbo-racers">
-                        <img className="githubicon" src={github} alt="github" />
-                    </a>
-                    <a href="https://www.linkedin.com/in/joel-lake/">
-                        <img className="linkedinicon" src={linkedin} alt="linkedin" />
-                    </a>
+                <div className="creditsContainer">
+                    <h3>Design & Programming</h3>
+                    <p>JOEL LAKE</p>
+                    <div>
+                        <a href="https://github.com/joel1842/mini-turbo-racers">
+                            <img className="githubicon" src={github} alt="github" />
+                        </a>
+                        <a href="https://www.linkedin.com/in/joel-lake/">
+                            <img className="linkedinicon" src={linkedin} alt="linkedin" />
+                        </a>
+                    </div>
                 </div>
                 
             </div>
             
-            <div className="homebtn">
+            <div className="creditButton">
                 <Link to="/">
-                    <button>
+                    <button className='homeButton'>
                         <a href="/">Go back!</a>
                     </button>
                 </Link>

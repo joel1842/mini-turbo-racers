@@ -6,26 +6,29 @@ import { Car1Props } from "./Car1Props.js";
 import { Car2Props } from "./Car2Props.js";
 import { Car3Props } from "./Car3Props.js";
 import coin from "./img/coin.png";
+import car1Speed from './img/car1speed.png';
+import car2Speed from './img/car2speed.png';
+import car3Speed from './img/car3speed.png';
 
 const Bet = (props) => {
     // default bet amount
     const [betPrice, setBet] = useState(250)
 
     const [lockBet, setLockBet] = useState(false)
-    const [button1Color, setButton1Color] = useState("#81FF95")
-    const [button2Color, setButton2Color] = useState("#81FF95")
-    const [button3Color, setButton3Color] = useState("#81FF95")
+    const [button1Color, setButton1Color] = useState("#73ff66")
+    const [button2Color, setButton2Color] = useState("#73ff66")
+    const [button3Color, setButton3Color] = useState("#73ff66")
 
 
     // changes button color to show bet is locked
     function change1Color() {
-        setButton1Color('#1fff44')
+        setButton1Color('#15ff00')
     }
     function change2Color() {
-        setButton2Color('#1fff44')
+        setButton2Color('#15ff00')
     }
     function change3Color() {
-        setButton3Color('#1fff44')
+        setButton3Color('#15ff00')
     }
     
     // sets bet car & amount, locks bet & changes button color
@@ -61,9 +64,9 @@ const Bet = (props) => {
     // unlocks bet and resets button colors
     function resetBet() {
         setLockBet(false)
-        setButton1Color("#81FF95")
-        setButton2Color("#81FF95")
-        setButton3Color("#81FF95")
+        setButton1Color("#73ff66")
+        setButton2Color("#73ff66")
+        setButton3Color("#73ff66")
     }
 
     return (
@@ -93,17 +96,35 @@ const Bet = (props) => {
             </div>
 
             <div className="chooseCar">
-                <h1 className="choosecarprompt">Choose a car!</h1>
-                <div className="displayCards">
+                <h1 className="chooseCarPrompt">Choose a car!</h1>
+                <div className="displayCar1">
+                    <h1 className='carHeader'>CAR 1</h1>
                     <img className="displayCars" src={Car1Props.img} alt="Car 1"/>
+                    <div className='speedContainer'>
+                        <h3 className='speed'>Speed</h3>
+                        <img className='speedDisplay' src={car1Speed} alt="Car 1 Speed" />
+                    </div>
+                    <h4 className="desc">shortest lasting power-ups</h4>
                     <button className="betButton" style={{backgroundColor: button1Color, textShadow: '0px 4px 4px rgba(0, 0, 0, 0.1)'}} onClick={setCar1}>Bet Car 1</button>
                 </div>
-                <div className="displayCards">
+                <div className="displayCar2">
+                    <h1 className='carHeader'>CAR 2</h1>
                     <img className="displayCars" src={Car2Props.img} alt="Car 2"/>
+                    <div className='speedContainer'>
+                        <h3 className='speed'>Speed</h3>
+                        <img className='speedDisplay' src={car2Speed} alt="Car 2 Speed" />
+                    </div>
+                    <h4 className="desc">shorter oil spill effect</h4>
                     <button className="betButton" style={{backgroundColor: button2Color, textShadow: '0px 4px 4px rgba(0, 0, 0, 0.1)'}} onClick={setCar2}>Bet Car 2</button>
                 </div>
-                <div className="displayCards">
+                <div className="displayCar3">
+                    <h1 className='carHeader'>CAR 3</h1>
                     <img className="displayCars" src={Car3Props.img} alt="Car 3"/>
+                    <div className='speedContainer'>
+                        <h3 className='speed'>Speed</h3>
+                        <img className='speedDisplay' src={car3Speed} alt="Car 3 Speed" />
+                    </div>
+                    <h4 className="desc">longest lasting power-ups</h4>
                     <button className="betButton" style={{backgroundColor: button3Color, textShadow: '0px 4px 4px rgba(0, 0, 0, 0.1)'}} onClick={setCar3}>Bet Car 3</button>
                 </div>
                 <div className="changebetcontainer">
