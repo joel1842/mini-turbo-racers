@@ -16,6 +16,17 @@ import Credits from './Credits';
 
 function App() {
 
+  const style = {
+    backgroundImage: "url('../img/trackbackground.jpg')",
+    backgroundPosition: 'center',
+    backgroundSize: 'cover',
+    backgroundRepeat: 'no-repeat',
+    width: '100vw',
+    height: '100vh'
+  }
+
+  document.body.style = style;
+
   // bank is stored globally
   const [globalBank, setGlobalBank] = useState(1000)
 
