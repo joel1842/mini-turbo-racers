@@ -4,10 +4,22 @@ import { GasCanPowerUp } from './GasCanPowerUp';
 import './css/animations.css'
 import Car1 from "./Car1";
 import { Car1Props } from "./Car1Props";
+import Car1Img from './img/orange car.png';
+import Car1GasPower from './img/car1gasboost.png';
+import Car1TurboBoost from './img/car1turboboost.png';
+import Car1OilSpill from './img/car1oilspill.png';
 import Car2 from "./Car2";
 import { Car2Props } from "./Car2Props";
+import Car2Img from './img/neon car.png';
+import Car2GasPower from './img/car2gasboost.png';
+import Car2TurboBoost from './img/car2turboboost.png';
+import Car2OilSpill from './img/car2oilspill.png';
 import Car3 from "./Car3";
 import { Car3Props } from "./Car3Props";
+import Car3Img from './img/blue car.png';
+import Car3GasPower from './img/car3gasboost.png';
+import Car3TurboBoost from './img/car3turboboost.png';
+import Car3OilSpill from './img/car3oilspill.png';
 import track from './img/track.png';
 import { TurboPowerUp } from "./TurboPowerUp";
 import { OilSpillEffect } from "./OilSpillEffect";
@@ -70,35 +82,41 @@ export default function RenderGame() {
             if (GasCan.pos === Car1Props.position && GasCan.lane === Car1Props.lane && Car1Props.hasEffect === false) {
                 Car1Props.speed = 85;
                 Car1Props.hasEffect = true;
+                Car1Props.img = Car1GasPower;
                 toggleGasCan(false)
                 console.log('Gas Can picked up by Car 1');
     
                 setTimeout(() => {
                     Car1Props.speed = 95;
                     Car1Props.hasEffect = false;
+                    Car1Props.img = Car1Img;
                     console.log("Gas Can has worn off Car 1")
     
                 }, 2000)
             } else if (GasCan.pos === Car2Props.position && GasCan.lane === Car2Props.lane && Car2Props.hasEffect === false) {
                 Car2Props.speed = 85;
                 Car2Props.hasEffect = true;
+                Car2Props.img = Car2GasPower;
                 toggleGasCan(false)
                 console.log('Gas Can picked up by Car 2');
     
                 setTimeout(() => {
                     Car2Props.speed = 97;
                     Car2Props.hasEffect = false;
+                    Car2Props.img = Car2Img;
                     console.log("Gas Can has worn off Car 2")
                 }, 3000)
             } else if (GasCan.pos === Car3Props.position && GasCan.lane === Car3Props.lane && Car3Props.hasEffect === false) {
                 Car3Props.speed = 85;
                 Car3Props.hasEffect = true;
+                Car3Props.img = Car3GasPower;
                 toggleGasCan(false)
                 console.log('Gas Can picked up by Car 3');
     
                 setTimeout(() => {
                     Car3Props.speed = 100;
                     Car3Props.hasEffect = false;
+                    Car3Props.img = Car3Img;
                     console.log("Gas Can has worn off Car 3")
                 }, 4000)
             }
@@ -125,35 +143,41 @@ export default function RenderGame() {
             if (Turbo.pos === Car1Props.position && Turbo.lane === Car1Props.lane && Car1Props.hasEffect === false) {
                 Car1Props.speed = 70;
                 Car1Props.hasEffect = true;
+                Car1Props.img = Car1TurboBoost;
                 toggleTurbo(false)
                 console.log('Turbo picked up by Car 1');
     
                 setTimeout(() => {
                     Car1Props.speed = 95;
                     Car1Props.hasEffect = false;
+                    Car1Props.img = Car1Img;
                     console.log("Turbo has worn off Car 1")
     
                 }, 1000)
             } else if (Turbo.pos === Car2Props.position && Turbo.lane === Car2Props.lane && Car2Props.hasEffect === false) {
                 Car2Props.speed = 70;
                 Car2Props.hasEffect = true;
+                Car2Props.img = Car2TurboBoost;
                 toggleTurbo(false)
                 console.log('Turbo picked up by Car 2');
     
                 setTimeout(() => {
                     Car2Props.speed = 97;
                     Car2Props.hasEffect = false;
+                    Car2Props.img = Car2Img;
                     console.log("Turbo has worn off Car 2")
                 }, 2000)
             } else if (Turbo.pos === Car3Props.position && Turbo.lane === Car3Props.lane && Car3Props.hasEffect === false) {
                 Car3Props.speed =  70;
                 Car3Props.hasEffect = true;
+                Car3Props.img = Car3TurboBoost;
                 toggleTurbo(false)
                 console.log('Turbo picked up by Car 3');
     
                 setTimeout(() => {
                     Car3Props.speed = 100;
                     Car3Props.hasEffect = false;
+                    Car3Props.img = Car3Img;
                     console.log("Turbo has worn off Car 3")
                 }, 3000)
             }
@@ -180,35 +204,41 @@ export default function RenderGame() {
             if (OilSpill.pos === Car1Props.position && OilSpill.lane === Car1Props.lane && Car1Props.hasEffect === false) {
                 Car1Props.speed = 115;
                 Car1Props.hasEffect = true;
+                Car1Props.img = Car1OilSpill;
                 toggleOilSpill(false)
                 console.log('Oil Spill picked up by Car 1');
     
                 setTimeout(() => {
                     Car1Props.speed = 95;
                     Car1Props.hasEffect = false;
+                    Car1Props.img = Car1Img;
                     console.log("Oil Spill has worn off Car 1")
     
                 }, 3000)
             } else if (OilSpill.pos === Car2Props.position && OilSpill.lane === Car2Props.lane && Car2Props.hasEffect === false) {
                 Car2Props.speed = 115;
                 Car2Props.hasEffect = true;
+                Car2Props.img = Car2OilSpill;
                 toggleOilSpill(false)
                 console.log('Oil Spill picked up by Car 2');
     
                 setTimeout(() => {
                     Car2Props.speed = 97;
                     Car2Props.hasEffect = false;
+                    Car2Props.img = Car2Img;
                     console.log("Oil Spill has worn off Car 2")
                 }, 1000)
             } else if (OilSpill.pos === Car3Props.position && OilSpill.lane === Car3Props.lane && Car3Props.hasEffect === false) {
                 Car3Props.speed = 115;
                 Car3Props.hasEffect = true;
+                Car3Props.img = Car3OilSpill;
                 toggleOilSpill(false)
                 console.log('Oil Spill picked up by Car 3');
     
                 setTimeout(() => {
                     Car3Props.speed = 100;
                     Car3Props.hasEffect = false;
+                    Car3Props.img = Car3Img;
                     console.log("Oil Spill has worn off Car 3")
                 }, 2000)
             }

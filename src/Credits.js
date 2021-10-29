@@ -13,7 +13,7 @@ const Credits = () => {
             <div className="credits">
                 <img className="creditsimg" src={creditsTitle} alt="Credits" />
                 <div className="creditsContainer">
-                    <h3>Design & Programming</h3>
+                    <h3>Graphics & Programming</h3>
                     <p>JOEL LAKE</p>
                     <div>
                         <a href="https://github.com/joel1842/mini-turbo-racers">
