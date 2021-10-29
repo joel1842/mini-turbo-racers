@@ -2,6 +2,15 @@
 @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@600;700&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@500&display=swap');
 
+/* html {
+    background-image: url('../img/trackbackground.jpg');
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
+    width: 100vw;
+    height: 100vh;
+  } */
+
 .buttonContainer{
     margin-top: 0px;
     text-align: center;
