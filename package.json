@@ -1,7 +1,10 @@
 {
   "name": "mini-turbo-derby",
   "version": "0.1.0",
-  "private": true,
+  "engines": {
+      "node": "v16.6.2"
+  },
+  "private": false,
   "dependencies": {
     "@emotion/react": "^11.4.1",
     "@emotion/styled": "^11.3.0",
