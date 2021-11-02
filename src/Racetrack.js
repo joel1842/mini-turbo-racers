@@ -15,6 +15,18 @@ import rules from "./img/rulesIcon.png";
 
 
 const Racetrack = (props) => {
+
+    // useEffect(() => {
+    //     const initialValue = document.body.style.zoom;
+    
+    //     // Change zoom level on mount
+    //     document.body.style.zoom = "80%";
+    
+    //     return () => {
+    //       // Restore default value
+    //       document.body.style.zoom = initialValue;
+    //     };
+    //   }, []);
     
     let carArray = [Car1Props, Car2Props, Car3Props];
     const [betDisplay, toggleBetDisplay] = useState(true);
@@ -462,7 +474,6 @@ const Racetrack = (props) => {
                     {winDisplay ? <h3 className='winstreak'>Winstreak: {winstreak}x</h3> : null}
                     <h2 className="won">You {outcome}</h2>
                     <h1 className="moneyWon">{moneyWon} <img className="popupCoin" src={coin} alt="Coins" /></h1>
-                    {/*    */}
                     <button className='playAgain' onClick={playAgain}>Play Again!</button>
                 </div>
             </div>

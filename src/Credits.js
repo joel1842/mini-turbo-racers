@@ -15,7 +15,7 @@ const Credits = () => {
                 <div className="creditsContainer">
                     <h3>Graphics & Programming</h3>
                     <p>JOEL LAKE</p>
-                    <div>
+                    <div className="social">
                         <a href="https://github.com/joel1842/mini-turbo-racers">
                             <img className="githubicon" src={github} alt="github" />
                         </a>
