@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import {
   BrowserRouter as Router,
   Switch,
@@ -16,16 +16,14 @@ import Credits from './Credits';
 
 function App() {
 
-  const style = {
-    backgroundImage: "url('../img/trackbackground.jpg')",
-    backgroundPosition: 'center',
-    backgroundSize: 'cover',
-    backgroundRepeat: 'no-repeat',
-    width: '100vw',
-    height: '100vh'
-  }
-
-  document.body.style = style;
+  // const style = {
+  //   backgroundImage: "url('../img/trackbackground.jpg')",
+  //   backgroundPosition: 'center',
+  //   backgroundSize: 'cover',
+  //   backgroundRepeat: 'no-repeat',
+  //   width: '100vw',
+  //   height: '100vh'
+  // }
 
   // bank is stored globally
   const [globalBank, setGlobalBank] = useState(1000)

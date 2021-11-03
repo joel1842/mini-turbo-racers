@@ -2,15 +2,6 @@
 @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@600;700&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@500&display=swap');
 
-/* html {
-    background-image: url('../img/trackbackground.jpg');
-    background-position: center;
-    background-size: cover;
-    background-repeat: no-repeat;
-    width: 100vw;
-    height: 100vh;
-  } */
-
 .buttonContainer{
     margin-top: 0px;
     text-align: center;
@@ -18,13 +9,13 @@
 
 .homeButton {
     font-weight: 800;
-    font-size: large;
+    font-size: 1vw;
     color: white;
     background-color: #FF6868;
-    margin: 20px;
-    padding: 10px 24px;
+    margin: 1vw;
+    padding: 0.5vw 1vw;
     border: none;
-    border-radius: 10px;
+    border-radius: 0.9vw;
     text-decoration: none;
     text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.1);
     
@@ -36,13 +27,13 @@
 
 .start-Button {
     font-weight: 800;
-    font-size: large;
+    font-size: 1vw;
     color: white;
     background-color: rgb(115, 255, 102);
-    margin: 20px;
-    padding: 10px 24px;
+    margin: 1vw;
+    padding: 0.5vw 1vw;
     border: none;
-    border-radius: 10px;
+    border-radius: 0.9vw;
     text-decoration: none;
     text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.1);
 }
@@ -54,9 +45,9 @@
 .widgets {
     margin: auto;
     display: grid;
-    width: 800px;
+    width: 45vw;
     grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
-    column-gap: 5px;
+    column-gap: 1vw;
     grid-template-rows: auto;
     grid-template-areas: 
     "leaderboard betcar bank shop home"
@@ -67,24 +58,24 @@
     text-align: center;
     justify-content: center;
     color: white;
-    border: 12px solid #FF4848;
+    border: 0.7vw solid #FF4848;
     background: #FF8686;
-    border-radius: 53px;
-    width: 160px;
-    padding-bottom: 10px;
+    border-radius: 2.5vw;
+    width: 8vw;
+    padding-bottom: 0.1vh;
     grid-area: leaderboard;
 }
 
 .headerBox {
     grid-column: 1/4;
     padding: 0;
-    margin-top: 5px;
-    margin-bottom: 5px;
+    margin-top: 0.3vh;
+    margin-bottom: 0.3vh;
 }
 
 .headerBox hr {
-    border: 3px solid white;
-    border-radius: 7px;
+    border: 0.2vw solid white;
+    border-radius: 5vw;
     width: 60%;
     margin-top: 0;
     margin-bottom: 0;
@@ -92,7 +83,7 @@
 
 .header{
     font-family: Bungee;
-    font-size: 15px;
+    font-size: 0.8vw;
     color: white;
     text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
     margin-top: 0;
@@ -103,10 +94,10 @@
     font-family: Bungee;
     color: white;
     align-self: center;
-    font-size: 15px;
+    font-size: 0.8vw;
     text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
     margin-top: 0;
-    margin-right: 15px;
+    margin-right: 0.8vw;
     margin-bottom: 0;
     display: inline-block;
 }
@@ -115,7 +106,7 @@
     font-family: Montserrat;
     color: white;
     align-self: center;
-    font-size: 15px;
+    font-size: 0.8vw;
     text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
     margin-top: 0;
     margin-bottom: 0;
@@ -124,9 +115,9 @@
 
 .carImg {
     transform: rotate(90deg);
-    width: 20px;
+    width: 1vw;
     vertical-align: middle;
-    margin-left: 20px;
+    margin-left: 1vw;
     margin-top: 0;
     margin-bottom: 0;
     display: inline-block;
@@ -137,20 +128,20 @@
 .betCar {
     justify-self: center;
     align-self: center;
-    border: 12px solid #BEFFB9;
-    border-radius: 53px;
+    border: 0.7vw solid #BEFFB9;
+    border-radius: 3vw;
     background: #81FF95;
     text-align: center;
-    width: 125px;
+    width: 6.5vw;
     display: grid;
     grid-template-columns: 1fr 1fr;
-    padding-bottom: 10px;
+    padding-bottom: 1vh;
     grid-area: betcar;
 }
 
 .betHeader {
     font-family: Bungee;
-    font-size: 15px;
+    font-size: 0.8vw;
     color: white;
     text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
     margin-top: 0;
@@ -164,7 +155,7 @@
     color: white;
     align-self: center;
     justify-self: end;
-    font-size: 15px;
+    font-size: 0.8vw;
     text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
     margin-top: 0;
     margin-bottom: 0;
@@ -173,11 +164,11 @@
 
 .betCarDisplay {
     transform: rotate(90deg);
-    width: 20px;
+    width: 1vw;
     align-self: center;
     justify-self: start;
     margin-top: 0;
-    margin-left: 15px;
+    margin-left: 0.7vw;
     margin-bottom: 0;
     filter: drop-shadow(4px 0px 0px  rgba(0, 0, 0, 0.1));
 }
@@ -185,20 +176,20 @@
 .bank {
     justify-self: center;
     align-self: center;
-    border: 12px solid #FFFA8A;
-    border-radius: 53px;
+    border: 0.7vw solid #FFFA8A;
+    border-radius: 3vw;
     background: #FFE662;
     text-align: center;
-    width: 125px;
+    width: 6.5vw;
     display: grid;
     grid-template-columns: 1fr 1fr;
-    padding-bottom: 15px;
+    padding-bottom: 0.7vw;
     grid-area: bank;
 }
 
 .bankHeader {
     font-family: Bungee;
-    font-size: 15px;
+    font-size: 0.8vw;
     color: white;
     text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
     margin-top: 0;
@@ -211,8 +202,8 @@
     font-family: Montserrat;
     color: white;
     align-self: center;
-    padding-left: 30px;
-    font-size: 20px;
+    padding-left: 1.4vw;
+    font-size: 1vw;
     text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
     margin-top: 0;
     margin-bottom: 0;
@@ -220,10 +211,10 @@
 }
 
 .coin {
-    width: 20px;
+    width: 1vw;
     justify-self: center;
     align-self: center;
-    padding-right: 25px;
+    padding-right: 1vw;
     margin-top: 0;
     margin-bottom: 0;
     filter: drop-shadow(0px 4px 4px  rgba(0, 0, 0, 0.15));
@@ -234,18 +225,18 @@
     align-self: center;
     text-align: center;
     color: white;
-    width: 125px;
+    width: 6.5vw;
     padding: 0;
-    border: 12px solid #FF4848;
+    border: 0.7vw solid #FF4848;
     background: #FF8686;
-    border-radius: 53px;
-    padding-bottom: 10px;
+    border-radius: 3vw;
+    padding-bottom: 1vh;
     grid-area: timer;
 }
 
 .timerHeader {
     font-family: Bungee;
-    font-size: 15px;
+    font-size: 0.8vw;
     color: white;
     text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
     margin-top: 0;
@@ -255,7 +246,7 @@
 .timerDisplay {
     font-family: Orbitron;
     color: white;
-    font-size: 20px;
+    font-size: 1.1vw;
     text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
     margin-top: 0;
     margin-bottom: 0;
@@ -267,18 +258,18 @@
     align-self: center;
     text-align: center;
     color: white;
-    width: 125px;
+    width: 6.5vw;
     padding: 0;
-    border: 12px solid #FF4848;
+    border: 0.7vw solid #FF4848;
     background: #FF8686;
-    border-radius: 53px;
-    padding-bottom: 10px;
+    border-radius: 3vw;
+    padding-bottom: 1vh;
     grid-area: lap;
 }
 
 .lapHeader {
     font-family: Bungee;
-    font-size: 15px;
+    font-size: 0.8vw;
     color: white;
     text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
     margin-top: 0;
@@ -288,7 +279,7 @@
 .lapDisplay {
     font-family: Montserrat;
     color: white;
-    font-size: 20px;
+    font-size: 1vw;
     text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
     margin-top: 0;
     margin-bottom: 0;
@@ -300,15 +291,15 @@
     justify-content: center;
     color: white;
     padding: 0;
-    border: 12px solid #FF4848;
+    border: 0.7vw solid #FF4848;
     background: #FF8686;
-    border-radius: 53px;
-    width: 225px;
+    border-radius: 4vw;
+    width: 12vw;
     margin: auto;
     display: grid;
     grid-template-columns: 1fr 1fr 1fr;
     grid-area: shop;
-    padding-bottom: 10px;
+    padding-bottom: 1vh;
 }
 
 .shopHeaderBox {
@@ -317,25 +308,25 @@
 }
 
 .shopHeaderBox hr {
-    border: 3px solid white;
-    border-radius: 10px;
+    border: 0.2vw solid white;
+    border-radius: 3vw;
     width: 30%;
     margin-top: 0;
-    margin-bottom: 5px;
+    margin-bottom: 0.5vh;
 }
 
 .shopHeader {
     font-family: Bungee;
-    font-size: 15px;
+    font-size: 0.8vw;
     color: white;
     text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
     margin-top: 0;
-    margin-bottom: -3px;
+    margin-bottom: -0.1vh;
 }
 
 .itemImg {
-    width: 25px;
-    margin-left: 5px;
+    width: 1.3vw;
+    margin-left: 1vw;
     justify-self: center;
     align-self: center;
 }
@@ -343,7 +334,7 @@
 .itemName {
     font-family: Montserrat;
     color: white;
-    font-size: 16px;
+    font-size: 0.8vw;
     text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
     margin-top: 0;
     margin-bottom: 0;
@@ -354,16 +345,16 @@
 
 .buyButton {
     font-family: Bungee;
-    font-size: 10px;
+    font-size: 0.6vw;
     text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.1);
     color: white;
     background-color: rgb(115, 255, 102);
     border: none;
-    border-radius: 25px;
+    border-radius: 3vw;
     text-decoration: none;
-    margin: 2px;
-    height: 30px;
-    width: 50px;
+    margin: 0.1vw;
+    height: 3.5vh;
+    width: 3vw;
 }
 
 .buyButton:hover {
@@ -371,7 +362,28 @@
 }
 
 .shopCoin {
-    width: 15px;
+    width: 0.8vw;
+    vertical-align: middle;
+}
+
+.popoverBody {
+    border: 0.3vw solid #FFFA8A;
+    border-radius: 0.2vw 1vw 1vw 0.2vw ;
+    background: #FFE662;
+    padding: 0.3vw;
+    font-weight: 700;
+    font-size: 0.7vw;
+    margin-left: 0.5vw;
+    text-shadow: 0.3vw 00vw 0.4vw rgba(0, 0, 0, 0.2);
+}
+
+.popover-arrow-container {
+    position: relative;
+    vertical-align: middle;
+}
+
+.popover-arrow {
+    margin-left: 0.1vw;
     vertical-align: middle;
 }
 
@@ -380,21 +392,20 @@
     align-self: end;
     display: grid;
     grid-area: home;
-    margin-bottom: 5px;
+    margin-bottom: 0.5vh;
 
 }
 
 .home {
     font-family: Bungee;
-    font-size: 10px;
     text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.1);
     color: white;
     background-color: #FF4848;
-    border: 5px solid #ff7070;
-    border-radius: 22px;
+    border: 0.3vw solid #ff7070;
+    border-radius: 1.1vw;
     text-decoration: none;
-    width: 50px;
-    height: 75px;
+    width: 2.6vw;
+    height: 8vh;
 }
 
 .home:hover {
@@ -402,8 +413,9 @@
 }
 
 .homeImg {
-    width: 25px;
-    margin-top: 10px;
+    width: 1.2vw;
+    vertical-align: middle;
+    margin-bottom: 0.2vh;
 }
 
 .ruleButtonContainer {
@@ -411,7 +423,7 @@
     align-self: start;
     display: grid;
     grid-area: rules;
-    margin-top: 5px;
+    margin-top: 0.5vh;
 }
 
 .rules {
@@ -420,11 +432,11 @@
     text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.1);
     color: white;
     background-color: #FF4848;
-    border: 5px solid #ff7070;
-    border-radius: 22px;
+    border: 0.3vw solid #ff7070;
+    border-radius: 1.1vw;
     text-decoration: none;
-    width: 50px;
-    height: 75px;
+    width: 2.6vw;
+    height: 8vh;
 }
 
 .rules:hover {
@@ -432,13 +444,14 @@
 }
 
 .rulesImg {
-    width: 25px;
-    margin-top: 10px;
+    width: 1.2vw;
+    vertical-align: middle;
 }
 
 .renderCars {
    position: relative;
-   padding-right: 200px;
+   margin-left: -11vw;
+   /* padding-right: 12vw; */
 }
 
 .popupContainer {
@@ -449,11 +462,11 @@
 
 .popup {
     text-align: center;
-    border: 20px solid #FF4848;
+    border: 1vw solid #FF4848;
     background: #FF8686;
-    border-radius: 53px;
+    border-radius: 5vw;
     position: absolute;
-    width: 400px;
+    width: 20vw;
 }
 
 .popup h1 {
@@ -465,31 +478,31 @@
     color: white;
     text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.3);
     font-family: Montserrat;
-    font-size: 30px;
-    margin-top: 30px;
+    font-size: 1.7vw;
+    margin-top: 3vh;
     margin-bottom: 0px;
     padding-bottom: 0;
 }
 
 .numberPlace {
     font-family: Bungee;
-    font-size: 72px;
-    margin-top: -35px;
-    margin-bottom: -35px;
+    font-size: 4vw;
+    margin-top: -4.5vh;
+    margin-bottom: -3.8vh;
 }
 
 .popupCoin {
-    width: 35px;
+    width: 3vw;
     vertical-align: middle;
-    margin-bottom: 7px;
+    margin-bottom: 0.7vh;
 }
 
 .popupCar {
-    width: 60px;
+    width: 3.5vw;
     transform: rotate(90deg);
     vertical-align: middle;
-    margin-bottom: 15px;
-    margin-left: 20px;
+    margin-bottom: 1.5vh;
+    margin-left: 1vw;
     filter: drop-shadow(4px 0px 0px  rgba(0, 0, 0, 0.25));
 }
 
@@ -497,37 +510,37 @@
     color: white;
     text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.3);
     font-family: Montserrat;
-    font-size: 30px;
-    margin-top: 10px;
+    font-size: 1.7vw;
+    margin-top: 1vh;
     margin-bottom: 0px;
     padding-bottom: 0;
 }
 
 .moneyWon {
     font-family: Bungee;
-    font-size: 50px;
-    margin-top: -25px;
-    margin-bottom: -25px;
+    font-size: 3vw;
+    margin-top: -3vh;
+    margin-bottom: -3vh;
 }
 
 .winstreak {
-    font-size: 35px;
-    margin-top: 10px;
-    margin-bottom: 25px;
+    font-size: 1.5vw;
+    margin-top: 1vh;
+    margin-bottom: 2.5vh;
     text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.2);
 }
 
 .playAgain {
     font-weight: 800;
-    font-size: x-large;
+    font-size: 1.2vw;
     color: white;
     background-color: rgb(115, 255, 102);
-    padding: 15px 24px;
+    padding: 0.7vw 1vw;
     border: none;
-    border-radius: 10px;
+    border-radius: 3vw;
     text-decoration: none;
-    margin-top: 20px;
-    margin-bottom: 20px;
+    margin-top: 2vh;
+    margin-bottom: 2vh;
     text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.1);
 }
 
@@ -539,58 +552,129 @@
     display: flex;
     justify-content: center;
     align-self: center;
-    margin-top: 100px;
+    margin-top: 10vh;
 }
 
 .countdownPopup {
     text-align: center;
-    border: 20px solid #BEFFB9;
-    border-radius: 53px;
+    border: 1.3vw solid #BEFFB9;
+    border-radius: 3vw;
     background: #81FF95;
     position: absolute;
-    width: 200px;
-    height: 200px;
+    width: 10.3vw;
+    height: 10.3vw;
 }
 
 .starting {
-    margin-top: 30px;
+    margin-top: 3vh;
+    font-size: 1.2vw;
     text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.1);
 }
 
 .seconds {
     font-family: Bungee;
-    font-size: 100px;
-    margin-top: -85px;
+    font-size: 5.5vw;
+    margin-top: -5vw;
     text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.2);
 }
 
 .gameOver {
     font-family: bungee;
-    margin-top: 10px;
-    margin-bottom: -10px;
+    font-size: 2vw;
+    margin-top: 0;
+    margin-bottom: -2vh;
 }
 
 .bankrupt {
+    font-size: 1.2vw;
     text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.1);
+    margin-bottom: 2vh;
 }
 
 .repo {
-    max-width: 300px;
+    width: 16vw;
+    font-size: 1vw;
     margin: auto;
-    margin-bottom: 15px;
+    margin-bottom: 1vh;
     text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.1);
 }
 
 .tryAgain {
     font-weight: 800;
-    font-size: large;
+    font-size: 1vw;
     color: white;
     background-color: rgb(115, 255, 102);
-    padding: 12px 24px;
+    padding: 0.5vw 1vw;
     border: none;
-    border-radius: 10px;
+    border-radius: 3vw;
     text-decoration: none;
-    margin-top: 20px;
-    margin-bottom: 20px;
+    margin-top: 2.5vh;
+    margin-bottom: 3vh;
     text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.1);
 }
+
+@media (max-width: 1800px) { 
+    .renderCars {
+        transform: scale(0.95);
+    }
+   }
+@media (max-width: 1700px) { 
+    .renderCars {
+        transform: scale(0.9);
+    }
+   }
+@media (max-width: 1600px) { 
+    .renderCars {
+        transform: scale(0.85);
+    }
+   }
+@media (max-width: 1500px) { 
+    .renderCars {
+        transform: scale(0.8);
+    }
+   }
+@media (max-width: 1400px) { 
+    .renderCars {
+        transform: scale(0.75);
+    }
+   }
+@media (max-width: 1300px) { 
+    .renderCars {
+        transform: scale(0.7);
+    }
+   }
+@media (max-width: 1200px) { 
+    .renderCars {
+        transform: scale(0.65);
+    }
+   }
+@media (max-width: 1100px) { 
+    .renderCars {
+        transform: scale(0.6);
+    }
+   }
+@media (max-width: 1000px) { 
+    .renderCars {
+        transform: scale(0.55);
+    }
+   }
+@media (max-width: 900px) { 
+    .renderCars {
+        transform: scale(0.5);
+    }
+   } 
+@media (max-width: 800px) { 
+    .renderCars {
+        transform: scale(0.45);
+    }
+   }
+@media (max-width: 700px) { 
+    .renderCars {
+        transform: scale(0.4);
+    }
+   }
+@media (max-width: 600px) { 
+    .renderCars {
+        transform: scale(0.35);
+    }
+   }

@@ -1,137 +1,61 @@
-
-
-.slider {
-    vertical-align: middle;
+.betModule {
+    text-align: center;
     margin: auto;
-    width: 150px;
-    display: inline-block;
-
-}
-
-.chooseCar {
-    text-align: center;
-    padding-top: 10px;
-    padding-bottom: 10px;
-    display: grid;
-    grid-template-columns: 1fr 1fr 1fr;
-    column-gap: 20px;
-    width: 850px;
-}
-
-.chooseCarPrompt {
-    grid-column: 1/4;
-}
-
-.displayCar1 {
-    border: 20px solid #FFE6A6;
-    border-radius: 53px;
-    background: #FFD772;
-}
-
-.displayCar2 {
-    border: 20px solid #FFC9CF;
-    border-radius: 53px;
-    background: #FFA4AF;
-}
-
-.displayCar3 {
-    border: 20px solid #BAFAEE;
-    border-radius: 53px;
-    background: #6CF0D8;
-}
-
-.carHeader {
-    font-family: Bungee;
-    font-size: 22px;
-    margin-top: 5px;
-    margin-bottom: 0px;
-    color: white;
-    text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
-}
-
-.speedContainer {
-    margin-top: -5px;
-    display: inline-flex;
-    align-items: center;
-}
-
-.speed {
-    text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.15);
-}
-
-.speedDisplay {
-    margin-left: 10px;
-    width: 110px;
-    filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.15));
-}
-
-.desc {
-    margin-top: 0;
-    font-size: 15px;
-    text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.05);
-}
-
-.betButton {
-    background-color: rgb(115, 255, 102);
-    text-align: center;
-    font-weight: 700;
-    font-size: 20px;
-    color: white;
-    margin-top: 5px;
-    margin-bottom: 20px;
-    padding: 8px 15px;
-    border: none;
-    border-radius: 10px;
-    text-decoration: none;
+    border: 1.2vw solid #BEFFB9;
+    border-radius: 5vw;
+    background: #81FF95;
+    width: 16vw;
+    margin-top: 2vh;
+    margin-bottom: 1vh;
 }
 
 .betbankcontainer {
-    border: 12px solid #FFFA8A;
-    border-radius: 53px;
+    border: 0.6vw solid #FFFA8A;
+    border-radius: 5vw;
     background: #FFE662;
-    width: 175px;
-    height: 100px;
+    width: 10vw;
     margin: auto;
-    margin-top: 15px;
-    margin-bottom: 10px;
+    margin-top: 2vh;
+    margin-bottom: 2vh;
 }
 
 .betprompt {
     font-family: Bungee;
-    font-size: 25px;
+    font-size: 1.5vw;
     margin-top: 0;
-    margin-bottom: -20px;
+    margin-bottom: -2vh;
     color: white;
     text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
 }
 
 .mybank {
     color: white;
-    font-size: 20px;
+    font-size: 1vw;
     text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
-    padding-top: 0px;
-    margin-top: 15px;
-    margin-bottom: -10px;
+    margin-top: 1.5vh;
+    margin-bottom: -1.2vh;
 }
 
 .bankamount {
-    font-size: 30px;
+    font-size: 1.5vw;
     display: inline-block;
     color: white;
     text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
     vertical-align: middle;
-    margin-right: 5px;
+    margin-right: 0.3vw;
+
 }
 
 .bankcoin {
-    width: 30px;
+    width: 1.8vw;
     vertical-align: middle;
     padding-right: 0;
+    margin-bottom: 0;
 }
 
 .betprice {
-    margin-left: 10px;
-    font-size: 30px;
+    margin-left: 0.7vw;
+    font-size: 1.5vw;
     display: inline-block;
     color: white;
     text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
@@ -139,102 +63,152 @@
 }
 
 .betcoin {
-    width: 30px;
+    width: 1.8vw;
     vertical-align: middle;
-    margin-left: 5px;
+    margin-left: 0.3vw;
+}
+
+.slider {
+    vertical-align: middle;
+    margin: auto;
+    width: 8vw;
+    display: inline-block;
+}
+
+.slidercontainer {
+    margin-top: -3vh;
 }
 
 .chooseCar {
     color: white;
     margin: auto;
+    text-align: center;
+    padding-top: 1vh;
+    padding-bottom: 1vh;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    column-gap: 1vw;
+    width: 42vw;
 }
 
 .chooseCarPrompt {
     font-family: Bungee;
-    font-size: 25px;
+    font-size: 1.5vw;
     margin-top: 0;
+    margin-bottom: 0;
+    color: white;
+    text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    grid-column: 1/4;
+}
+
+.carHeader {
+    font-family: Bungee;
+    font-size: 1.2vw;
+    margin-top: 0.5vh;
     margin-bottom: 0;
     color: white;
     text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
 }
 
-.slidercontainer {
-    margin-top: -15px;
-}
-
 .displayCars {
-    width: 50px;
+    width: 2.5vw;
     transform: rotate(-90deg);
     filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));
+    grid-column: 1/2;
+    margin: auto;
 }
 
-.betModule {
+.displayCar1 {
+    border: 1vw solid #FFE6A6;
+    width: 10vw;
+    border-radius: 4vw;
+    background: #FFD772;
+    display: grid;
+    grid-template-columns: 1fr;
+    justify-self: center;
+}
+
+.displayCar2 {
+    border: 1vw solid #FFC9CF;
+    width: 10vw;
+    border-radius: 4vw;
+    background: #FFA4AF;
+    display: grid;
+    grid-template-columns: 1fr;
+    justify-self: center;
+}
+
+.displayCar3 {
+    border: 1vw solid #BAFAEE;
+    width: 10vw;
+    border-radius: 4vw;
+    background: #6CF0D8;
+    display: grid;
+    grid-template-columns: 1fr;
+    justify-self: center;
+}
+
+.speedContainer {
+    margin-top: -0.5vh;
+    margin: auto;
+    display: inline-flex;
+    align-items: center;
+    grid-column: 1/2;
+}
+
+.speed {
+    font-size: 0.7vw;
+    text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.15);
+}
+
+.speedDisplay {
+    margin-left: 0.7vw;
+    width: 3.5vw;
+    filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.15));
+}
+
+.desc {
+    margin-top: 0;
+    font-size: 0.6vw;
+    text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.05);
+    grid-column: 1/2;
+}
+
+.betButton {
+    background-color: rgb(115, 255, 102);
     text-align: center;
     margin: auto;
-    border: 20px solid #BEFFB9;
-    border-radius: 53px;
-    background: #81FF95;
-    width: 300px;
-    margin-top: 20px;
-    margin-bottom: 10px;
+    font-weight: 700;
+    font-size: 0.8vw;
+    color: white;
+    margin-top: 0.5vh;
+    margin-bottom: 2vh;
+    padding: 0.7vh;
+    border: none;
+    border-radius: 2vw;
+    text-decoration: none;
+    width: 7vw;
 }
 
 .changebetcontainer {
-    padding-top: 10px;
+    padding-top: 2vh;
     grid-column:  1/4;
 }
 
 .changebet {
     text-align: center;
     font-weight: 700;
-    font-size: 13px;
+    font-size: 0.8vw;
     color: white;
     background-color: #FFE662;
-    margin: 10px;
-    padding: 10px 24px;
+    padding: 0.6vw 0.8vw;
     border: none;
-    border-radius: 10px;
+    border-radius: 5vw;
     text-decoration: none;
     text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.1);
 }
 
 .changebet:hover {
     background-color: #ffd500;
-}
-
-.bankButtons a {
-    text-decoration: none;
-}
-
-.startButton {
-    background-color: #ff6868;
-    width: 200px;
-    height: 50px;
-    margin: 0 auto;
-    margin-top: 40px;
-    display: block;
-    border: none;
-    border-radius: 10px;
-
-}
-
-.backButton {
-    background-color: #ff3838;
-    width: 150px;
-    height: 40px;
-    margin: 0 auto;
-    margin-top: 20px;
-    display: block;
-    border: none;
-    border-radius: 10px;
-}
-
-.startButton a {
-    color: white;
-    font-size: 15px;
-}
-
-.backButton a {
-    color: white;
 }
 

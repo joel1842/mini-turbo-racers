@@ -2,41 +2,43 @@
 @import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@100;200;300;400;500;600;700&display=swap');
 
 .howToPlay {
-    padding-top: 30px;
+    padding-top: 5vh;
     text-align: center;
 }
 
 .howToPlay img {
-    width: 375px;
-    padding-bottom: 20px;
+    width: 20vw;
+    padding-bottom: 2vh;
 }
 
 .rulesContainer {
     color: white;
-    border: 20px solid #FF4848;
+    border: 1vw solid #FF4848;
     background: #FF8686;
-    border-radius: 53px;
-    width: 650px;
+    border-radius: 5vw;
+    width: 35vw;
     margin: auto;
-    padding-bottom: 35px;
-    margin-bottom: -10px;
+    padding-bottom: 5vh;
 }
 
 .rulesContainer h3 {
-    font-family: bungee;
+    font-family: Bungee;
+    font-size: 1.1vw;
     text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
-    letter-spacing: 2px;
+    letter-spacing: 0.1vw;
     margin-bottom: 0;
 }
 
 .positionEarnings h4 {
     font-weight: 700;
+    font-size: 0.9vw;
 }
 
 .rulesContainer p {
     display: inline-block;
-    width: 400px;
+    width: 25vw;
     font-weight: 600;
+    font-size: 1vw;
     margin: auto;
-    line-height: 25px;
+    line-height: 2vw;
 }
