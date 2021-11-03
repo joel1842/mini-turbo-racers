@@ -12,21 +12,11 @@ import turboImg from "./img/turbo.png";
 import oilSpillImg from "./img/oil spill.png";
 import home from "./img/home icon.png";
 import rules from "./img/rulesIcon.png";
+import { Popover, ArrowContainer } from 'react-tiny-popover';
 
 
 const Racetrack = (props) => {
 
-    // useEffect(() => {
-    //     const initialValue = document.body.style.zoom;
-    
-    //     // Change zoom level on mount
-    //     document.body.style.zoom = "80%";
-    
-    //     return () => {
-    //       // Restore default value
-    //       document.body.style.zoom = initialValue;
-    //     };
-    //   }, []);
     
     let carArray = [Car1Props, Car2Props, Car3Props];
     const [betDisplay, toggleBetDisplay] = useState(true);
@@ -209,6 +199,8 @@ const Racetrack = (props) => {
         }
     }
 
+    const [isGasPopoverOpen, setIsGasPopoverOpen] = useState(false);
+
     function buyGasCan() {
         if (betCar.hasEffect === false) {
             if (props.globalBank >= 100) {
@@ -233,10 +225,13 @@ const Racetrack = (props) => {
             }
 
         } else {
-            console.log(betCar.name, "has effect currently, please try again")
+            setIsGasPopoverOpen(true)
+            setTimeout(() => {
+                setIsGasPopoverOpen(false)
+            }, 2000)
         }
     }
-
+    const [isTurboPopoverOpen, setIsTurboPopoverOpen] = useState(false);
     function buyTurbo() {
         if (betCar.hasEffect === false) {
             if (props.globalBank >= 200) { 
@@ -262,7 +257,10 @@ const Racetrack = (props) => {
             }
 
         } else {
-            console.log(betCar.name, "has effect currently, please try again")
+            setIsTurboPopoverOpen(true)
+            setTimeout(() => {
+                setIsTurboPopoverOpen(false)
+            }, 2000)
         }
     }
 
@@ -438,13 +436,61 @@ const Racetrack = (props) => {
                     </div>
                     <img className="itemImg" src={gasCanImg} alt="Gas Can" />
                     <h2 className="itemName">Gas Can</h2>
+                    <Popover
+                    isOpen={isGasPopoverOpen}
+                    positions={['right']}
+                    onClickOutside={() => setIsGasPopoverOpen(false)}
+                    content={({ position, childRect, popoverRect }) => (
+                        <ArrowContainer // if you'd like an arrow, you can import the ArrowContainer!
+                            position={position}
+                            childRect={childRect}
+                            popoverRect={popoverRect}
+                            arrowColor={'#FFFA8A'}
+                            arrowSize={10}
+                            arrowStyle={{ opacity: 1, top: "auto", borderTop: "1vw solid transparent", borderBottom: "1vw solid transparent", borderRight: "1vw solid rgb(255, 250, 138)"}}
+                            className='popover-arrow-container'
+                            arrowClassName='popover-arrow'
+                        >
+                            <div className="popoverBody">
+                                Your car already has a power-up!
+                            </div>
+                        </ArrowContainer>
+                    )}
+                    >
                     <button className="buyButton" onClick={buyGasCan}>100 <img className="shopCoin" src={coin} alt="Coin" /></button>
+                    </Popover>
+                    
                     <img className="itemImg" src={turboImg} alt="Turbo" />
                     <h2 className="itemName">Turbo</h2>
+                    <Popover
+                    isOpen={isTurboPopoverOpen}
+                    positions={['right']}
+                    onClickOutside={() => setIsTurboPopoverOpen(false)}
+                    content={({ position, childRect, popoverRect }) => (
+                        <ArrowContainer // if you'd like an arrow, you can import the ArrowContainer!
+                            position={position}
+                            childRect={childRect}
+                            popoverRect={popoverRect}
+                            arrowColor={'#FFFA8A'}
+                            arrowSize={10}
+                            arrowStyle={{ opacity: 1, top: "auto", borderTop: "1vw solid transparent", borderBottom: "1vw solid transparent", borderRight: "1vw solid rgb(255, 250, 138)"}}
+                            className='popover-arrow-container'
+                            arrowClassName='popover-arrow'
+                        >
+                            <div className="popoverBody">
+                                Your car already has a power-up!
+                            </div>
+                        </ArrowContainer>
+                    )}
+                    >
                     <button className="buyButton" onClick={buyTurbo}>200 <img className="shopCoin" src={coin} alt="Coin" /></button>
+                    </Popover>
                     <img className="itemImg" src={oilSpillImg} alt="Oil Spill" />
                     <h2 className="itemName">Oil Spill</h2>
                     <button className="buyButton" onClick={buyOilSpill}>75 <img className="shopCoin" src={coin} alt="Coin" /></button>
+                </div>
+                <div>
+                
                 </div>
                 <div className="homeContainer">
                     <Link to="/">

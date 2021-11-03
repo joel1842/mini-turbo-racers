@@ -15,9 +15,9 @@ const Bet = (props) => {
     const [betPrice, setBet] = useState(250)
 
     const [lockBet, setLockBet] = useState(false)
-    const [button1Color, setButton1Color] = useState("#73ff66")
-    const [button2Color, setButton2Color] = useState("#73ff66")
-    const [button3Color, setButton3Color] = useState("#73ff66")
+    const [button1Color, setButton1Color] = useState("#98ff8f")
+    const [button2Color, setButton2Color] = useState("#98ff8f")
+    const [button3Color, setButton3Color] = useState("#98ff8f")
 
 
     // changes button color to show bet is locked
@@ -64,9 +64,9 @@ const Bet = (props) => {
     // unlocks bet and resets button colors
     function resetBet() {
         setLockBet(false)
-        setButton1Color("#73ff66")
-        setButton2Color("#73ff66")
-        setButton3Color("#73ff66")
+        setButton1Color("#98ff8f")
+        setButton2Color("#98ff8f")
+        setButton3Color("#98ff8f")
     }
 
     return (

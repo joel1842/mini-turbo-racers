@@ -366,6 +366,27 @@
     vertical-align: middle;
 }
 
+.popoverBody {
+    border: 0.3vw solid #FFFA8A;
+    border-radius: 0.2vw 1vw 1vw 0.2vw ;
+    background: #FFE662;
+    padding: 0.3vw;
+    font-weight: 700;
+    font-size: 0.7vw;
+    margin-left: 0.5vw;
+    text-shadow: 0.3vw 00vw 0.4vw rgba(0, 0, 0, 0.2);
+}
+
+.popover-arrow-container {
+    position: relative;
+    vertical-align: middle;
+}
+
+.popover-arrow {
+    margin-left: 0.1vw;
+    vertical-align: middle;
+}
+
 .homeContainer {
     justify-self: center;
     align-self: end;
