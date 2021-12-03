@@ -7,8 +7,8 @@ html {
   background-size: cover;
   background-repeat: no-repeat;
   background-color: #02cd31;
-  width: 100vw;
-  height: 100vh;
+  width: 100%;
+  height: 100%;
 }
 
 * {
@@ -16,30 +16,38 @@ html {
   color: white;
 }
 
+.navContainer {
+  position: absolute;
+  top: 25%;
+  left: 50%;
+  transform: translate(-50%, -25%);
+  margin: auto;
+}
+
 .navbar {
   text-align: center;
 }
 
 .logo img {
-  width: 15vw;
-  margin-top: 5vh;
-  margin-left: 5vh;
+  width: 40%;
+  margin-top: 2.5%;
+  margin-left: 2.5%;
   filter: drop-shadow(4px 4px 4px  rgba(255, 0, 0, 1));
 }
 
 .btn-menu {
-  padding-top: 3vh;
+  padding-top: 1%;
 }
 
 .btn-menu button {
   background-color: #ff6868;
-  width: 15vw;
+  width: 40%;
   margin: 0 auto;
-  margin-top: 3vh;
-  padding: 1vh;
+  margin-top: 2%;
+  padding: 2%;
   display: block;
   border: none;
-  border-radius: 20px;
+  border-radius: 15vw;
   filter: drop-shadow(4px 4px 4px  rgba(0, 0, 0, 0.2));
 }
 
@@ -53,7 +61,7 @@ html {
   font-family: "Montserrat";
   font-weight: 600;
   font-style: italic;
-  font-size: 1.5vw;
+  font-size: 2vw;
 
   color: white;
   text-decoration: none;

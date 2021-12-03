@@ -441,7 +441,7 @@ const Racetrack = (props) => {
                     positions={['right']}
                     onClickOutside={() => setIsGasPopoverOpen(false)}
                     content={({ position, childRect, popoverRect }) => (
-                        <ArrowContainer // if you'd like an arrow, you can import the ArrowContainer!
+                        <ArrowContainer
                             position={position}
                             childRect={childRect}
                             popoverRect={popoverRect}
@@ -467,7 +467,7 @@ const Racetrack = (props) => {
                     positions={['right']}
                     onClickOutside={() => setIsTurboPopoverOpen(false)}
                     content={({ position, childRect, popoverRect }) => (
-                        <ArrowContainer // if you'd like an arrow, you can import the ArrowContainer!
+                        <ArrowContainer
                             position={position}
                             childRect={childRect}
                             popoverRect={popoverRect}
