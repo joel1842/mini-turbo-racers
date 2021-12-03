@@ -38,31 +38,36 @@ function App() {
       <div className="App">
         <Switch>
           <Route path="/" exact>
-            <nav className="navbar">
-                <div className="logo">
-                    <img src={logo} alt="Mini Turbo Racers" />
-                </div>
-                <div className="btn-menu text-center">
-                    <Link to="/track">
-                      <button>
-                        <img src={flag} alt="Start" /> 
-                        <a href="/track">Start Game!</a>
-                      </button>
-                    </Link>
-                    <Link to="/howtoplay">
-                      <button>
-                        <img src={rulesIcon} alt="How to play!" />
-                        <a href="/how-to-play">How to play!</a>
-                      </button>
-                    </Link>
-                    <Link to="/credits">
-                      <button>
-                        <img src={starIcon} alt="Credits" />
-                        <a href="/credits">Credits</a>
-                      </button>
-                    </Link>
-                </div>
-            </nav>
+          <div className='navContainer'>
+
+              <nav className="navbar">
+                  <div className="logo">
+                      <img src={logo} alt="Mini Turbo Racers" />
+                  </div>
+                  <div className="btn-menu text-center">
+                      <Link to="/track">
+                        <button>
+                          <img src={flag} alt="Start" /> 
+                          <a href="/track">Start Game!</a>
+                        </button>
+                      </Link>
+                      <Link to="/howtoplay">
+                        <button>
+                          <img src={rulesIcon} alt="How to play!" />
+                          <a href="/how-to-play">How to play!</a>
+                        </button>
+                      </Link>
+                      <Link to="/credits">
+                        <button>
+                          <img src={starIcon} alt="Credits" />
+                          <a href="/credits">Credits</a>
+                        </button>
+                      </Link>
+                  </div>
+              </nav>
+
+          </div>
+
           </Route>
           <Route path="/track">
             <Racetrack globalBank={globalBank} setBank={setBank}/>
