@@ -42,7 +42,7 @@ const Racetrack = (props) => {
     }, [seconds, counting, countdown, timer])
 
     // triggers race
-    function onStart() {
+    const onStart = () => {
         if (betCar !== undefined) {
             console.log(Car1Props.name, Car1Props.speed)
             console.log(Car2Props.name, Car2Props.speed)
@@ -373,13 +373,7 @@ const Racetrack = (props) => {
 
             {betDisplay ? 
                 <div>
-                    <Bet betGetter={betGetter} {...props}/>
-                    <div className='buttonContainer'>
-                        <Link to="/">
-                            <button className='homeButton'>Go Home</button>
-                        </Link>
-                        <button className='start-Button' onClick={onStart}>Go to track!</button>
-                    </div>
+                    <Bet betGetter={betGetter} onStart={onStart} {...props}/>
                 </div>
             : null}
 

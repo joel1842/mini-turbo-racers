@@ -1,3 +1,11 @@
+.betWrapper {
+    position: absolute;
+    top: 25%;
+    left: 50%;
+    transform: translate(-50%, -25%);
+
+}
+
 .betModule {
     text-align: center;
     margin: auto;
@@ -15,17 +23,16 @@
     background: #FFE662;
     width: 10vw;
     margin: auto;
-    margin-top: 2vh;
-    margin-bottom: 2vh;
 }
 
 .betprompt {
     font-family: Bungee;
     font-size: 1.5vw;
-    margin-top: 0;
-    margin-bottom: -2vh;
+    margin-top: 0.7vw;
+    margin-bottom: 0.5vw;
     color: white;
     text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    letter-spacing: 0.5px;
 }
 
 .mybank {
@@ -54,6 +61,8 @@
 }
 
 .betprice {
+    margin-top: 0;
+    margin-bottom: 0;
     margin-left: 0.7vw;
     font-size: 1.5vw;
     display: inline-block;
@@ -76,7 +85,8 @@
 }
 
 .slidercontainer {
-    margin-top: -3vh;
+    margin-top: 0.5vw;
+    margin-bottom: 1vw;
 }
 
 .chooseCar {
@@ -95,19 +105,21 @@
     font-family: Bungee;
     font-size: 1.5vw;
     margin-top: 0;
-    margin-bottom: 0;
+    margin-bottom: 1vw;
     color: white;
     text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
     grid-column: 1/4;
+    letter-spacing: 0.5px;
 }
 
 .carHeader {
     font-family: Bungee;
     font-size: 1.2vw;
-    margin-top: 0.5vh;
-    margin-bottom: 0;
+    margin-top: 1vw;
+    margin-bottom: 0.5vw;
     color: white;
     text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    letter-spacing: 0.5px;
 }
 
 .displayCars {
@@ -149,14 +161,17 @@
 }
 
 .speedContainer {
-    margin-top: -0.5vh;
+
     margin: auto;
+    margin-top: 0.5vw;
     display: inline-flex;
     align-items: center;
     grid-column: 1/2;
 }
 
 .speed {
+    margin-top: 0;
+    margin-bottom: 0;
     font-size: 0.7vw;
     text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.15);
 }
@@ -168,7 +183,7 @@
 }
 
 .desc {
-    margin-top: 0;
+    margin-top: 0.5vw;
     font-size: 0.6vw;
     text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.05);
     grid-column: 1/2;
@@ -178,16 +193,17 @@
     background-color: rgb(115, 255, 102);
     text-align: center;
     margin: auto;
-    font-weight: 700;
+    font-weight: 800;
     font-size: 0.8vw;
     color: white;
     margin-top: 0.5vh;
-    margin-bottom: 2vh;
+    margin-bottom: 1vw;
     padding: 0.7vh;
     border: none;
     border-radius: 2vw;
     text-decoration: none;
     width: 7vw;
+    letter-spacing: 0.25px;
 }
 
 .changebetcontainer {

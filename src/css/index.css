@@ -21,7 +21,7 @@ html {
 }
 
 .logo img {
-  width: 15vw;
+  width: 20%;
   margin-top: 5vh;
   margin-left: 5vh;
   filter: drop-shadow(4px 4px 4px  rgba(255, 0, 0, 1));
