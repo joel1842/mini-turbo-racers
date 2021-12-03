@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { Link } from "react-router-dom";
 import Slider from 'rc-slider';
 import 'rc-slider/assets/index.css';
 import "./css/bet.css";
@@ -130,6 +131,12 @@ const Bet = (props) => {
                 <div className="changebetcontainer">
                     <button className="changebet" onClick={resetBet}>Change Bet</button>
                 </div>
+            </div>
+            <div className='buttonContainer'>
+                <Link to="/">
+                    <button className='homeButton'>Go Home</button>
+                </Link> 
+                <button className='start-Button' onClick={props.onStart}>Go to track!</button>
             </div>
         </div>
     )
