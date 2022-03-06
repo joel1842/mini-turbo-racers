@@ -12,6 +12,7 @@ import car2Speed from './img/car2speed.png';
 import car3Speed from './img/car3speed.png';
 import { AuthenticationButton } from './buttons/Authentication';
 import { useAuth0 } from "@auth0/auth0-react";
+import { useEffect } from "react";
 
 const Bet = (props) => {
 
