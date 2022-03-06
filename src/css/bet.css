@@ -6,6 +6,42 @@
 
 }
 
+.playerInfo {
+
+    text-align: center;
+}
+
+.playerInfo h1 {
+    font-size: 30px;
+}
+
+.profilePic {
+    border-radius: 80px;
+}
+
+.profileName {
+    font-weight: 600;
+    font-size: 24px;
+}
+
+.next {
+    background: rgb(77, 139, 255);
+    border: none;
+    border-radius: 20px;
+    padding: 5%;
+    font-size: 16px;
+    font-weight: 600;
+    display: block;
+    margin: auto;
+    margin-top: 10%;
+    padding-left: 10%;
+    padding-right: 10%;
+}
+
+.next:hover {
+    background: rgb(54, 104, 197);
+}
+
 .betModule {
     text-align: center;
     margin: auto;

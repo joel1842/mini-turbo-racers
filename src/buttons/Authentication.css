@@ -1,0 +1,15 @@
+.authentication {
+    border: none;
+    border-radius: 20px;
+    padding: 5%;
+    background: #FFA4AF;
+    font-size: 16px;
+    font-weight: 600;
+    display: block;
+    margin: auto;
+
+}
+
+.authentication:hover {
+    background: #eb6f7d;
+}

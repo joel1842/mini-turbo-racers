@@ -10,8 +10,14 @@ import coin from "./img/coin.png";
 import car1Speed from './img/car1speed.png';
 import car2Speed from './img/car2speed.png';
 import car3Speed from './img/car3speed.png';
+import { AuthenticationButton } from './buttons/Authentication';
+import { useAuth0 } from "@auth0/auth0-react";
 
 const Bet = (props) => {
+
+    // get user
+    const { user, isAuthenticated } = useAuth0()
+
     // default bet amount
     const [betPrice, setBet] = useState(250)
 
@@ -20,6 +26,20 @@ const Bet = (props) => {
     const [button2Color, setButton2Color] = useState("#98ff8f")
     const [button3Color, setButton3Color] = useState("#98ff8f")
 
+    // card switches
+    const [showInfo, setShowInfo] = useState(true)
+    const [showBet, setShowBet] = useState(false)
+    const [showCars, setShowCars] = useState(false)
+
+    const betSwitch = () => {
+        setShowInfo(false)
+        setShowBet(true)
+    }
+
+    const carSwitch = () => {
+        setShowBet(false)
+        setShowCars(true)
+    }
 
     // changes button color to show bet is locked
     function change1Color() {
@@ -72,6 +92,24 @@ const Bet = (props) => {
 
     return (
         <div className="betWrapper">
+
+            {showInfo &&
+            <div className="playerInfo">
+                <h1>Player Info</h1>
+                {isAuthenticated &&
+                <div className="profile">
+                    <img className="profilePic" src={user.picture} alt="Profile" />
+                    <p className="profileName">{user.name}</p>
+                </div>
+                }
+                {!isAuthenticated && <p>Login below to continue!</p>}
+
+                <AuthenticationButton />
+
+                {isAuthenticated && <button className="next" onClick={betSwitch}>Next</button>}
+            </div>}
+            
+            {showBet &&
             <div className="betModule">
                 <h1 className="betprompt">Select bet!</h1>
                 <div className="betbankcontainer">
@@ -94,8 +132,10 @@ const Bet = (props) => {
                         <h2 className="betprice">{betPrice}</h2>
                         <img className="betcoin" src={coin} alt="Coins" />
                 </div>
-            </div>
+                <button className="next" onClick={carSwitch}>Next</button>
+            </div>}
 
+            {showCars &&
             <div className="chooseCar">
                 <h1 className="chooseCarPrompt">Choose a car!</h1>
                 <div className="displayCar1">
@@ -131,13 +171,15 @@ const Bet = (props) => {
                 <div className="changebetcontainer">
                     <button className="changebet" onClick={resetBet}>Change Bet</button>
                 </div>
-            </div>
+            </div>}
+
+            {showCars &&
             <div className='buttonContainer'>
                 <Link to="/">
                     <button className='homeButton'>Go Home</button>
                 </Link> 
                 <button className='start-Button' onClick={props.onStart}>Go to track!</button>
-            </div>
+            </div>}
         </div>
     )
 }

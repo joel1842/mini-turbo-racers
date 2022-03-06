@@ -13,20 +13,39 @@ import Racetrack from "./Racetrack";
 import Garage from "./Garage";
 import HowToPlay from './HowToPlay';
 import Credits from './Credits';
+import { useAuth0 } from "@auth0/auth0-react";
 
 function App() {
 
-  // const style = {
-  //   backgroundImage: "url('../img/trackbackground.jpg')",
-  //   backgroundPosition: 'center',
-  //   backgroundSize: 'cover',
-  //   backgroundRepeat: 'no-repeat',
-  //   width: '100vw',
-  //   height: '100vh'
-  // }
-
+  const { user, isAuthenticated } = useAuth0()
+  const [score, setScore] = useState()
   // bank is stored globally
   const [globalBank, setGlobalBank] = useState(1000)
+  useEffect(() => {
+
+    if (isAuthenticated) {
+      const getScore = async () => {
+        const sub = user.sub
+
+        const response = await fetch('http://localhost:8800/score/getscore/' + sub, {
+          method: 'GET',
+          headers: {
+            'Content-Type': 'application/json'
+          }
+        })
+        const responseData = response.json()
+        setScore(responseData)
+        
+      }
+      getScore()
+    }
+
+  }, [isAuthenticated, user])
+
+
+  useEffect(() => {
+    console.log(score)
+  }, [score])
 
   // sets bank amount
   function setBank(amount) {

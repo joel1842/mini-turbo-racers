@@ -13,11 +13,12 @@ import oilSpillImg from "./img/oil spill.png";
 import home from "./img/home icon.png";
 import rules from "./img/rulesIcon.png";
 import { Popover, ArrowContainer } from 'react-tiny-popover';
-
+import { useAuth0 } from '@auth0/auth0-react';
 
 const Racetrack = (props) => {
 
-    
+    const { user } = useAuth0()
+
     let carArray = [Car1Props, Car2Props, Car3Props];
     const [betDisplay, toggleBetDisplay] = useState(true);
     const [trackDisplay, toggleTrackDisplay] = useState(false);
@@ -28,6 +29,25 @@ const Racetrack = (props) => {
     const betGetter = (betPrice, car) => {
         setBetAmount(betPrice)
         setBetCar(car)
+    }
+
+    // send race data to backend
+    const raceData = () => {
+
+        const data = {
+            player: user.sub,
+            coins: props.globalBank
+        }
+
+        console.log(props.globalBank)
+
+        fetch("http://localhost:8800/score/addscore/", {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            }, 
+            body: JSON.stringify(data)
+        })
     }
 
     // stopwatch
@@ -137,6 +157,9 @@ const Racetrack = (props) => {
         checkWinstreak()
         playerPlace()
         clearInterval(leaderboardInterval)
+        setTimeout(() => {
+            raceData()
+        }, 2000)
 
         if (!isBankrupt) {
             setVisible(true)
@@ -515,6 +538,7 @@ const Racetrack = (props) => {
                     <h2 className="won">You {outcome}</h2>
                     <h1 className="moneyWon">{moneyWon} <img className="popupCoin" src={coin} alt="Coins" /></h1>
                     <button className='playAgain' onClick={playAgain}>Play Again!</button>
+                    <button onClick={raceData}>Send Data</button>
                 </div>
             </div>
             : null}
