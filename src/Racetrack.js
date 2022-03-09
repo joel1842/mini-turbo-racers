@@ -31,24 +31,7 @@ const Racetrack = (props) => {
         setBetCar(car)
     }
 
-    // send race data to backend
-    const raceData = () => {
-
-        const data = {
-            player: user.sub,
-            coins: props.globalBank
-        }
-
-        console.log(props.globalBank)
-
-        fetch("http://localhost:8800/score/addscore/", {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json'
-            }, 
-            body: JSON.stringify(data)
-        })
-    }
+    const [win, setWin] = useState(false);
 
     // stopwatch
     const [seconds, setSeconds] = useState(3);
@@ -157,9 +140,6 @@ const Racetrack = (props) => {
         checkWinstreak()
         playerPlace()
         clearInterval(leaderboardInterval)
-        setTimeout(() => {
-            raceData()
-        }, 2000)
 
         if (!isBankrupt) {
             setVisible(true)
@@ -184,6 +164,7 @@ const Racetrack = (props) => {
     const [outcome, setOutcome] = useState(undefined)
     function checkMoney() {
         if (carArray[0].name === betCar.name) {
+            setWin(true)
             if (winstreak >= 2) {
                 setMoneyWon(Math.round((betAmount * 2) * winstreak))
                 props.setBank(Math.round((betAmount * 2) * winstreak))
@@ -362,9 +343,31 @@ const Racetrack = (props) => {
         window.location.reload()
     }
 
+    // send race data to backend
+    const raceData = () => {
+        if (raceOver) {
+            const data = {
+                sub: user.sub,
+                coins: props.globalBank,
+                win: win
+            }
+    
+            console.log("Data sent!", props.globalBank, win)
+    
+            fetch("http://localhost:8800/score/addscore/", {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                }, 
+                body: JSON.stringify(data)
+            })
+        }
+    }
 
     // resets race
     function playAgain() {
+        raceData()
+
         toggleBetDisplay(true)
         toggleTrackDisplay(false)
         setVisible(false)
@@ -391,7 +394,7 @@ const Racetrack = (props) => {
         resetCar3()
     }
 
-    return(
+    return (
         <div className="racetrack-container">
 
             {betDisplay ? 
@@ -538,7 +541,6 @@ const Racetrack = (props) => {
                     <h2 className="won">You {outcome}</h2>
                     <h1 className="moneyWon">{moneyWon} <img className="popupCoin" src={coin} alt="Coins" /></h1>
                     <button className='playAgain' onClick={playAgain}>Play Again!</button>
-                    <button onClick={raceData}>Send Data</button>
                 </div>
             </div>
             : null}

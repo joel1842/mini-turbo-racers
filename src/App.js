@@ -17,35 +17,46 @@ import { useAuth0 } from "@auth0/auth0-react";
 
 function App() {
 
-  const { user, isAuthenticated } = useAuth0()
-  const [score, setScore] = useState()
+  const { user, isAuthenticated, getAccessTokenSilently } = useAuth0()
   // bank is stored globally
-  const [globalBank, setGlobalBank] = useState(1000)
+  const [globalBank, setGlobalBank] = useState()
+  const [userWins, setUserWins] = useState()
   useEffect(() => {
 
     if (isAuthenticated) {
       const getScore = async () => {
-        const sub = user.sub
 
-        const response = await fetch('http://localhost:8800/score/getscore/' + sub, {
-          method: 'GET',
+        const data = {
+          name: user.name,
+          sub: user.sub
+        } 
+
+        const response = await fetch('http://localhost:8800/score/getscore/', {
+          method: 'POST',
           headers: {
-            'Content-Type': 'application/json'
-          }
+            'Content-Type': 'application/json;charset=utf-8'
+          },
+          body: JSON.stringify(data)
         })
-        const responseData = response.json()
-        setScore(responseData)
+        const responseData = (response.json())
+        responseData.then((data) => {
+          setGlobalBank(data[0].coins)
+          setUserWins(data[0].wins)
+        })
         
       }
       getScore()
     }
 
-  }, [isAuthenticated, user])
+  }, [isAuthenticated, user, getAccessTokenSilently])
 
 
-  useEffect(() => {
-    console.log(score)
-  }, [score])
+  // useEffect(() => {
+  //   if (score) {
+  //     console.log(score)
+  //     console.log("SCORE")
+  //   }
+  // }, [score])
 
   // sets bank amount
   function setBank(amount) {
@@ -89,7 +100,7 @@ function App() {
 
           </Route>
           <Route path="/track">
-            <Racetrack globalBank={globalBank} setBank={setBank}/>
+            <Racetrack globalBank={globalBank} userWins={userWins} setBank={setBank}/>
           </Route>
           <Route path="/garage">
             <Garage />

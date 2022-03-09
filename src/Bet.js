@@ -12,7 +12,8 @@ import car2Speed from './img/car2speed.png';
 import car3Speed from './img/car3speed.png';
 import { AuthenticationButton } from './buttons/Authentication';
 import { useAuth0 } from "@auth0/auth0-react";
-import { useEffect } from "react";
+import crown from "./img/crown.png"
+import { Leaderboard } from "./Leaderboard";
 
 const Bet = (props) => {
 
@@ -101,11 +102,18 @@ const Bet = (props) => {
                 <div className="profile">
                     <img className="profilePic" src={user.picture} alt="Profile" />
                     <p className="profileName">{user.name}</p>
+                    <div className="wins">
+                        <h3>Wins</h3>
+                        <img src={crown} alt="Crown" />
+                        <p>{props.userWins}</p>
+                    </div>
                 </div>
                 }
                 {!isAuthenticated && <p>Login below to continue!</p>}
 
                 <AuthenticationButton />
+
+                <Leaderboard />
 
                 {isAuthenticated && <button className="next" onClick={betSwitch}>Next</button>}
             </div>}
