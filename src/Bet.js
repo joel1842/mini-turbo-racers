@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import Slider from 'rc-slider';
 import 'rc-slider/assets/index.css';
@@ -13,12 +13,39 @@ import car3Speed from './img/car3speed.png';
 import { AuthenticationButton } from './buttons/Authentication';
 import { useAuth0 } from "@auth0/auth0-react";
 import crown from "./img/crown.png"
-import { Leaderboard } from "./Leaderboard";
 
 const Bet = (props) => {
 
     // get user
     const { user, isAuthenticated } = useAuth0()
+
+    const [nickname, setNickname] = useState()
+
+    const submitNewUser = () => {
+
+        const data = {
+            name: nickname,
+            sub: user.sub
+        }
+
+        console.log(data)
+
+        fetch('http://localhost:8800/score/newuser/', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json;charset=utf-8'
+            },
+            body: JSON.stringify(data)
+        }).then((res) => {
+            if (res.ok) {
+                window.location.reload()
+            } 
+        })
+    }
+    
+    useEffect(() => {
+        console.log(props.newUser)
+    }, [props.newUser])
 
     // default bet amount
     const [betPrice, setBet] = useState(250)
@@ -101,21 +128,25 @@ const Bet = (props) => {
                 {isAuthenticated &&
                 <div className="profile">
                     <img className="profilePic" src={user.picture} alt="Profile" />
-                    <p className="profileName">{user.name}</p>
+                    {!props.newUser && <p className="profileName">@{props.userName}</p>}
+                    {props.newUser && 
+                    <div className="newUser">
+                        <h3>Choose a nickname</h3>
+                        <input placeholder="@nickname" type="text" name="nickname" onChange={(event) => {setNickname(event.target.value)}}/>
+                        <button onClick={submitNewUser}>Submit Nickname</button>
+                    </div>}
+                    {!props.newUser && 
                     <div className="wins">
                         <h3>Wins</h3>
                         <img src={crown} alt="Crown" />
                         <p>{props.userWins}</p>
-                    </div>
+                    </div>}
                 </div>
                 }
+                {isAuthenticated && !props.newUser && <button className="next" onClick={betSwitch}>Next</button>}
                 {!isAuthenticated && <p>Login below to continue!</p>}
-
                 <AuthenticationButton />
 
-                <Leaderboard />
-
-                {isAuthenticated && <button className="next" onClick={betSwitch}>Next</button>}
             </div>}
             
             {showBet &&

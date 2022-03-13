@@ -13,7 +13,10 @@ import Racetrack from "./Racetrack";
 import Garage from "./Garage";
 import HowToPlay from './HowToPlay';
 import Credits from './Credits';
+import { Leaderboard } from './Leaderboard';
 import { useAuth0 } from "@auth0/auth0-react";
+import { ThemeProvider } from "@emotion/react";
+import { buttonTheme } from "./ButtonTheme"
 
 function App() {
 
@@ -21,27 +24,33 @@ function App() {
   // bank is stored globally
   const [globalBank, setGlobalBank] = useState()
   const [userWins, setUserWins] = useState()
+  const [userName, setUserName] = useState()
+  const [newUser, setNewUser] = useState(false)
   useEffect(() => {
 
     if (isAuthenticated) {
       const getScore = async () => {
 
-        const data = {
-          name: user.name,
-          sub: user.sub
-        } 
+        const sub = user.sub
 
-        const response = await fetch('http://localhost:8800/score/getscore/', {
-          method: 'POST',
+        const response = await fetch('http://localhost:8800/score/getscore/' + sub, {
+          method: 'GET',
           headers: {
             'Content-Type': 'application/json;charset=utf-8'
-          },
-          body: JSON.stringify(data)
+          }
         })
         const responseData = (response.json())
         responseData.then((data) => {
-          setGlobalBank(data[0].coins)
-          setUserWins(data[0].wins)
+          console.log(data)
+          if (data.length === 0) {
+            setNewUser(true)
+          } else {
+            setGlobalBank(data[0].coins)
+            setUserWins(data[0].wins)
+            setUserName(data[0].name)
+          }
+        }).catch((err) => {
+          console.log(err)
         })
         
       }
@@ -100,7 +109,7 @@ function App() {
 
           </Route>
           <Route path="/track">
-            <Racetrack globalBank={globalBank} userWins={userWins} setBank={setBank}/>
+            <Racetrack globalBank={globalBank} userWins={userWins} setBank={setBank} newUser={newUser} userName={userName}/>
           </Route>
           <Route path="/garage">
             <Garage />
@@ -110,6 +119,11 @@ function App() {
           </Route>
           <Route path="/credits">
             <Credits />
+          </Route>
+          <Route path="/leaderboard">
+            <ThemeProvider theme={buttonTheme}>
+              <Leaderboard />
+            </ThemeProvider>
           </Route>
         </Switch>
       </div>
